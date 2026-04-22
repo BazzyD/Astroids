@@ -9,7 +9,7 @@ public class Health : MonoBehaviour,  IDamageable {
     public bool IsInvincible { get; set; } = false;
     public float TotalFlightTime { get; private set; } = 0.4f;
 
-    public event Action<Vector3, float, int> OnTakeDamage;
+    public event Action<float> OnTakeDamage;
     public event Action<float> OnHealthChanged;
     public event Action OnDeath;
 
@@ -17,12 +17,12 @@ public class Health : MonoBehaviour,  IDamageable {
         currentHealth= maxHealth;
     }
 
-    public void TakeDamage(Vector3 hitDirection, float damageAmount, int comboStep = 0){
+    public void TakeDamage(float damageAmount){
         if(IsInvincible) return;
         
         currentHealth -= damageAmount;
 
-        OnTakeDamage?.Invoke(hitDirection, damageAmount, comboStep);
+        OnTakeDamage?.Invoke(damageAmount);
         OnHealthChanged?.Invoke(currentHealth);
 
         if (currentHealth <= 0){

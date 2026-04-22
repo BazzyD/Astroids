@@ -7,7 +7,9 @@ public class InputHandler : MonoBehaviour
    private PlayerInputActions playerInputActions;
    public Action<float> OnThrustChanged;
    public Action<float> OnRotationChanged;
-   public Action OnFirePerformed;
+   public Action<bool> OnFirePerformed;
+
+   
    private void Awake(){
       playerInputActions = new PlayerInputActions();
    }
@@ -22,6 +24,7 @@ public class InputHandler : MonoBehaviour
       playerInputActions.Player.Rotation.canceled += OnRotation;
 
       playerInputActions.Player.Shoot.performed += OnShoot;
+      playerInputActions.Player.Shoot.canceled += OnShoot;
    }
    private void OnDisable() {
       playerInputActions.Player.Disable();
@@ -33,6 +36,7 @@ public class InputHandler : MonoBehaviour
       playerInputActions.Player.Rotation.canceled -= OnRotation;
 
       playerInputActions.Player.Shoot.performed -= OnShoot;
+      playerInputActions.Player.Shoot.canceled -= OnShoot;
    }   
 
    private void OnThrust(InputAction.CallbackContext context)
@@ -47,7 +51,8 @@ public class InputHandler : MonoBehaviour
    }
    private void OnShoot(InputAction.CallbackContext context)
    {
-      OnFirePerformed?.Invoke();
+      bool isPressed = context.ReadValueAsButton();
+      OnFirePerformed?.Invoke(isPressed);
    }
 
 }
