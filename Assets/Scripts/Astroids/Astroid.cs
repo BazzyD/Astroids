@@ -17,6 +17,7 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
     [SerializeField] private float minRotationSpeed = 100f;
     private int maxSpawnedAstroids = 5;
     private int minSpawnedAstroids = 2;
+    public static System.Action<int> OnAsteroidKilled;
     private void Awake()
     {
         _movment = GetComponent<BaseMovment>();
@@ -42,6 +43,7 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
         _currentHealth -= damageAmount;
         if (_currentHealth <= 0)
         {
+            OnAsteroidKilled?.Invoke(astroidLevel);
             if(astroidLevel > 1) SpawnChildren();
             ObjectPool.Instance.Despawn($"Astroid_lvl{astroidLevel}", gameObject);
         }
