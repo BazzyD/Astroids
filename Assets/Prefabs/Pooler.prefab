@@ -48,18 +48,18 @@ MonoBehaviour:
   - tag: Projectile
     prefab: {fileID: 5590472344643032099, guid: 2580efc383f5e9e49be2e08bdb1e3d1f, type: 3}
     size: 20
-  - tag: Astroid_Lvl5
+  - tag: Astroid_lvl5
     prefab: {fileID: 4284798117833914961, guid: 1d80488f6aa790448b31c94606a39883, type: 3}
-    size: 5
-  - tag: Astroid_Lvl4
+    size: 20
+  - tag: Astroid_lvl4
     prefab: {fileID: 5423232723964692187, guid: d6a39cb2b00f3e6448e64c1c9b12f56f, type: 3}
-    size: 10
-  - tag: Astroid_Lvl3
+    size: 20
+  - tag: Astroid_lvl3
     prefab: {fileID: 6719550583784912930, guid: 99bd47f5cf6f77d4aa39d1ea2157dd1f, type: 3}
     size: 20
-  - tag: Asteoid_Lvl2
+  - tag: Astroid_lvl2
     prefab: {fileID: 8657995714002991513, guid: 9e7da6f387276774c9fc8351dc05a5ce, type: 3}
     size: 20
-  - tag: Astroid_Lvl1
+  - tag: Astroid_lvl1
     prefab: {fileID: 5061248943920316074, guid: d03342a0d65bbb54383da07d8712133d, type: 3}
     size: 20
