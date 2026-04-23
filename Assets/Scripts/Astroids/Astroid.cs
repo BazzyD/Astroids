@@ -58,11 +58,12 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // need to check player collision and apply damage to player only not for astroids
-        // if (collision.gameObject.TryGetComponent(out IDamageable player))
-        // {
-        //     TakeDamage(maxHealth); // Destroy the astroid on collision with player
-        //     player.TakeDamage(damageOnCollision);
-        // }
+        if(!(collision.gameObject.layer == LayerMask.NameToLayer("Player"))) return;
+        
+        if (collision.gameObject.TryGetComponent(out IDamageable player))
+        {
+            TakeDamage(maxHealth); // Destroy the astroid on collision with player
+            player.TakeDamage(damageOnCollision);
+        }
     }
 }

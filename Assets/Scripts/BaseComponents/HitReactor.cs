@@ -10,8 +10,8 @@ public class HitReactor : MonoBehaviour{
     [SerializeField] private Material flashMaterial;
 
     [Header("Audio")]
-    [SerializeField] private AudioClip[] heavyHitSound;
-    [SerializeField] private AudioClip[] landHitSound;
+    [SerializeField] private AudioClip[] hitSound;
+
 
     private Coroutine activeFlashRoutine;
     private SpriteRenderer spriteRenderer;
@@ -20,6 +20,10 @@ public class HitReactor : MonoBehaviour{
     private void Awake(){
         health = GetComponent<Health>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if(spriteRenderer == null) 
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
     }
     private void OnEnable(){
         health.OnTakeDamage += TakeDamage;
@@ -33,8 +37,9 @@ public class HitReactor : MonoBehaviour{
             StopCoroutine(activeFlashRoutine);
         }
 
-        int randomIdx = Random.Range(0, heavyHitSound.Length);
-        AudioManager.Instance.PlaySFX(heavyHitSound[randomIdx]);
+        int randomIdx = Random.Range(0, hitSound.Length);
+        if(hitSound.Length > 0)
+            AudioManager.Instance.PlaySFX(hitSound[randomIdx]);
         activeFlashRoutine =StartCoroutine(HitFlashRoutine());
     }
     private IEnumerator HitFlashRoutine() {

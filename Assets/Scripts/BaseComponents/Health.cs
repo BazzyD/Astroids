@@ -21,7 +21,6 @@ public class Health : MonoBehaviour,  IDamageable {
         if(IsInvincible) return;
         
         currentHealth -= damageAmount;
-
         OnTakeDamage?.Invoke(damageAmount);
         OnHealthChanged?.Invoke(currentHealth);
 

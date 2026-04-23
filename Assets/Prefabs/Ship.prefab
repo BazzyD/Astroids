@@ -136,6 +136,8 @@ GameObject:
   - component: {fileID: 4556608671695761188}
   - component: {fileID: 2912899870702346167}
   - component: {fileID: 1622697134936145225}
+  - component: {fileID: -2194198101898127359}
+  - component: {fileID: -503671852186882544}
   - component: {fileID: 3197275089718714842}
   - component: {fileID: 2451540113439226946}
   m_Layer: 8
@@ -188,7 +190,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 584efb26b598ddd4ca553e1dff8a5095, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -246,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipController
   muzzle: {fileID: 6810078963967091535}
+  fireRate: 0.2
 --- !u!114 &2912899870702346167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +277,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenWrapper
   buffer: 0.05
+--- !u!114 &-2194198101898127359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663363544057321991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3244de0a9afe76a4897989959292cefc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
+--- !u!114 &-503671852186882544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663363544057321991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6aec3482078a24791b5e9933c93cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitReactor
+  defaultMaterial: {fileID: 2100000, guid: 584efb26b598ddd4ca553e1dff8a5095, type: 2}
+  flashMaterial: {fileID: 2100000, guid: fd7951310c6b51e439f66d13ca052b70, type: 2}
+  hitSound: []
 --- !u!50 &3197275089718714842
 Rigidbody2D:
   serializedVersion: 5
