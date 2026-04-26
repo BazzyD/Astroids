@@ -1058,6 +1058,7 @@ GameObject:
   - component: {fileID: 5177467444621026228}
   - component: {fileID: 1867120850915147135}
   - component: {fileID: 8983550250735348645}
+  - component: {fileID: 5504488047713534875}
   m_Layer: 7
   m_Name: Astroid_Small
   m_TagString: Untagged
@@ -1250,3 +1251,15 @@ MonoBehaviour:
   minSpeed: 1.2
   maxRotationSpeed: 1.6
   minRotationSpeed: 1.2
+--- !u!114 &5504488047713534875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657995714002991513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6260c7ef458d2478cc3ead0aeb167f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostEnabler

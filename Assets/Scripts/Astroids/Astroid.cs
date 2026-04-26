@@ -31,11 +31,13 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
         
         _movment.ApplyInitialImpulse(transform.up * speed);
         _movment.ApplyTorqueImpulse(rotationSpeed);
+        PressureManager.Instance.AddPressure(astroidLevel);
+        
     }
     public void OnDespawn()
     {
-
         _movment.StopEverything();
+        
     }
 
     public void TakeDamage(float damageAmount)
@@ -43,6 +45,7 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
         _currentHealth -= damageAmount;
         if (_currentHealth <= 0)
         {
+            PressureManager.Instance.RemovePressure(astroidLevel);
             OnAsteroidKilled?.Invoke(astroidLevel);
             if(astroidLevel > 1) SpawnChildren();
             ObjectPool.Instance.Despawn($"Astroid_lvl{astroidLevel}", gameObject);
