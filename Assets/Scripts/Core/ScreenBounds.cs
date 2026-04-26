@@ -11,12 +11,10 @@ public class ScreenBounds : MonoBehaviour
         if (Instance == null) {
             Instance = this;
             _camera = Camera.main;
-            DontDestroyOnLoad(gameObject); 
         } else {
             Destroy(gameObject);
         }
     }
-
     private void Start(){
         // Get the screen corners in World Space
         // (0,0) is bottom-left, (Screen.width, Screen.height) is top-right
@@ -29,6 +27,7 @@ public class ScreenBounds : MonoBehaviour
         maxY = topRight.y;
     }
     public static Vector3 GetRandomPosition(){
+        Vector3 spawnPos = Vector3.zero;
         float leftEdge = Instance.minX - Instance.buffer;
         float rightEdge = Instance.maxX + Instance.buffer;
         float bottomEdge = Instance.minY - Instance.buffer;
@@ -36,11 +35,7 @@ public class ScreenBounds : MonoBehaviour
 
         // Pick a random side (0=Top, 1=Bottom, 2=Left, 3=Right)
         int side = Random.Range(0, 4);
-
-        Vector3 spawnPos = Vector3.zero;
-
-        switch (side)
-        {
+        switch (side){
             case 0: // Top
                 spawnPos = new Vector3(Random.Range(leftEdge, rightEdge), topEdge, 0);
                 break;
@@ -56,7 +51,6 @@ public class ScreenBounds : MonoBehaviour
         }
 
         return spawnPos;
-
     }
     public static Quaternion GetRandomDirection(Vector3 pos){
         Vector3 targetPos = GetRandomPointOnScreen();
@@ -71,5 +65,4 @@ public class ScreenBounds : MonoBehaviour
         
         return new Vector3(randomX, randomY, 0);
     }
-
 }

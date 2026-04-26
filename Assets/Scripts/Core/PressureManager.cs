@@ -12,51 +12,40 @@ public class PressureManager : MonoBehaviour
     private int currentPressure = 0;
 
     private float nextSpawnTime = 0f;
+    private bool isSpawnFinished = false;
     private bool isGameFinished = false;
-    private void Awake()
-    {
-        // Standard Singleton Setup
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-            return;
-        }
+    private void Awake(){
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
-    private void Start()
-    {
+    private void Start(){
         nextSpawnTime = Time.time;
     }
-    private void Update()
-    {
-        if (isGameFinished && currentPressure == 0) GameManager.Instance.EndGame();
-        if (isGameFinished) return;
-        Debug.Log($"Current Pressure: {currentPressure}");
+    private void Update(){
+        if(isGameFinished) return;
+        
+        if (isSpawnFinished && currentPressure == 0 ) {
+            isGameFinished = true;
+            GameManager.Instance.EndGame();
+        }
+        
+        if (isSpawnFinished) return;
+
         //if current level has more astroids to spawn
-        if(currentAstroidToSpawn < levels[currentLevel].astroidsToSpwan.Count)
-        {
+        if(currentAstroidToSpawn < levels[currentLevel].astroidsToSpwan.Count){
             SpawnAstroid();
         }
-        else // no more astroids to spawn in current level
-        {
+        else {// no more astroids to spawn in current level
             // is pressure under the minimum pressure for the level? if so, go to next level
-            if(currentPressure < levels[currentLevel].minPressure)
-            {
-                Debug.Log("Next level!");
+            if(currentPressure < levels[currentLevel].minPressure){
                 currentLevel++;
                 currentAstroidToSpawn = 0;
-                if(currentLevel >= levels.Count)
-                {
-                    isGameFinished = true;
-                    Debug.Log("All levels completed!");
-                }
+
+                if(currentLevel >= levels.Count) isSpawnFinished = true;
             }
         }
     }
-
-    private void SpawnAstroid()
-    {
+    private void SpawnAstroid(){
         if (Time.time < nextSpawnTime) return;
 
         float maxPressure = levels[currentLevel].maxPressure;
@@ -64,7 +53,6 @@ public class PressureManager : MonoBehaviour
         float astroidToSpwanPressure = pressurePerAstroidLevel[astroidToSpwan-1];
         float nextPressure = currentPressure + astroidToSpwanPressure;
 
-        Debug.Log($"Trying to spawn {nextPressure} pressure if spawned");
         // check if spawning the astroid will not exceed the max pressure for the level
         if(nextPressure <= maxPressure){
 
@@ -73,20 +61,12 @@ public class PressureManager : MonoBehaviour
 
             ObjectPool.Instance.Spawn($"Astroid_lvl{astroidToSpwan}", spawnPosition, spawnRotation);
             
-            
             currentAstroidToSpawn++;
 
             float spawnDelay = levels[currentLevel].spawnDelay;
             nextSpawnTime = Time.time + spawnDelay;
         }
     }
-
-    public void AddPressure(int astroidLevel)
-    {
-        currentPressure += pressurePerAstroidLevel[astroidLevel-1];
-    }
-    public void RemovePressure(int astroidLevel)
-    {
-        currentPressure -= pressurePerAstroidLevel[astroidLevel-1];;
-    }
+    public void AddPressure(int astroidLevel) => currentPressure += pressurePerAstroidLevel[astroidLevel-1];
+    public void RemovePressure(int astroidLevel) => currentPressure -= pressurePerAstroidLevel[astroidLevel-1];
 }

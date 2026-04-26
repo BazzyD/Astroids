@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour {
     public GameState CurrentState {get; private set;}
     public event Action<GameState> OnGameStateChanged;
     private PlayerInputActions _inputActions;
-    private void Awake()
-    {
+
+    private void Awake(){
         // Standard Singleton Setup
         if (Instance == null) {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Keeps the manager alive between levels!
+            DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
             return;
@@ -21,17 +21,14 @@ public class GameManager : MonoBehaviour {
         CurrentState = GameState.MainMenu;
         Time.timeScale = 0f;
     }
-    private void OnEnable()
-    {
+    private void OnEnable(){
         _inputActions = new PlayerInputActions();
         _inputActions.Player.Enable();
 
         _inputActions.Player.Pause.performed += TogglePause;
     }
-    private void OnDisable()
-    {
-        if (_inputActions != null)
-        {
+    private void OnDisable(){
+        if (_inputActions != null){
             _inputActions.Player.Pause.performed -= TogglePause;
             _inputActions.Player.Disable();
         }
@@ -40,7 +37,6 @@ public class GameManager : MonoBehaviour {
         if (CurrentState == GameState.Playing) PauseGame();
         else if (CurrentState == GameState.Pause) ResumeGame();
     }
-    
     public void ChangeState(GameState newState)
     {
         if(CurrentState == newState) return;
@@ -51,30 +47,22 @@ public class GameManager : MonoBehaviour {
 
         OnGameStateChanged?.Invoke(CurrentState);
     }
-
-    public void StartGame()
-    {
+    public void StartGame(){
         ChangeState(GameState.Playing);
     }
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        ChangeState(GameState.Playing);
+    public void RestartGame(){
+        TransitionManager.Instance.RestartGame();
     }
-    public void PauseGame()
-    {
+    public void PauseGame(){
         ChangeState(GameState.Pause);
     }
-    public void ResumeGame()
-    {
+    public void ResumeGame(){
         ChangeState(GameState.Playing);
     }
-    public void EndGame()
-    {
+    public void EndGame(){
         ChangeState(GameState.GameOver);
     }
-    public void QuitGame()
-    {
+    public void QuitGame(){
         Application.Quit();
     }
 }

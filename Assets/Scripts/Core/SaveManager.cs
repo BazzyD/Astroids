@@ -2,34 +2,37 @@ using UnityEngine;
 using System.IO;
 using System.Linq;
 
-public class SaveManager : MonoBehaviour
-{
+public class SaveManager : MonoBehaviour{
+    public static SaveManager Instance;
     [SerializeField] private ScoreData scoreData;
     [SerializeField] private TimerData timerData;
-    private void OnEnable()
-    {
+        private void Awake(){
+        if (Instance == null) {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
+    }
+    private void OnEnable(){
         GameManager.Instance.OnGameStateChanged += HandleGameStateChanged;
     }
-    private void OnDisable()
-    {
+    private void OnDisable(){
         GameManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
     }
 
-    private void HandleGameStateChanged(GameState gameState)
-    {
-        if(gameState == GameState.GameOver)
-        {
+    private void HandleGameStateChanged(GameState gameState){
+        if(gameState == GameState.GameOver){
             SaveData();
         }
     }
     private void SaveData(){
         int score = scoreData.currentScore;
         float time = timerData.currentTime;
-        SaveEntry data = new()
-        {
+        SaveEntry data = new(){
             score = score,
             time = time
         };
+
         LeaderboardData leaderboard = LoadData();
         leaderboard.entries.Add(data);
 
@@ -40,23 +43,16 @@ public class SaveManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(leaderboard, true); 
         File.WriteAllText(GetPath(), json);
-
     }
-    private static string GetPath()
-    {
+    private static string GetPath(){
         return Path.Combine(Application.persistentDataPath, "leaderboard.json");
     }
-    private LeaderboardData LoadData()
-    {
+    public static LeaderboardData LoadData(){
         string path = GetPath();
-        if (File.Exists(path))
-        {
+        if (File.Exists(path)){
             string json = File.ReadAllText(path);
             return JsonUtility.FromJson<LeaderboardData>(json);
         }
-        else
-        {
-            return new LeaderboardData();
-        }
+        else return new LeaderboardData();
     }
 }
