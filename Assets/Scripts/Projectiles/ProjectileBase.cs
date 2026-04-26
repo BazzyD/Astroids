@@ -36,6 +36,9 @@ public class ProjectileBase : MonoBehaviour, IPoolable
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") ||
+            other.gameObject.layer == LayerMask.NameToLayer("Projectile")
+        ) return;
         HandleHit(other);
         if(!_isDespawning){
             _isDespawning = true;

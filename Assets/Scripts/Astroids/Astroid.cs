@@ -10,6 +10,7 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float damageOnCollision = 25f;
     private float _currentHealth;
+    private bool isDespawning = false;
     [Header("Movement Stats")]
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float minSpeed = 2f;
@@ -25,27 +26,31 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
 
     public void OnSpawn()
     {
+        isDespawning = false;
+        PressureManager.Instance.AddPressure(astroidLevel);
         _currentHealth = maxHealth;
         float speed = Random.Range(minSpeed, maxSpeed);
         float rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed);
         
         _movment.ApplyInitialImpulse(transform.up * speed);
         _movment.ApplyTorqueImpulse(rotationSpeed);
-        PressureManager.Instance.AddPressure(astroidLevel);
-        
+
     }
     public void OnDespawn()
     {
+        PressureManager.Instance.RemovePressure(astroidLevel);
         _movment.StopEverything();
         
     }
 
     public void TakeDamage(float damageAmount)
     {
+        if(isDespawning) return;
+
         _currentHealth -= damageAmount;
         if (_currentHealth <= 0)
         {
-            PressureManager.Instance.RemovePressure(astroidLevel);
+            isDespawning = true;
             OnAsteroidKilled?.Invoke(astroidLevel);
             if(astroidLevel > 1) SpawnChildren();
             ObjectPool.Instance.Despawn($"Astroid_lvl{astroidLevel}", gameObject);

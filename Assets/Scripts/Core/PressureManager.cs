@@ -30,7 +30,7 @@ public class PressureManager : MonoBehaviour
     }
     private void Update()
     {
-        // if (isGameFinished && currentPressure == 0) GameManager.Instance.EndGame();
+        if (isGameFinished && currentPressure == 0) GameManager.Instance.EndGame();
         if (isGameFinished) return;
         Debug.Log($"Current Pressure: {currentPressure}");
         //if current level has more astroids to spawn
@@ -72,6 +72,7 @@ public class PressureManager : MonoBehaviour
             Quaternion spawnRotation = ScreenBounds.GetRandomDirection(spawnPosition);
 
             ObjectPool.Instance.Spawn($"Astroid_lvl{astroidToSpwan}", spawnPosition, spawnRotation);
+            
             
             currentAstroidToSpawn++;
 
