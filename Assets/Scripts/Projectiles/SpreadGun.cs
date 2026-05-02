@@ -22,6 +22,10 @@ public class SpreadGun : Weapon
             spreadGunweapon.Fire(this.transform, level, isOverDrive);
         }
     }
+    public override void StopFiring()
+    {
+        
+    }
     public override void UpgradeWeapon()   
     {
         base.UpgradeWeapon();

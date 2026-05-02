@@ -92,10 +92,9 @@ public class ShipController : MonoBehaviour{
             }
         }
 
-        if (_isHoldingFire)
-        {
-            weaponHolder.HandleFire();
-        }
+
+        weaponHolder.HandleFire(_isHoldingFire);
+        
     }
 
 }

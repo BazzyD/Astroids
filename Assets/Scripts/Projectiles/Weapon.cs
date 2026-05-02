@@ -6,6 +6,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected bool isOverDrive = false;
     public bool IsOverDrive => isOverDrive;
     protected float overdriveTimer = 0f;
+    protected bool isFiring = false;
     
     protected virtual void Update(){
         if(isOverDrive)
@@ -21,6 +22,7 @@ public abstract class Weapon : MonoBehaviour
     }
 
     public abstract void Fire();
+    public abstract void StopFiring();
 
     public virtual void UpgradeWeapon()   
     {

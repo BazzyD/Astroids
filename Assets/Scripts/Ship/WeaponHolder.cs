@@ -9,10 +9,13 @@ public class WeaponHolder : MonoBehaviour{
    [SerializeField] private int currentWeaponIndex = 0;
    private Weapon CurrentWeapon => weapons[currentWeaponIndex];
 
-    public void HandleFire()
+    public void HandleFire(bool isFiring)
     {
         if(CurrentWeapon.IsOverDrive) return;
-        CurrentWeapon.Fire();
+        if(isFiring)
+            CurrentWeapon.Fire();
+        else
+            CurrentWeapon.StopFiring();
     }
     public void SwapWeapon(int index)
     {

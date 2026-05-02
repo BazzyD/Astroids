@@ -1,13 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 
 [CreateAssetMenu(fileName = "NewSpreadGunData", menuName = "Weapons/SpreadGun/WeaponData")]
 public class SpreadGunData : WeaponData
 {
     public List<SpreadGunLevelData> weaponLevels = new();
     public SpreadGunLevelData overDriveLevelData;
-    public override void Fire(Transform ship, int level, bool inOverDrive)
+    public void Fire(Transform ship, int level, bool inOverDrive)
     {
         SpreadGunLevelData levelData;
         if(inOverDrive) levelData = overDriveLevelData;
