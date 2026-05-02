@@ -1,13 +1,18 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(InputHandler))]
 [RequireComponent(typeof(BaseMovment))]
 [RequireComponent(typeof(Health))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class ShipController : MonoBehaviour{
     private InputHandler inputHandler;
     private BaseMovment baseMovment;
     private Health health;
+    private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform muzzle;
+    [SerializeField] private GameObject explosionEffectPrefab;
+    [SerializeField] private GameObject hitEffectPrefab;
     [Header("Fire Settings")]
     [SerializeField] private float fireRate = 0.2f;
     private float _nextFireTime;
@@ -17,11 +22,14 @@ public class ShipController : MonoBehaviour{
         inputHandler = GetComponent<InputHandler>();
         baseMovment = GetComponent<BaseMovment>();
         health = GetComponent<Health>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void OnEnable(){
         inputHandler.OnThrustChanged += SetThrust;
         inputHandler.OnRotationChanged += SetRotation;
         inputHandler.OnFirePerformed += OnFireInput;
+        inputHandler.OnExplodePerformed += OnDeath;
+
         health.OnTakeDamage += OnTakeDamage;
         health.OnDeath += OnDeath;
     }
@@ -42,10 +50,20 @@ public class ShipController : MonoBehaviour{
     private void OnTakeDamage(float damageAmount)
     {
         _isHoldingFire = false;
+        Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
     }
     private void OnDeath()
     {
         OnTakeDamage(0);
+        spriteRenderer.enabled = false;
+        StartCoroutine(ExplosionEffect());
+    }
+    private IEnumerator ExplosionEffect()
+    {
+        Debug.Log("ExplosionEffect started");
+        Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(3f);
+        gameObject.SetActive(false);
         GameManager.Instance.EndGame();
     }
 

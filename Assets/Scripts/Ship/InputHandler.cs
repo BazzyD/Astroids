@@ -8,6 +8,7 @@ public class InputHandler : MonoBehaviour
    public Action<float> OnThrustChanged;
    public Action<float> OnRotationChanged;
    public Action<bool> OnFirePerformed;
+   public Action OnExplodePerformed;
 
    
    private void Awake(){
@@ -37,6 +38,17 @@ public class InputHandler : MonoBehaviour
 
       playerInputActions.Player.Shoot.performed -= OnShoot;
       playerInputActions.Player.Shoot.canceled -= OnShoot;
+   }
+
+   private void Update()
+   {
+      var keyboard = Keyboard.current;
+      if (keyboard == null) return;
+
+      if (keyboard.eKey.wasPressedThisFrame)
+      {
+         OnExplodePerformed?.Invoke();
+      }
    }   
 
    private void OnThrust(InputAction.CallbackContext context)

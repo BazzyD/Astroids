@@ -1,14 +1,18 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(BaseMovment))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Astroid : MonoBehaviour,IDamageable, IPoolable
 {
     private BaseMovment _movment;
+    private SpriteRenderer spriteRenderer;
 
     [Header("Astroid Stats")]
     [SerializeField] public int astroidLevel =5;
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float damageOnCollision = 25f;
+    [SerializeField] private GameObject explosionEffectPrefab;
     private float _currentHealth;
     private bool isDespawning = false;
     [Header("Movement Stats")]
@@ -22,6 +26,7 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
     private void Awake()
     {
         _movment = GetComponent<BaseMovment>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void OnSpawn()
@@ -51,11 +56,14 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
         if (_currentHealth <= 0)
         {
             isDespawning = true;
+            spriteRenderer.enabled = false;
+            Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
             OnAsteroidKilled?.Invoke(astroidLevel);
             if(astroidLevel > 1) SpawnChildren();
             ObjectPool.Instance.Despawn($"Astroid_lvl{astroidLevel}", gameObject);
         }
     }
+
     private void SpawnChildren(){
         int childrenAmount = Random.Range(minSpawnedAstroids, maxSpawnedAstroids+1);
 

@@ -36,6 +36,5 @@ public class Health : MonoBehaviour,  IDamageable {
     private void Die()
     {
         OnDeath?.Invoke();
-        gameObject.SetActive(false);
     }
 }

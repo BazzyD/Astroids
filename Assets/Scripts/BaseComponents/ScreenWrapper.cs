@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class ScreenWrapper : MonoBehaviour
 {
-    [SerializeField] private float buffer = 0.05f; 
+    private float buffer = 0.05f; 
 
-    // private void Start()
-    // {
-    //     get the sprite size in world units to use as a buffer for wrapping
-    //     buffer = GetComponent<SpriteRenderer>().bounds.extents.x;
-    // }
+    private void Start()
+    {
+        //get the sprite size in world units to use as a buffer for wrapping
+        buffer = GetComponent<SpriteRenderer>().bounds.extents.x;
+        Debug.Log(buffer);
+    }
 
     private void LateUpdate()
     {
@@ -27,5 +28,9 @@ public class ScreenWrapper : MonoBehaviour
     public float getBuffer()
     {
         return buffer;
+    }
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, buffer);
     }
 }
