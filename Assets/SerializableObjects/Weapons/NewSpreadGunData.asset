@@ -13,31 +13,31 @@ MonoBehaviour:
   m_Name: NewSpreadGunData
   m_EditorClassIdentifier: Assembly-CSharp::SpreadGunData
   weaponName: SpreadGun
-  muzzeleOffset: 1
+  muzzeleOffset: 3
   overDriveDuration: 5
   projectilePrefabName: Projectile
   weaponLevels:
-  - fireRate: 2
+  - fireRate: 1
     numberOfProjectiles: 1
     startingAngle: 0
     spreadAngle: 0
     shootInAngle: 0
-  - fireRate: 1.8
+  - fireRate: 1
     numberOfProjectiles: 2
     startingAngle: -10
     spreadAngle: 20
     shootInAngle: 0
-  - fireRate: 1.5
+  - fireRate: 0.8
     numberOfProjectiles: 3
-    startingAngle: -10
-    spreadAngle: 10
+    startingAngle: -20
+    spreadAngle: 20
     shootInAngle: 0
-  - fireRate: 1
+  - fireRate: 0.5
     numberOfProjectiles: 5
     startingAngle: -90
     spreadAngle: 45
     shootInAngle: 1
-  - fireRate: 1
+  - fireRate: 0.5
     numberOfProjectiles: 11
     startingAngle: -90
     spreadAngle: 18

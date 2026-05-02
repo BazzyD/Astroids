@@ -1,67 +1,29 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 
 public class WeaponHolder : MonoBehaviour{
-    [Header("Fire Settings")]
-    [SerializeField] private Transform muzzle;
+   [SerializeField] private List<Weapon> weapons = new List<Weapon>();
+   [SerializeField] private int currentWeaponIndex = 0;
+   private Weapon CurrentWeapon => weapons[currentWeaponIndex];
 
-    [Header("Weapon Data")]
-    [SerializeField]private WeaponData weapon;
-    public int level = 0;
-    public bool isOverDrive = false;
-    private float nextFireTime = 0f;
-    private float overdriveTimer = 0f;
-    private void Update(){
-        if(isOverDrive)
-        {
-            HandleFire();
-            overdriveTimer += Time.deltaTime;
-            if(overdriveTimer >= weapon.overDriveDuration)
-            {
-                isOverDrive = false;
-                overdriveTimer = 0f;
-            }
-        }
-    }
     public void HandleFire()
     {
-        float rate = weapon.GetFireRate(level, isOverDrive);
-
-        if (Time.time >= nextFireTime) {
-            nextFireTime = Time.time + rate;
-            weapon.Fire(muzzle, level, isOverDrive);
-        }
+        if(CurrentWeapon.IsOverDrive) return;
+        CurrentWeapon.Fire();
     }
-
-    public void SetWeapon(WeaponData newWeapon)
+    public void SwapWeapon(int index)
     {
-        // If the new weapon is the same as the current one, just level it up or enter overdrive
-        if(weapon != null && weapon.weaponName == newWeapon.weaponName)
+        if(index == currentWeaponIndex)
         {
-            if(level <4)
-                level++;
-            else
-                isOverDrive = true;
+            CurrentWeapon.UpgradeWeapon();
             return;
         }
-        // Otherwise, switch to the new weapon level 0 and reset overdrive
-        weapon = newWeapon;
-        level = 0;
-        isOverDrive = false;
-        nextFireTime = 0f;
-        overdriveTimer = 0f;
+        CurrentWeapon.ResetWeapon();
+        currentWeaponIndex = index;
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        SpreadGunData spreadGunData = weapon as SpreadGunData;
-        
-        Vector3 offsetVector = Quaternion.Euler(0, 0, -spreadGunData.weaponLevels[level].startingAngle + transform.eulerAngles.z) * Vector3.up * spreadGunData.muzzeleOffset;
-        Vector2 muzzelePosition = (Vector2)transform.position + (Vector2)offsetVector;
-
-        Gizmos.DrawLine(transform.position, muzzelePosition);    
-    }
 }
 

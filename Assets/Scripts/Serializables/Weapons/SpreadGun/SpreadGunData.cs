@@ -28,7 +28,7 @@ public class SpreadGunData : WeaponData
             currentAngle += levelData.spreadAngle;
         }
     }
-    public override float GetFireRate(int level, bool inOverDrive)
+    public float GetFireRate(int level, bool inOverDrive)
     {
         SpreadGunLevelData levelData;
 

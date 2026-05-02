@@ -9,6 +9,4 @@ public abstract class WeaponData : ScriptableObject
 
     
     public abstract void Fire(Transform ship, int level, bool inOverDrive);
-    public abstract float GetFireRate(int level, bool inOverDrive);
-
 }
