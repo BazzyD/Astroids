@@ -4,25 +4,29 @@ using System.Collections;
 [RequireComponent(typeof(InputHandler))]
 [RequireComponent(typeof(BaseMovment))]
 [RequireComponent(typeof(Health))]
+[RequireComponent(typeof(WeaponHolder))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class ShipController : MonoBehaviour{
     private InputHandler inputHandler;
     private BaseMovment baseMovment;
     private Health health;
+    private WeaponHolder weaponHolder;
     private SpriteRenderer spriteRenderer;
-    [SerializeField] private Transform muzzle;
+    private PlayerStates currentState = PlayerStates.Idle;
+    private bool _isHoldingFire;
+    private float hurtTimer = 0f;
+    [SerializeField]private float hurtDuration = 0.5f;
+
+    [Header("Effects")]
     [SerializeField] private GameObject explosionEffectPrefab;
     [SerializeField] private GameObject hitEffectPrefab;
-    [Header("Fire Settings")]
-    [SerializeField] private float fireRate = 0.2f;
-    private float _nextFireTime;
-    private bool _isHoldingFire;
 
     private void Awake(){
         inputHandler = GetComponent<InputHandler>();
         baseMovment = GetComponent<BaseMovment>();
         health = GetComponent<Health>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        weaponHolder = GetComponent<WeaponHolder>();
     }
     private void OnEnable(){
         inputHandler.OnThrustChanged += SetThrust;
@@ -49,18 +53,24 @@ public class ShipController : MonoBehaviour{
     }
     private void OnTakeDamage(float damageAmount)
     {
+        if(currentState == PlayerStates.Dead || currentState == PlayerStates.Hurt) return;
+        
+        currentState = PlayerStates.Hurt;
         _isHoldingFire = false;
         Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
     }
     private void OnDeath()
     {
+        if(currentState == PlayerStates.Dead) return;
+
+        currentState = PlayerStates.Dead;
+        _isHoldingFire = false;
         OnTakeDamage(0);
         spriteRenderer.enabled = false;
         StartCoroutine(ExplosionEffect());
     }
     private IEnumerator ExplosionEffect()
     {
-        Debug.Log("ExplosionEffect started");
         Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);
@@ -69,14 +79,23 @@ public class ShipController : MonoBehaviour{
 
     private void Update()
     {
-        if (_isHoldingFire && Time.time >= _nextFireTime)
+        if(currentState == PlayerStates.Dead) return;
+        
+        if(currentState == PlayerStates.Hurt)
         {
-            HandleFire();
-            _nextFireTime = Time.time + fireRate;
+            hurtTimer += Time.deltaTime;
+            if(hurtTimer >= hurtDuration)
+            {
+                currentState = PlayerStates.Idle;
+                hurtTimer = 0f;
+                return;
+            }
+        }
+
+        if (_isHoldingFire)
+        {
+            weaponHolder.HandleFire();
         }
     }
-    private void HandleFire()
-    {
-        ObjectPool.Instance.Spawn("Projectile", muzzle.position, muzzle.rotation);
-    }
+
 }

@@ -20,23 +20,23 @@ public class UIManager : MonoBehaviour{
     private void OnDisable(){
         GameManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
     }
-    private void HandleGameStateChanged(GameState gameState){
+    private void HandleGameStateChanged(GameStates gameState){
         HideAll();
         switch(gameState){
-            case GameState.MainMenu:
+            case GameStates.MainMenu:
                 mainMenuPanel.SetActive(true);
                 break;
-            case GameState.Playing:
+            case GameStates.Playing:
                 hudPanel.SetActive(true);
                 break;
-            case GameState.Pause:
+            case GameStates.Pause:
                 pauseMenuPanel.SetActive(true);
                 break;
-            case GameState.Leaderboard:
+            case GameStates.Leaderboard:
                 leaderboardPanel.SetActive(true);
                 leaderboard.DisplayLeaderboard();
                 break;
-            case GameState.GameOver:
+            case GameStates.GameOver:
                 gameOverPanel.SetActive(true);
                 break;
         }
@@ -53,12 +53,12 @@ public class UIManager : MonoBehaviour{
     public void OnQuitButtonClicked() => GameManager.Instance.QuitGame();
     public void OnMainMenuButtonClicked() {
         Debug.Log("Main Menu Button Clicked");
-        GameManager.Instance.ChangeState(GameState.MainMenu);
+        GameManager.Instance.ChangeState(GameStates.MainMenu);
     }
     public void OnLeaderboardButtonClicked()
     {
         Debug.Log("Leaderboard Button Clicked");
-        GameManager.Instance.ChangeState(GameState.Leaderboard);
+        GameManager.Instance.ChangeState(GameStates.Leaderboard);
     }
         
 

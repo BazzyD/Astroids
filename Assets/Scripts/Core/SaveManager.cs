@@ -20,8 +20,8 @@ public class SaveManager : MonoBehaviour{
         GameManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
     }
 
-    private void HandleGameStateChanged(GameState gameState){
-        if(gameState == GameState.GameOver){
+    private void HandleGameStateChanged(GameStates gameState){
+        if(gameState == GameStates.GameOver){
             SaveData();
         }
     }

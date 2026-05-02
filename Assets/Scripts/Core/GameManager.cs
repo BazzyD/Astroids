@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
-    public GameState CurrentState {get; private set;}
-    public event Action<GameState> OnGameStateChanged;
+    public GameStates CurrentState {get; private set;}
+    public event Action<GameStates> OnGameStateChanged;
     private PlayerInputActions _inputActions;
 
     private void Awake(){
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-        CurrentState = GameState.MainMenu;
+        CurrentState = GameStates.MainMenu;
         Time.timeScale = 0f;
     }
     private void OnEnable(){
@@ -34,33 +34,33 @@ public class GameManager : MonoBehaviour {
         }
     }
     private void TogglePause(InputAction.CallbackContext context) {
-        if (CurrentState == GameState.Playing) PauseGame();
-        else if (CurrentState == GameState.Pause) ResumeGame();
+        if (CurrentState == GameStates.Playing) PauseGame();
+        else if (CurrentState == GameStates.Pause) ResumeGame();
     }
-    public void ChangeState(GameState newState)
+    public void ChangeState(GameStates newState)
     {
         if(CurrentState == newState) return;
 
         CurrentState = newState;
 
-        Time.timeScale = (CurrentState == GameState.Playing) ? 1f : 0f;
+        Time.timeScale = (CurrentState == GameStates.Playing) ? 1f : 0f;
 
         OnGameStateChanged?.Invoke(CurrentState);
     }
     public void StartGame(){
-        ChangeState(GameState.Playing);
+        ChangeState(GameStates.Playing);
     }
     public void RestartGame(){
         TransitionManager.Instance.RestartGame();
     }
     public void PauseGame(){
-        ChangeState(GameState.Pause);
+        ChangeState(GameStates.Pause);
     }
     public void ResumeGame(){
-        ChangeState(GameState.Playing);
+        ChangeState(GameStates.Playing);
     }
     public void EndGame(){
-        ChangeState(GameState.GameOver);
+        ChangeState(GameStates.GameOver);
     }
     public void QuitGame(){
         Application.Quit();

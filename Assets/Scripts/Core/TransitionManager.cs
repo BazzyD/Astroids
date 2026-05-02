@@ -44,6 +44,6 @@ public class TransitionManager : MonoBehaviour
         // 5. Hide the fader
         faderAnimator.SetTrigger("FadeOut");
         faderCanvasGroup.blocksRaycasts = false;
-        GameManager.Instance.ChangeState(GameState.Playing);
+        GameManager.Instance.ChangeState(GameStates.Playing);
     }
 }
