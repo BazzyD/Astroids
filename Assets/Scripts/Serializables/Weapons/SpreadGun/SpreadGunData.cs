@@ -6,7 +6,7 @@ public class SpreadGunData : WeaponData
 {
     public List<SpreadGunLevelData> weaponLevels = new();
     public SpreadGunLevelData overDriveLevelData;
-    public void Fire(Transform ship, int level, bool inOverDrive)
+    public override void Fire(Transform ship, int level, bool inOverDrive,params object[] args)
     {
         SpreadGunLevelData levelData;
         if(inOverDrive) levelData = overDriveLevelData;

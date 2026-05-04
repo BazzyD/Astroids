@@ -7,6 +7,7 @@ public class Laser : Weapon
     private float currentHeat = 0f;
     private float cooldownTimer = 0f;
     private bool isCoolingDown = false;
+    private float sphereIntervalTimer = 0f;
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class Laser : Weapon
     protected override void Update()
     {
         base.Update();
+        //Debug.Log($"current heat {currentHeat} Max Heat: {laserWeapon.GetMaxHeat(level, isOverDrive)}");
         if(isCoolingDown)
         {
             cooldownTimer += Time.deltaTime;
@@ -33,19 +35,36 @@ public class Laser : Weapon
             currentHeat -= Time.deltaTime;
             currentHeat = Mathf.Max(currentHeat, 0);
         }
+        else if (isFiring && !isOverDrive)
+        {
+            currentHeat += Time.deltaTime;
+        }
     }
     public override void Fire()
     {
         if(isCoolingDown) return;
         isFiring = true;
-        laserLine.enabled = true;
+        if(!isOverDrive){
+            laserLine.enabled = true;
+            
         
-        currentHeat += Time.deltaTime;
-        laserWeapon.FireLaser(this.transform, level, isOverDrive, laserLine);
-        if(currentHeat >= laserWeapon.GetMaxHeat(level, isOverDrive))
+            laserWeapon.Fire(this.transform, level, isOverDrive, laserLine);
+            float maxHeat = laserWeapon.GetMaxHeat(level, isOverDrive);
+            if(maxHeat > 0 && currentHeat >= maxHeat)
+            {
+                isCoolingDown = true;
+                StopFiring();
+            }
+        }
+        else// in over drive
         {
-            isCoolingDown = true;
-            StopFiring();
+            laserLine.enabled = false;
+            sphereIntervalTimer += Time.deltaTime;
+            if(sphereIntervalTimer >= laserWeapon.GetCooldownDuration(level, isOverDrive))
+            {
+                laserWeapon.Fire(this.transform, level, isOverDrive);
+                sphereIntervalTimer = 0f;
+            }
         }
     }
     public override void StopFiring() {
@@ -62,5 +81,6 @@ public class Laser : Weapon
         currentHeat = 0f;
         cooldownTimer = 0f;
         isCoolingDown = false;
+        sphereIntervalTimer = 0f;
     }
 }

@@ -12,10 +12,13 @@ public class WeaponHolder : MonoBehaviour{
     public void HandleFire(bool isFiring)
     {
         if(CurrentWeapon.IsOverDrive) return;
-        if(isFiring)
+        if(isFiring){
             CurrentWeapon.Fire();
+        }
         else
+        {
             CurrentWeapon.StopFiring();
+        }
     }
     public void SwapWeapon(int index)
     {

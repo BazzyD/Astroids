@@ -97,7 +97,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Animation_Speed: 0.037
+    - _Animation_Speed: 0.21
     - _Animation_Speed_2: -0.16
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
@@ -112,19 +112,19 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FinalBrightness: 0.18
+    - _FinalBrightness: 0.36
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoisePow: 4.31
-    - _NoiseScale: 0.6
+    - _NoisePow: 5.31
+    - _NoiseScale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimBrightness: 131
+    - _RimBrightness: 86
     - _RotationSpeed: 1
     - _Second_NoisePow: 1.51
     - _Second_NoiseScale: 15.59

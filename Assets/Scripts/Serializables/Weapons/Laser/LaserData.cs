@@ -1,19 +1,26 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.Mathematics;
-
 
 [CreateAssetMenu(fileName = "NewLaserData", menuName = "Weapons/Laser/WeaponData")]
 public class LaserData : WeaponData
 {
     public List<LaserLevelData> weaponLevels = new();
     public LaserLevelData overDriveLevelData;
-    public void FireLaser(Transform ship, int level, bool inOverDrive, LineRenderer line)
+    public GameObject laserSphere;
+    public override void Fire(Transform ship, int level, bool inOverDrive, params object[] args)
     {
-        LaserLevelData levelData = inOverDrive ? overDriveLevelData : weaponLevels[level];
+        
+        if(inOverDrive)
+            OverDriveLaser(ship);
+        else
+            NormalLaser(ship, level, args[0] as LineRenderer);
 
+    }
+    private void NormalLaser(Transform ship, int level, LineRenderer line)
+    {
+        LaserLevelData levelData = weaponLevels[level];
 
-        Vector3 offsetVector = Quaternion.Euler(0, 0, ship.eulerAngles.z) * Vector3.up * muzzeleOffset;
+        Vector3 offsetVector = Quaternion.Euler(0, 0, ship.eulerAngles.z) * Vector3.up * (muzzeleOffset+level/2);
         Vector2 muzzelePosition = (Vector2)ship.position + (Vector2)offsetVector;
 
         Vector2 direction = ship.up;
@@ -37,9 +44,17 @@ public class LaserData : WeaponData
         line.SetPosition(0, muzzelePosition);
         line.SetPosition(1, muzzelePosition + (direction * beamLength));
         
-
-        line.startWidth = levelData.width; 
-        line.endWidth = levelData.width;
+        // Set the width based on the level data
+        line.widthMultiplier = levelData.width;
+    }
+    private void OverDriveLaser(Transform ship)
+    {
+        LaserLevelData levelData = overDriveLevelData;
+        GameObject sphere = Instantiate(laserSphere, ship.position, Quaternion.identity);
+        if(sphere.TryGetComponent(out LaserSphere ls))
+        {
+            ls.Initialize(levelData.damage);
+        }
     }
     public float GetCooldownDuration(int level, bool inOverDrive)
     {

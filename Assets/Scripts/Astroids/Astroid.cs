@@ -32,7 +32,8 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
     public void OnSpawn()
     {
         isDespawning = false;
-        PressureManager.Instance.AddPressure(astroidLevel);
+        if(PressureManager.Instance != null)
+            PressureManager.Instance.AddPressure(astroidLevel);
         _currentHealth = maxHealth;
         float speed = Random.Range(minSpeed, maxSpeed);
         float rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed);
@@ -43,7 +44,8 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
     }
     public void OnDespawn()
     {
-        PressureManager.Instance.RemovePressure(astroidLevel);
+        if(PressureManager.Instance != null)
+            PressureManager.Instance.RemovePressure(astroidLevel);
         _movment.StopEverything();
         
     }
@@ -60,7 +62,8 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
             Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
             OnAsteroidKilled?.Invoke(astroidLevel);
             if(astroidLevel > 1) SpawnChildren();
-            ObjectPool.Instance.Despawn($"Astroid_lvl{astroidLevel}", gameObject);
+            if(ObjectPool.Instance != null)
+                ObjectPool.Instance.Despawn($"Astroid_lvl{astroidLevel}", gameObject);
         }
     }
 
@@ -71,7 +74,8 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
         {
             float randomZ = Random.Range(0f, 360f);
             Quaternion randomRotation = Quaternion.Euler(0, 0, randomZ);
-            ObjectPool.Instance.Spawn($"Astroid_lvl{astroidLevel - 1}", transform.position, randomRotation);
+            if(ObjectPool.Instance != null)
+                ObjectPool.Instance.Spawn($"Astroid_lvl{astroidLevel - 1}", transform.position, randomRotation);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

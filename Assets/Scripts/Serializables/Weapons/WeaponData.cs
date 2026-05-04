@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class WeaponData : ScriptableObject
@@ -6,4 +7,8 @@ public abstract class WeaponData : ScriptableObject
     public float muzzeleOffset = 10f; // muzzle offset from the center of the ship
     public float overDriveDuration = 2f;
     public string projectilePrefabName;
+
+    
+    public abstract void Fire(Transform ship, int level, bool inOverDrive, params object[] args);
+
 }

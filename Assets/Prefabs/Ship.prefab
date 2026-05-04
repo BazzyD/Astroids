@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95b9786af580914eac9139b5d8b069f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Laser
-  level: 4
+  level: 0
   isOverDrive: 0
   laserWeapon: {fileID: 11400000, guid: f57d02d851473704aa597dc46aa0dd39, type: 2}
   laserLine: {fileID: 4804805070230792033}
@@ -1578,7 +1578,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8655941142720450278}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1620,21 +1620,16 @@ LineRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Positions:
-  - {x: 0, y: 4.1616483, z: 0}
-  - {x: 0, y: 4.1616483, z: 1}
-  - {x: -0.095300436, y: 3.098772, z: -30.400192}
-  - {x: -0.045160055, y: 4.2018595, z: -30.400192}
-  - {x: -0.095300436, y: 5.405227, z: -30.400192}
-  - {x: -0.14544082, y: 6.7088766, z: -30.400192}
-  - {x: -0.19558096, y: 7.7618237, z: -30.400192}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 50, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.2
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 0.035987854
         value: 1
         inSlope: 0
         outSlope: 0
@@ -1685,12 +1680,12 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 1
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
+    numCapVertices: 5
+    alignment: 1
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 1
   m_UseWorldSpace: 1
-  m_Loop: 1
-  m_ApplyActiveColorSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 0
