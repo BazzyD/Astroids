@@ -32,12 +32,15 @@ public class PressureManager : MonoBehaviour
         if (isSpawnFinished) return;
 
         //if current level has more astroids to spawn
-        if(currentAstroidToSpawn < levels[currentLevel].astroidsToSpwan.Count){
+        if(currentLevel < levels.Count &&
+            currentAstroidToSpawn < levels[currentLevel].astroidsToSpwan.Count){
             SpawnAstroid();
         }
         else {// no more astroids to spawn in current level
             // is pressure under the minimum pressure for the level? if so, go to next level
-            if(currentPressure < levels[currentLevel].minPressure){
+            if( currentLevel < levels.Count &&
+                currentAstroidToSpawn >= levels[currentLevel].astroidsToSpwan.Count&&
+                currentPressure < levels[currentLevel].minPressure){
                 currentLevel++;
                 currentAstroidToSpawn = 0;
 
@@ -45,6 +48,8 @@ public class PressureManager : MonoBehaviour
             }
         }
     }
+
+    
     private void SpawnAstroid(){
         if (Time.time < nextSpawnTime) return;
 

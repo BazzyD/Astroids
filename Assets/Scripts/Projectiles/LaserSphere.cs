@@ -3,7 +3,7 @@ using UnityEngine;
 public class LaserSphere : MonoBehaviour
 {
     [SerializeField] private float expandSpeed = 10f;
-    [SerializeField] private float maxRadius = 15f;
+    [SerializeField] private float maxRadius = 100f;
     private float currentRadius = 0f;
     private float damage = 0f;
 
