@@ -6,7 +6,7 @@ public class LaserData : WeaponData
 {
     public List<LaserLevelData> weaponLevels = new();
     public LaserLevelData overDriveLevelData;
-    public GameObject laserSphere;
+    public string laserSphereTag ="Laser_Sphere";
     public override void Fire(Transform ship, int level, bool inOverDrive, params object[] args)
     {
         
@@ -50,10 +50,12 @@ public class LaserData : WeaponData
     private void OverDriveLaser(Transform ship)
     {
         LaserLevelData levelData = overDriveLevelData;
-        GameObject sphere = Instantiate(laserSphere, ship.position, Quaternion.identity);
-        if(sphere.TryGetComponent(out LaserSphere ls))
-        {
-            ls.Initialize(levelData.damage);
+        if(ObjectPool.Instance != null){
+            GameObject sphere = ObjectPool.Instance.Spawn(laserSphereTag, ship.position, Quaternion.identity);
+            if(sphere.TryGetComponent(out LaserSphere ls))
+            {
+                ls.Initialize(levelData.damage);
+            }
         }
     }
     public float GetCooldownDuration(int level, bool inOverDrive)

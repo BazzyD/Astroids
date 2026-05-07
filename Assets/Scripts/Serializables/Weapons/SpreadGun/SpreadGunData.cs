@@ -8,9 +8,8 @@ public class SpreadGunData : WeaponData
     public SpreadGunLevelData overDriveLevelData;
     public override void Fire(Transform ship, int level, bool inOverDrive,params object[] args)
     {
-        SpreadGunLevelData levelData;
-        if(inOverDrive) levelData = overDriveLevelData;
-        else            levelData = weaponLevels[level];
+        SpreadGunLevelData levelData = inOverDrive ? overDriveLevelData : weaponLevels[level];
+
 
         float currentAngle = levelData.startingAngle;
         for(int i=0; i<levelData.numberOfProjectiles; i++)

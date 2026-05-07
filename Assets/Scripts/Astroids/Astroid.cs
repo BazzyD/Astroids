@@ -12,7 +12,7 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
     [SerializeField] public int astroidLevel =5;
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float damageOnCollision = 25f;
-    [SerializeField] private GameObject explosionEffectPrefab;
+    [SerializeField] private string explosionEffectTag = "Astroid_Explosion";
     private float _currentHealth;
     private bool isDespawning = false;
     [Header("Movement Stats")]
@@ -32,6 +32,7 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
     public void OnSpawn()
     {
         isDespawning = false;
+        spriteRenderer.enabled=true;
         if(PressureManager.Instance != null)
             PressureManager.Instance.AddPressure(astroidLevel);
         _currentHealth = maxHealth;
@@ -59,11 +60,12 @@ public class Astroid : MonoBehaviour,IDamageable, IPoolable
         {
             isDespawning = true;
             spriteRenderer.enabled = false;
-            Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
             OnAsteroidKilled?.Invoke(astroidLevel);
             if(astroidLevel > 1) SpawnChildren();
-            if(ObjectPool.Instance != null)
+            if(ObjectPool.Instance != null){
+                ObjectPool.Instance.Spawn(explosionEffectTag, this.transform.position, this.transform.rotation);
                 ObjectPool.Instance.Despawn($"Astroid_lvl{astroidLevel}", gameObject);
+            }
         }
     }
 

@@ -151,6 +151,7 @@ Transform:
   m_Children:
   - {fileID: 8058923631458528105}
   - {fileID: 7487482198293070740}
+  - {fileID: 4186126009617686509}
   m_Father: {fileID: 4350626382403156769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1950273448774292027
@@ -937,6 +938,53 @@ MonoBehaviour:
   smoothIntensity:
     smoothTime: 0.1
     maxSpeed: 4
+--- !u!1 &6009314875364586442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4186126009617686509}
+  - component: {fileID: 8128635828285437976}
+  m_Layer: 8
+  m_Name: MissileLuncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4186126009617686509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6009314875364586442}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 724848896880382218}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8128635828285437976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6009314875364586442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a810c2bcbfe2d4689d823ac4537308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissileLuncher
+  level: 0
+  isOverDrive: 0
+  missileLuncherWeapon: {fileID: 11400000, guid: 642bbda9048a2e946a54ce529edd0a4c, type: 2}
 --- !u!1 &6587883263729768222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,8 +1279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipController
   hurtDuration: 0.5
-  explosionEffectPrefab: {fileID: 3345248989584403936, guid: 6b5e9c3dedde64240ac58831af0e3754, type: 3}
-  hitEffectPrefab: {fileID: 6372287369205285200, guid: 6d4d5d5fac238a7448ada0cebba5d560, type: 3}
+  explosionEffectTag: Astroid_Explosion
+  hitEffectTag: Astroid_Explosion
 --- !u!114 &2912899870702346167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1400,7 +1448,8 @@ MonoBehaviour:
   weapons:
   - {fileID: 2730239923731931268}
   - {fileID: 7491847097304484651}
-  currentWeaponIndex: 1
+  - {fileID: 8128635828285437976}
+  currentWeaponIndex: 2
 --- !u!1 &8093612192280739274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,7 +1627,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8655941142720450278}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3539805814135281099}
   - component: {fileID: 7272763892824974120}
   m_Layer: 7
-  m_Name: Astroid_huge
+  m_Name: Astroid_Huge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   astroidLevel: 5
   maxHealth: 100
   damageOnCollision: 50
-  explosionEffectPrefab: {fileID: 6008809819809278124, guid: c2f612ce6ae600349bf6c84ecd17b91c, type: 3}
+  explosionEffectTag: Astroid_Explosion_Huge
   maxSpeed: 1
   minSpeed: 0.5
   maxRotationSpeed: 1

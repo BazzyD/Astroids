@@ -166,7 +166,7 @@ MonoBehaviour:
   astroidLevel: 2
   maxHealth: 30
   damageOnCollision: 10
-  explosionEffectPrefab: {fileID: 6008809819809278124, guid: c2f612ce6ae600349bf6c84ecd17b91c, type: 3}
+  explosionEffectTag: Astroid_Explosion_Small
   maxSpeed: 1.6
   minSpeed: 1.2
   maxRotationSpeed: 1.6

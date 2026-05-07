@@ -47,7 +47,7 @@ MonoBehaviour:
   poolBlueprints:
   - tag: Projectile
     prefab: {fileID: 5590472344643032099, guid: 2580efc383f5e9e49be2e08bdb1e3d1f, type: 3}
-    size: 20
+    size: 500
   - tag: Astroid_lvl5
     prefab: {fileID: 4284798117833914961, guid: 1d80488f6aa790448b31c94606a39883, type: 3}
     size: 20
@@ -63,3 +63,27 @@ MonoBehaviour:
   - tag: Astroid_lvl1
     prefab: {fileID: 5061248943920316074, guid: d03342a0d65bbb54383da07d8712133d, type: 3}
     size: 20
+  - tag: Astroid_Explosion_Huge
+    prefab: {fileID: 6008809819809278124, guid: 4a7991d74c01d8b4ebfc60c212ec6ea1, type: 3}
+    size: 5
+  - tag: Astroid_Explosion_Large
+    prefab: {fileID: 6008809819809278124, guid: 5d2bf5dd8b8419c439c1f61efae1f9c2, type: 3}
+    size: 20
+  - tag: Astroid_Explosion_Medium
+    prefab: {fileID: 6008809819809278124, guid: cb50ef742b2a26b4fbc3d3b3dfa1be79, type: 3}
+    size: 100
+  - tag: Astroid_Explosion_Small
+    prefab: {fileID: 6008809819809278124, guid: e783675905eba6b4290289c66b7e8a1d, type: 3}
+    size: 100
+  - tag: Astroid_Explosion_Tiny
+    prefab: {fileID: 6008809819809278124, guid: c2f612ce6ae600349bf6c84ecd17b91c, type: 3}
+    size: 100
+  - tag: Ship_Explosion
+    prefab: {fileID: 3345248989584403936, guid: 6b5e9c3dedde64240ac58831af0e3754, type: 3}
+    size: 1
+  - tag: Ship_Hit
+    prefab: {fileID: 6372287369205285200, guid: 6d4d5d5fac238a7448ada0cebba5d560, type: 3}
+    size: 10
+  - tag: Laser_Sphere
+    prefab: {fileID: 2386876989375093129, guid: 1a61f4c860328b648b1d689e958ed96c, type: 3}
+    size: 2

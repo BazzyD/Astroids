@@ -18,8 +18,8 @@ public class ShipController : MonoBehaviour{
     [SerializeField]private float hurtDuration = 0.5f;
 
     [Header("Effects")]
-    [SerializeField] private GameObject explosionEffectPrefab;
-    [SerializeField] private GameObject hitEffectPrefab;
+    [SerializeField] private string explosionEffectTag = "Ship_Explosion";
+    [SerializeField] private string hitEffectTag = "Ship_Hit";
 
     private void Awake(){
         inputHandler = GetComponent<InputHandler>();
@@ -29,6 +29,7 @@ public class ShipController : MonoBehaviour{
         weaponHolder = GetComponent<WeaponHolder>();
     }
     private void OnEnable(){
+        spriteRenderer.enabled = true;
         inputHandler.OnThrustChanged += SetThrust;
         inputHandler.OnRotationChanged += SetRotation;
         inputHandler.OnFirePerformed += OnFireInput;
@@ -57,7 +58,9 @@ public class ShipController : MonoBehaviour{
         
         currentState = PlayerStates.Hurt;
         _isHoldingFire = false;
-        Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+        if(ObjectPool.Instance != null)
+                ObjectPool.Instance.Spawn(hitEffectTag, this.transform.position, this.transform.rotation);
+
     }
     private void OnDeath()
     {
@@ -71,7 +74,9 @@ public class ShipController : MonoBehaviour{
     }
     private IEnumerator ExplosionEffect()
     {
-        Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+        if(ObjectPool.Instance != null)
+                ObjectPool.Instance.Spawn(explosionEffectTag, this.transform.position, this.transform.rotation);
+
         yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);
         GameManager.Instance.EndGame();
