@@ -3,20 +3,23 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class ProjectileBase : MonoBehaviour, IPoolable
 {
-    [SerializeField] protected string poolTag = "Projectile";
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float lifetime = 5f;
-    [SerializeField] private float damage = 10f;
-    private float _lifeTimer;
-    private bool _isDespawning = false;
-    private Rigidbody2D _rb;
+    protected Rigidbody2D rb;
 
-    protected virtual void Awake() => _rb = GetComponent<Rigidbody2D>();
+    [SerializeField] protected string poolTag = "Projectile";
+    [SerializeField] protected float speed = 10f;
+    [SerializeField] protected float lifetime = 5f;
+    [SerializeField] protected float damage = 10f;
+
+    protected float _lifeTimer;
+    protected bool _isDespawning = false;
+    
+
+    protected virtual void Awake() => rb = GetComponent<Rigidbody2D>();
     public virtual void OnSpawn()
     {
         _lifeTimer = lifetime;
         _isDespawning = false;
-        _rb.linearVelocity = transform.up * speed;
+        rb.linearVelocity = transform.up * speed;
     }
     protected virtual void Update()
     {
@@ -29,16 +32,15 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     }
     public virtual void OnDespawn()
     {
+        speed = 0f;
+        damage = 0f;
         _lifeTimer = 0f;
-        _rb.linearVelocity = Vector2.zero;
-        _rb.angularVelocity = 0f;
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player") ||
-            other.gameObject.layer == LayerMask.NameToLayer("Projectile")
-        ) return;
         HandleHit(other);
         if(!_isDespawning){
             _isDespawning = true;

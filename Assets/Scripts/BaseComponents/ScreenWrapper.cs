@@ -8,7 +8,6 @@ public class ScreenWrapper : MonoBehaviour
     {
         //get the sprite size in world units to use as a buffer for wrapping
         buffer = GetComponent<SpriteRenderer>().bounds.extents.x;
-        Debug.Log(buffer);
     }
 
     private void LateUpdate()

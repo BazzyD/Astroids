@@ -982,7 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a810c2bcbfe2d4689d823ac4537308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MissileLuncher
-  level: 0
+  level: 4
   isOverDrive: 0
   missileLuncherWeapon: {fileID: 11400000, guid: 642bbda9048a2e946a54ce529edd0a4c, type: 2}
 --- !u!1 &6587883263729768222
@@ -1279,8 +1279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipController
   hurtDuration: 0.5
-  explosionEffectTag: Astroid_Explosion
-  hitEffectTag: Astroid_Explosion
+  explosionEffectTag: Ship_Explosion
+  hitEffectTag: Ship_Hit
 --- !u!114 &2912899870702346167
 MonoBehaviour:
   m_ObjectHideFlags: 0

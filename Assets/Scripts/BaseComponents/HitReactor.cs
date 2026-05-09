@@ -38,7 +38,7 @@ public class HitReactor : MonoBehaviour{
         }
 
         int randomIdx = Random.Range(0, hitSound.Length);
-        if(hitSound.Length > 0)
+        if(hitSound.Length > 0 && AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(hitSound[randomIdx]);
         activeFlashRoutine =StartCoroutine(HitFlashRoutine());
     }

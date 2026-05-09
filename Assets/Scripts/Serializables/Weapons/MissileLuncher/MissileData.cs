@@ -15,7 +15,7 @@ public class MissileData : WeaponData
     {
         MissileLevelData levelData = inOverDrive ? overDriveLevelData : weaponLevels[level];
 
-        int missilenumber = (int)args[0];
+        //int missilenumber = (int)args[0];
         
         GameObject target = args[1] as GameObject;
 
@@ -31,7 +31,7 @@ public class MissileData : WeaponData
         
         if(!missileObj.TryGetComponent(out HomingMissile missile)) return;
         
-        missile.Initialize(target,levelData.damage,levelData.flightSpeed,levelData.maxFlightSpeed, levelData.rotateSpeed);
+        missile.Initialize(target,levelData.damage,levelData.flightSpeed, levelData.rotateSpeed, inOverDrive);
         
     }
     public List<GameObject> GetTargets(Transform ship,int level, bool inOverDrive)

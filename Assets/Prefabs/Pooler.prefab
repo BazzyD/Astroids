@@ -87,3 +87,9 @@ MonoBehaviour:
   - tag: Laser_Sphere
     prefab: {fileID: 2386876989375093129, guid: 1a61f4c860328b648b1d689e958ed96c, type: 3}
     size: 2
+  - tag: Missile
+    prefab: {fileID: 3399681759809460239, guid: 3905a0d61dd10f24b8118f8be7efb34f, type: 3}
+    size: 10
+  - tag: Damage_Explosion
+    prefab: {fileID: 8161286621162351057, guid: e7c65d985807982469f533079bcd8788, type: 3}
+    size: 20

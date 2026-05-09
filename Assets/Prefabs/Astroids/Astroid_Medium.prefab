@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -8416305255168589576}
   - component: {fileID: -8489699011133745116}
   - component: {fileID: 1856705779893501095}
+  - component: {fileID: 5681302749020901180}
   m_Layer: 7
   m_Name: Astroid_Medium
   m_TagString: Untagged
@@ -164,7 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Astroid
   astroidLevel: 3
-  maxHealth: 50
   damageOnCollision: 20
   explosionEffectTag: Astroid_Explosion_Medium
   maxSpeed: 1.4
@@ -263,3 +263,17 @@ PolygonCollider2D:
       - {x: 0.01748339, y: -0.75796044}
       - {x: 0.20149668, y: -0.7274506}
   m_UseDelaunayMesh: 1
+--- !u!114 &5681302749020901180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719550583784912930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3244de0a9afe76a4897989959292cefc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 50
+  invincibleDuration: 0.4

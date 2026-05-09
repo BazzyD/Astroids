@@ -1,40 +1,25 @@
 using UnityEngine;
 
-public class HomingMissile : MonoBehaviour
+public class HomingMissile : ProjectileBase
 {
-    private Rigidbody2D rb;
     private GameObject target;
-    private float damage;
-    private float currentSpeed=0;
-    private float speed;
-    private float maxSpeed;
+    [SerializeField] private float explosionRadius = 2f;
+    [SerializeField] private string damageExplosionTag;
     private float rotateSpeed;
-    void Awake() => rb = GetComponent<Rigidbody2D>();
-    public void Initialize(GameObject target,float dmg, float speed, float maxSpeed, float rotateSpeed)
+    private bool isOverdrive = false;
+
+    public void Initialize(GameObject target,float damage, float speed, float rotateSpeed, bool isOverdrive)
     {
         this.target = target;
-        this.damage = dmg;
+        this.damage = damage;
         this.speed = speed;
-        this.currentSpeed = speed;
-        this.maxSpeed = maxSpeed;
         this.rotateSpeed = rotateSpeed;
-        
-        // Give it an initial "kick" forward
-        rb.linearVelocity = transform.up * currentSpeed;
+        this.isOverdrive = isOverdrive;
     }
+
     void FixedUpdate()
     {
-        // 1. Move Forward
-        rb.linearVelocity = transform.up * currentSpeed;
-        
-        // Accelerate up to max speed
-        if (currentSpeed < maxSpeed)
-        {
-            currentSpeed += Time.fixedDeltaTime * speed;
-            currentSpeed = Mathf.Min(currentSpeed, maxSpeed);
-        }
-            
-        // 2. Steering Logic
+        rb.linearVelocity = transform.up * speed;
         if (target != null && target.activeInHierarchy)
         {
             Vector2 direction = (Vector2)target.transform.position - rb.position;
@@ -49,14 +34,33 @@ public class HomingMissile : MonoBehaviour
             rb.angularVelocity = 0;
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+
+    protected override void HandleHit(Collider2D other)
     {
+        Debug.Log(isOverdrive);
         // Check if hit IDamageable, then deal damage and despawn
         if (other.TryGetComponent(out IDamageable astroid))
         {
             astroid.TakeDamage(damage);
-            // Spawn explosion effect here?
-            gameObject.SetActive(false); 
+
+            if(ObjectPool.Instance == null) return;
+            
+            if(isOverdrive){
+                Debug.Log("GotHere");
+                GameObject explosionObj = ObjectPool.Instance.Spawn(damageExplosionTag,transform.position,transform.rotation);
+                
+                if(!explosionObj.TryGetComponent(out DamageExplosion explosion)) return;
+                explosion.Initialize(explosionRadius,damage);
+                explosion.Explode();
+            }
         }
+    }
+
+    public override void OnDespawn()
+    {
+        base.OnDespawn();
+        target = null;
+        rotateSpeed = 0f;
+        isOverdrive = false;
     }
 }

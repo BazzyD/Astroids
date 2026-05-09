@@ -79,7 +79,8 @@ public class ShipController : MonoBehaviour{
 
         yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);
-        GameManager.Instance.EndGame();
+        if(GameManager.Instance != null)
+            GameManager.Instance.EndGame();
     }
 
     private void Update()
