@@ -37,7 +37,6 @@ public class HomingMissile : ProjectileBase
 
     protected override void HandleHit(Collider2D other)
     {
-        Debug.Log(isOverdrive);
         // Check if hit IDamageable, then deal damage and despawn
         if (other.TryGetComponent(out IDamageable astroid))
         {
@@ -46,7 +45,6 @@ public class HomingMissile : ProjectileBase
             if(ObjectPool.Instance == null) return;
             
             if(isOverdrive){
-                Debug.Log("GotHere");
                 GameObject explosionObj = ObjectPool.Instance.Spawn(damageExplosionTag,transform.position,transform.rotation);
                 
                 if(!explosionObj.TryGetComponent(out DamageExplosion explosion)) return;

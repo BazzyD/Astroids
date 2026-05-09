@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Laser
   muzzeleOffset: 3.1
   overDriveDuration: 4
-  projectilePrefabName: 
+  projectilePrefabName: Laser_Sphere
   weaponLevels:
   - damage: 20
     width: 0.2
@@ -42,4 +42,3 @@ MonoBehaviour:
     width: 1
     maxHeat: 0
     cooldownDuration: 2
-  laserSphereTag: Laser_Sphere

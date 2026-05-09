@@ -6,7 +6,6 @@ public class LaserData : WeaponData
 {
     public List<LaserLevelData> weaponLevels = new();
     public LaserLevelData overDriveLevelData;
-    public string laserSphereTag ="Laser_Sphere";
     public override void Fire(Transform ship, int level, bool inOverDrive, params object[] args)
     {
         
@@ -51,7 +50,7 @@ public class LaserData : WeaponData
     {
         LaserLevelData levelData = overDriveLevelData;
         if(ObjectPool.Instance != null){
-            GameObject sphere = ObjectPool.Instance.Spawn(laserSphereTag, ship.position, Quaternion.identity);
+            GameObject sphere = ObjectPool.Instance.Spawn(projectilePrefabName, ship.position, Quaternion.identity);
             if(sphere.TryGetComponent(out LaserSphere ls))
             {
                 ls.Initialize(levelData.damage);

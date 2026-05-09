@@ -9,7 +9,6 @@ public class MissileData : WeaponData
     public List<MissileLevelData> weaponLevels = new();
     public MissileLevelData overDriveLevelData;
     public LayerMask targetLayer;
-    public string missileTag ="Missile";
     public float maxRadius = 50f;
     public override void Fire(Transform ship, int level, bool inOverDrive, params object[] args)
     {
@@ -27,7 +26,7 @@ public class MissileData : WeaponData
         // int missileOffsetX = (missilenumber+1) /2 * missileSign;
         // Vector3 missileOffset = muzzelePosition + (ship.right *missileOffsetX);
 
-        GameObject missileObj = ObjectPool.Instance.Spawn(missileTag,muzzelePosition,Quaternion.Euler(0, 0, ship.eulerAngles.z));
+        GameObject missileObj = ObjectPool.Instance.Spawn(projectilePrefabName,muzzelePosition,Quaternion.Euler(0, 0, ship.eulerAngles.z));
         
         if(!missileObj.TryGetComponent(out HomingMissile missile)) return;
         

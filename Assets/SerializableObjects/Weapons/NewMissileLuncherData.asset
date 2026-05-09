@@ -15,40 +15,35 @@ MonoBehaviour:
   weaponName: MissileLuncher
   muzzeleOffset: 4.5
   overDriveDuration: 2
-  projectilePrefabName: 
+  projectilePrefabName: Missile
   weaponLevels:
   - damage: 20
     missilesAmount: 1
     flightSpeed: 2
-    maxFlightSpeed: 5
     rotateSpeed: 200
     fireRate: 0
     cooldownDuration: 1
   - damage: 20
     missilesAmount: 2
     flightSpeed: 2.5
-    maxFlightSpeed: 5
     rotateSpeed: 200
     fireRate: 0.5
     cooldownDuration: 1
   - damage: 30
     missilesAmount: 3
     flightSpeed: 6
-    maxFlightSpeed: 3.5
     rotateSpeed: 250
     fireRate: 0.33
     cooldownDuration: 1
   - damage: 30
     missilesAmount: 5
     flightSpeed: 3
-    maxFlightSpeed: 8
     rotateSpeed: 300
     fireRate: 0.2
     cooldownDuration: 1
   - damage: 50
     missilesAmount: 10
     flightSpeed: 5
-    maxFlightSpeed: 10
     rotateSpeed: 350
     fireRate: 0.1
     cooldownDuration: 1
@@ -56,12 +51,10 @@ MonoBehaviour:
     damage: 50
     missilesAmount: 10
     flightSpeed: 5
-    maxFlightSpeed: 10
     rotateSpeed: 500
     fireRate: 0.1
     cooldownDuration: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  missileTag: Missile
   maxRadius: 50

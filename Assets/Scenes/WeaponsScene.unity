@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &329530407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4894492064031507796, guid: bc0632e2ca5fc0f4fa016efd0c8e04dd, type: 3}
+  m_PrefabInstance: {fileID: 882139932}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be6b442ffa2c0544b16bbef0aca21b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MineDroper
 --- !u!1 &408957254
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +337,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4910570439660535923, guid: bc0632e2ca5fc0f4fa016efd0c8e04dd, type: 3}
+      propertyPath: currentWeaponIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910570439660535923, guid: bc0632e2ca5fc0f4fa016efd0c8e04dd, type: 3}
+      propertyPath: weapons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910570439660535923, guid: bc0632e2ca5fc0f4fa016efd0c8e04dd, type: 3}
+      propertyPath: 'weapons.Array.data[3]'
+      value: 
+      objectReference: {fileID: 329530407}
     - target: {fileID: 7663363544057321991, guid: bc0632e2ca5fc0f4fa016efd0c8e04dd, type: 3}
       propertyPath: m_Name
       value: Ship
@@ -403,6 +426,10 @@ PrefabInstance:
     - target: {fileID: 295352010645054905, guid: dd68a83d9ab872d4c8cc0631a832d299, type: 3}
       propertyPath: m_Name
       value: Pooler
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091370014936852486, guid: dd68a83d9ab872d4c8cc0631a832d299, type: 3}
+      propertyPath: poolBlueprints.Array.data[9].size
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6103475472660275070, guid: dd68a83d9ab872d4c8cc0631a832d299, type: 3}
       propertyPath: m_LocalPosition.x
