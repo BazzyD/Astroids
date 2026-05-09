@@ -7,7 +7,9 @@ public class HealCollectable : MonoBehaviour, ICollectable
         Health playerHealth = collector.GetComponent<Health>();
         if (playerHealth != null)
         {
+            Debug.Log(playerHealth.CurrentHealth);
             playerHealth.Heal(20f);
+            Debug.Log(playerHealth.CurrentHealth);
             Destroy(gameObject);
         }
     }

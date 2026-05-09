@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class Astroid : MonoBehaviour, IPoolable
 {
-    public static System.Action<int> OnAsteroidKilled;
+    public static System.Action<int, Vector3> OnAsteroidKilled;
 
     private BaseMovment _movment;
     private SpriteRenderer spriteRenderer;
@@ -16,7 +16,7 @@ public class Astroid : MonoBehaviour, IPoolable
     
 
     [Header("Astroid Stats")]
-    [SerializeField] public int astroidLevel =5;
+    [SerializeField] public int astroidLevel = 5;
     [SerializeField] private float damageOnCollision = 25f;
     [SerializeField] private string explosionEffectTag = "Astroid_Explosion";
     
@@ -74,7 +74,7 @@ public class Astroid : MonoBehaviour, IPoolable
     {
         isDespawning = true;
         spriteRenderer.enabled = false;
-        OnAsteroidKilled?.Invoke(astroidLevel);
+        OnAsteroidKilled?.Invoke(astroidLevel,transform.position);
         if(astroidLevel > 1) SpawnChildren();
         if(ObjectPool.Instance != null){
             ObjectPool.Instance.Spawn(explosionEffectTag, this.transform.position, this.transform.rotation);

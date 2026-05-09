@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour{
     private void OnDisable(){
         Astroid.OnAsteroidKilled -= HandleAsteroidKilled;
     }
-    private void HandleAsteroidKilled(int level){
+    private void HandleAsteroidKilled(int level, Vector3 position){
         int points = 100 / level; 
         //int points = scorePerLevel[level-1];
 

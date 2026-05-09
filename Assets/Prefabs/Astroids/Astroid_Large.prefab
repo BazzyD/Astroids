@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -8787504772994490084}
   - component: {fileID: 7256283332852553054}
   - component: {fileID: 849887075180201402}
+  - component: {fileID: 732310582797051141}
   m_Layer: 7
   m_Name: Astroid_Large
   m_TagString: Untagged
@@ -265,3 +266,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
   invincibleDuration: 0.3
+--- !u!114 &732310582797051141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5423232723964692187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6aec3482078a24791b5e9933c93cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitReactor
+  defaultMaterial: {fileID: 2100000, guid: 584efb26b598ddd4ca553e1dff8a5095, type: 2}
+  flashMaterial: {fileID: 2100000, guid: fd7951310c6b51e439f66d13ca052b70, type: 2}
+  hitSound: []

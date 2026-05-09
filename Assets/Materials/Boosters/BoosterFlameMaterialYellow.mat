@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6807940254015423329
+--- !u!114 &-4591113249328844354
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BoosterFlameMaterialPurple
+  m_Name: BoosterFlameMaterialYellow
   m_Shader: {fileID: -6465566751694194690, guid: c6a94f5ae1e324386983ec48081b18a1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -66,6 +66,6 @@ Material:
     - _vertical_stream_intensity: 2.23
     - _vertical_stream_scale: 9
     m_Colors:
-    - _Color: {r: 3.0860546, g: 1.1956062, b: 7.8745103, a: 0}
+    - _Color: {r: 8.331128, g: 7.856658, b: 0.7851325, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

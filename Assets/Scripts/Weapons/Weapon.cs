@@ -33,6 +33,7 @@ public abstract class Weapon : MonoBehaviour
     }
     public virtual void ResetWeapon()
     {
+        StopFiring();
         level = 0;
         isOverDrive = false;
         overdriveTimer = 0f;

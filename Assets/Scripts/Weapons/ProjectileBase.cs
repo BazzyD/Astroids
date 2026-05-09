@@ -32,11 +32,8 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     }
     public virtual void OnDespawn()
     {
-        speed = 0f;
-        damage = 0f;
         _lifeTimer = 0f;
         rb.linearVelocity = Vector2.zero;
-        rb.angularVelocity = 0f;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)

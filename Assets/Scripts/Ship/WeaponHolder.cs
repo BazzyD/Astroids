@@ -30,6 +30,5 @@ public class WeaponHolder : MonoBehaviour{
         CurrentWeapon.ResetWeapon();
         currentWeaponIndex = index;
     }
-
 }
 

@@ -36,7 +36,7 @@ MonoBehaviour:
     fireRate: 0.7
     minesToSpwan: 3
     cooldownDuration: 1.5
-    explosionRadius: 2
+    explosionRadius: 3
     mineSize: 2
   - damage: 80
     minesAmount: 5
