@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-
 
 [CreateAssetMenu(fileName = "NewMineData", menuName = "Weapons/MineDroper/WeaponData")]
 public class MineData : WeaponData

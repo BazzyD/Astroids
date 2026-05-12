@@ -42,3 +42,6 @@ MonoBehaviour:
     width: 1
     maxHeat: 0
     cooldownDuration: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128

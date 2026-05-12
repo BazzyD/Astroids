@@ -60,6 +60,7 @@ public class Health : MonoBehaviour,  IDamageable {
     }
     public void Heal(float healAmount){
         currentHealth += healAmount;
+        currentHealth = Mathf.Min(currentHealth,maxHealth);
         OnHealthChanged?.Invoke(currentHealth);
     }
 

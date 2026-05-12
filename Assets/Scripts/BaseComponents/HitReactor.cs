@@ -27,9 +27,11 @@ public class HitReactor : MonoBehaviour{
     }
     private void OnEnable(){
         health.OnTakeDamage += TakeDamage;
+        spriteRenderer.material = defaultMaterial;
     }
     private void OnDisable(){
         health.OnTakeDamage -= TakeDamage;
+        spriteRenderer.material = defaultMaterial;
     }
 
     public void TakeDamage(float damageAmount){

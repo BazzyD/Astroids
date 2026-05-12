@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName = "NewMissileData", menuName = "Weapons/MissileLuncher/WeaponData")]
 public class MissileData : WeaponData

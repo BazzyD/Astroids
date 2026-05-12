@@ -1,20 +1,14 @@
-using System;
 using UnityEngine;
 
-public class WeaponUpgrade : MonoBehaviour, ICollectable
+public class WeaponUpgrade : CollectableBase
 {
     [SerializeField] private int weaponIndex;
-    public void Collect(GameObject collector)
+    public override void Collect(GameObject collector)
     {
         if(!collector.TryGetComponent(out WeaponHolder playerWeapon)) return;
 
         playerWeapon.SwapWeapon(weaponIndex);
-        Destroy(gameObject);
+        base.Collect(collector);
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!other.CompareTag("Player")) return;
-        
-        Collect(other.gameObject);
-    }
+
 }

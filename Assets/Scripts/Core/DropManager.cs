@@ -31,7 +31,7 @@ public class DropManager : MonoBehaviour{
         //     4*4*4*10 = 640
         int startingValue = (int)Mathf.Pow(astroidLevel - 1, 3) * 10;
         int dropValue = Random.Range(startingValue, 1001);
-        Debug.Log("Drop Value: " +dropValue);
+
         if(dropValue <= nothingDropValue) return;
         else if(dropValue <= healthDropValue)
         {

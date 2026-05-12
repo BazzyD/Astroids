@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5884384989105395279}
   - component: {fileID: 7686622873204929406}
   - component: {fileID: 2428892123890144504}
-  - component: {fileID: 3298109329444976097}
   - component: {fileID: 176913682964210330}
   - component: {fileID: 2837030048677877345}
   - component: {fileID: -2981471865475130746}
@@ -138,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2076c1937cb5d3948a90a461a282b23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenWrapper
+  margin: 6
 --- !u!114 &7686622873204929406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,18 +172,6 @@ MonoBehaviour:
   minSpeed: 1.5
   maxRotationSpeed: 2
   minRotationSpeed: 1.5
---- !u!114 &3298109329444976097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061248943920316074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6260c7ef458d2478cc3ead0aeb167f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GhostEnabler
 --- !u!60 &176913682964210330
 PolygonCollider2D:
   m_ObjectHideFlags: 0

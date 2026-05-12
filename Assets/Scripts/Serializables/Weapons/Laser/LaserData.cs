@@ -6,6 +6,7 @@ public class LaserData : WeaponData
 {
     public List<LaserLevelData> weaponLevels = new();
     public LaserLevelData overDriveLevelData;
+    public LayerMask layerMask;
     public override void Fire(Transform ship, int level, bool inOverDrive, params object[] args)
     {
         
@@ -25,7 +26,7 @@ public class LaserData : WeaponData
         Vector2 direction = ship.up;
 
         float maxDistance = 50f; // Far enough to go off screen
-        RaycastHit2D hit = Physics2D.BoxCast(muzzelePosition, new Vector2(levelData.width, 0.1f), ship.eulerAngles.z, direction, maxDistance);
+        RaycastHit2D hit = Physics2D.BoxCast(muzzelePosition, new Vector2(levelData.width, 0.1f), ship.eulerAngles.z, direction, maxDistance, layerMask);
         
         float beamLength = maxDistance;
 
@@ -36,8 +37,7 @@ public class LaserData : WeaponData
             // 4. Apply Damage
             if (hit.collider.TryGetComponent(out IDamageable damageable))
             {
-                // IMPORTANT: Since Fire() is called every frame, we multiply damage by Time.deltaTime
-                damageable.TakeDamage(levelData.damage * Time.deltaTime);
+                damageable.TakeDamage(levelData.damage);
             }
         }
         line.SetPosition(0, muzzelePosition);

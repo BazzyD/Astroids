@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
+
 
 public class PressureManager : MonoBehaviour
 {
@@ -56,7 +56,7 @@ public class PressureManager : MonoBehaviour
         // check if spawning the astroid will not exceed the max pressure for the level
         if(nextPressure <= maxPressure){
 
-            Vector3 spawnPosition = ScreenBounds.GetRandomPosition();
+            Vector3 spawnPosition = ScreenBounds.GetRandomPosition(astroidToSpwan *6);
             Quaternion spawnRotation = ScreenBounds.GetRandomDirection(spawnPosition);
 
             ObjectPool.Instance.Spawn($"Astroid_lvl{astroidToSpwan}", spawnPosition, spawnRotation);
