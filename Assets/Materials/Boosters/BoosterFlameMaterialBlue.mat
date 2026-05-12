@@ -58,12 +58,12 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _bend: 0.04
-    - _flameSpeed: 7.5
-    - _intensity: 0.75
-    - _intensity_base_value: 0.07
+    - _bend: 0
+    - _flameSpeed: 6
+    - _intensity: 0.1
+    - _intensity_base_value: 0.41
     - _squash: 1
-    - _vertical_stream_intensity: 0.8
+    - _vertical_stream_intensity: 2.23
     - _vertical_stream_scale: 9
     m_Colors:
     - _Color: {r: 1.1607844, g: 1.4431373, b: 7.87451, a: 0}

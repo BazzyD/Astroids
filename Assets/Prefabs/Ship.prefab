@@ -151,6 +151,8 @@ Transform:
   m_Children:
   - {fileID: 8058923631458528105}
   - {fileID: 7487482198293070740}
+  - {fileID: 4186126009617686509}
+  - {fileID: 7817343444985492540}
   m_Father: {fileID: 4350626382403156769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1950273448774292027
@@ -937,6 +939,53 @@ MonoBehaviour:
   smoothIntensity:
     smoothTime: 0.1
     maxSpeed: 4
+--- !u!1 &6009314875364586442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4186126009617686509}
+  - component: {fileID: 8128635828285437976}
+  m_Layer: 8
+  m_Name: MissileLuncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4186126009617686509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6009314875364586442}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 724848896880382218}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8128635828285437976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6009314875364586442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a810c2bcbfe2d4689d823ac4537308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissileLuncher
+  level: 4
+  isOverDrive: 0
+  missileLuncherWeapon: {fileID: 11400000, guid: 642bbda9048a2e946a54ce529edd0a4c, type: 2}
 --- !u!1 &6587883263729768222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,9 +1169,9 @@ GameObject:
   - component: {fileID: 1622697134936145225}
   - component: {fileID: -2194198101898127359}
   - component: {fileID: -503671852186882544}
+  - component: {fileID: 4910570439660535923}
   - component: {fileID: 3197275089718714842}
   - component: {fileID: 2451540113439226946}
-  - component: {fileID: 4910570439660535923}
   m_Layer: 8
   m_Name: Ship
   m_TagString: Player
@@ -1231,8 +1280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipController
   hurtDuration: 0.5
-  explosionEffectPrefab: {fileID: 3345248989584403936, guid: 6b5e9c3dedde64240ac58831af0e3754, type: 3}
-  hitEffectPrefab: {fileID: 6372287369205285200, guid: 6d4d5d5fac238a7448ada0cebba5d560, type: 3}
+  explosionEffectTag: Ship_Explosion
+  hitEffectTag: Ship_Hit
 --- !u!114 &2912899870702346167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1260,6 +1309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2076c1937cb5d3948a90a461a282b23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenWrapper
+  margin: 2.1
 --- !u!114 &-2194198101898127359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,6 +1323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
+  invincibleDuration: 1
 --- !u!114 &-503671852186882544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,6 +1339,24 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: 584efb26b598ddd4ca553e1dff8a5095, type: 2}
   flashMaterial: {fileID: 2100000, guid: fd7951310c6b51e439f66d13ca052b70, type: 2}
   hitSound: []
+--- !u!114 &4910570439660535923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663363544057321991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfa102fc3a1021428772c210b5f30cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponHolder
+  weapons:
+  - {fileID: 2730239923731931268}
+  - {fileID: 7491847097304484651}
+  - {fileID: 8128635828285437976}
+  - {fileID: 4894492064031507796}
+  currentWeaponIndex: 2
 --- !u!50 &3197275089718714842
 Rigidbody2D:
   serializedVersion: 5
@@ -1385,22 +1454,6 @@ PolygonCollider2D:
       - {x: -1.3561625, y: -2.9162}
       - {x: 1.370924, y: -2.9162}
   m_UseDelaunayMesh: 1
---- !u!114 &4910570439660535923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7663363544057321991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdfa102fc3a1021428772c210b5f30cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponHolder
-  weapons:
-  - {fileID: 2730239923731931268}
-  - {fileID: 7491847097304484651}
-  currentWeaponIndex: 1
 --- !u!1 &8093612192280739274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,7 +1631,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8655941142720450278}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1689,3 +1742,50 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 0
+--- !u!1 &9204419690317552670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7817343444985492540}
+  - component: {fileID: 4894492064031507796}
+  m_Layer: 8
+  m_Name: MinesDroper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7817343444985492540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9204419690317552670}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 724848896880382218}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4894492064031507796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9204419690317552670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be6b442ffa2c0544b16bbef0aca21b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MineDroper
+  level: 0
+  isOverDrive: 0
+  mineDroperWeapon: {fileID: 11400000, guid: ffcab4b1be92fca4fa906428c62e09d8, type: 2}

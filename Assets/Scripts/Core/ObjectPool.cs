@@ -43,14 +43,25 @@ public class ObjectPool : MonoBehaviour{
         if (spawnedObj.TryGetComponent(out IPoolable poolable)){
             poolable.OnSpawn();
         }
+        else
+        {
+            Debug.LogWarning($"obj {spawnedObj} dose not implement IPoolable");
+        }
         
         return spawnedObj;
     }
     public void Despawn(string tag, GameObject obj){
-        if (!_poolDictionary.ContainsKey(tag)) return;
+        if (!_poolDictionary.ContainsKey(tag)) {
+            Debug.LogWarning($"Pool with tag {tag} doesn't exist.");
+            return;
+        }
 
         if (obj.TryGetComponent(out IPoolable poolable)){
             poolable.OnDespawn();
+        }
+        else
+        {
+            Debug.LogWarning($"obj {obj} dose not implement IPoolable");
         }
 
         obj.SetActive(false);

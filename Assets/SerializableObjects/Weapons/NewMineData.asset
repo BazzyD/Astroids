@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331d39912e646384c9a58c4871c4792d, type: 3}
+  m_Name: NewMineData
+  m_EditorClassIdentifier: Assembly-CSharp::MineData
+  weaponName: MineDroper
+  muzzeleOffset: 3
+  overDriveDuration: 1
+  projectilePrefabName: Mine
+  weaponLevels:
+  - damage: 40
+    minesAmount: 1
+    fireRate: 0
+    minesToSpwan: 0
+    cooldownDuration: 0.5
+    explosionRadius: 2
+    mineSize: 1
+  - damage: 40
+    minesAmount: 2
+    fireRate: 0.5
+    minesToSpwan: 2
+    cooldownDuration: 1
+    explosionRadius: 2
+    mineSize: 1.1
+  - damage: 60
+    minesAmount: 3
+    fireRate: 0.7
+    minesToSpwan: 3
+    cooldownDuration: 1.5
+    explosionRadius: 3
+    mineSize: 2
+  - damage: 80
+    minesAmount: 5
+    fireRate: 0.7
+    minesToSpwan: 5
+    cooldownDuration: 2
+    explosionRadius: 4
+    mineSize: 2
+  - damage: 100
+    minesAmount: 10
+    fireRate: 1
+    minesToSpwan: 5
+    cooldownDuration: 3
+    explosionRadius: 5
+    mineSize: 4
+  overDriveLevelData:
+    damage: 200
+    minesAmount: 1
+    fireRate: 1
+    minesToSpwan: 10
+    cooldownDuration: 1
+    explosionRadius: 8
+    mineSize: 8

@@ -60,7 +60,7 @@ Material:
     - _QueueOffset: 0
     - _bend: 0
     - _flameSpeed: 6
-    - _intensity: 0.5
+    - _intensity: 0.1
     - _intensity_base_value: 0.41
     - _squash: 1
     - _vertical_stream_intensity: 2.23

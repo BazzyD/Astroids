@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &295352010645054905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6103475472660275070}
+  - component: {fileID: 2091370014936852486}
+  m_Layer: 0
+  m_Name: Pooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6103475472660275070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295352010645054905}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.21133, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2091370014936852486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295352010645054905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084ecf962d4cbb6499cda83c731b6c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
+  poolBlueprints:
+  - tag: Astroid_Explosion_Tiny
+    prefab: {fileID: 6008809819809278124, guid: c2f612ce6ae600349bf6c84ecd17b91c, type: 3}
+    size: 100
+  - tag: Astroid_Explosion_Small
+    prefab: {fileID: 6008809819809278124, guid: e783675905eba6b4290289c66b7e8a1d, type: 3}
+    size: 100
+  - tag: Astroid_Explosion_Medium
+    prefab: {fileID: 6008809819809278124, guid: cb50ef742b2a26b4fbc3d3b3dfa1be79, type: 3}
+    size: 100
+  - tag: Astroid_Explosion_Large
+    prefab: {fileID: 6008809819809278124, guid: 5d2bf5dd8b8419c439c1f61efae1f9c2, type: 3}
+    size: 20
+  - tag: Astroid_Explosion_Huge
+    prefab: {fileID: 6008809819809278124, guid: 4a7991d74c01d8b4ebfc60c212ec6ea1, type: 3}
+    size: 5
+  - tag: Damage_Explosion
+    prefab: {fileID: 8161286621162351057, guid: e7c65d985807982469f533079bcd8788, type: 3}
+    size: 20
+  - tag: Projectile
+    prefab: {fileID: 5590472344643032099, guid: 2580efc383f5e9e49be2e08bdb1e3d1f, type: 3}
+    size: 500
+  - tag: Laser_Sphere
+    prefab: {fileID: 2386876989375093129, guid: 1a61f4c860328b648b1d689e958ed96c, type: 3}
+    size: 2
+  - tag: Missile
+    prefab: {fileID: 3399681759809460239, guid: 3905a0d61dd10f24b8118f8be7efb34f, type: 3}
+    size: 10
+  - tag: Mine
+    prefab: {fileID: 1883480031225442351, guid: b16522b0d1d97394da6360328aec4cd6, type: 3}
+    size: 20
+  - tag: Ship_Hit
+    prefab: {fileID: 6372287369205285200, guid: 6d4d5d5fac238a7448ada0cebba5d560, type: 3}
+    size: 10
+  - tag: Ship_Explosion
+    prefab: {fileID: 3345248989584403936, guid: 6b5e9c3dedde64240ac58831af0e3754, type: 3}
+    size: 1
+  - tag: Astroid_lvl1
+    prefab: {fileID: 5061248943920316074, guid: d03342a0d65bbb54383da07d8712133d, type: 3}
+    size: 20
+  - tag: Astroid_lvl2
+    prefab: {fileID: 8657995714002991513, guid: 9e7da6f387276774c9fc8351dc05a5ce, type: 3}
+    size: 20
+  - tag: Astroid_lvl3
+    prefab: {fileID: 6719550583784912930, guid: 99bd47f5cf6f77d4aa39d1ea2157dd1f, type: 3}
+    size: 20
+  - tag: Astroid_lvl4
+    prefab: {fileID: 5423232723964692187, guid: d6a39cb2b00f3e6448e64c1c9b12f56f, type: 3}
+    size: 20
+  - tag: Astroid_lvl5
+    prefab: {fileID: 4284798117833914961, guid: 1d80488f6aa790448b31c94606a39883, type: 3}
+    size: 20

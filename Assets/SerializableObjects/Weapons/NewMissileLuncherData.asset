@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f60081cacdf2049bcb5d07afe723f5, type: 3}
+  m_Name: NewMissileLuncherData
+  m_EditorClassIdentifier: Assembly-CSharp::MissileData
+  weaponName: MissileLuncher
+  muzzeleOffset: 4.5
+  overDriveDuration: 2
+  projectilePrefabName: Missile
+  weaponLevels:
+  - damage: 20
+    missilesAmount: 1
+    flightSpeed: 2
+    rotateSpeed: 200
+    fireRate: 0
+    cooldownDuration: 1
+  - damage: 20
+    missilesAmount: 2
+    flightSpeed: 2.5
+    rotateSpeed: 200
+    fireRate: 0.5
+    cooldownDuration: 1
+  - damage: 30
+    missilesAmount: 3
+    flightSpeed: 6
+    rotateSpeed: 250
+    fireRate: 0.33
+    cooldownDuration: 1
+  - damage: 30
+    missilesAmount: 5
+    flightSpeed: 3
+    rotateSpeed: 300
+    fireRate: 0.2
+    cooldownDuration: 1
+  - damage: 50
+    missilesAmount: 10
+    flightSpeed: 5
+    rotateSpeed: 350
+    fireRate: 0.1
+    cooldownDuration: 1
+  overDriveLevelData:
+    damage: 50
+    missilesAmount: 10
+    flightSpeed: 5
+    rotateSpeed: 500
+    fireRate: 0.1
+    cooldownDuration: 1
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  maxRadius: 50

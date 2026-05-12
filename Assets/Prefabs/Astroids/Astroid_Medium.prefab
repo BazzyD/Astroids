@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 6991466767087457033}
   - component: {fileID: 4858517369206229748}
   - component: {fileID: -8416305255168589576}
-  - component: {fileID: -8489699011133745116}
   - component: {fileID: 1856705779893501095}
+  - component: {fileID: 5681302749020901180}
+  - component: {fileID: 5617685037562095578}
   m_Layer: 7
   m_Name: Astroid_Medium
   m_TagString: Untagged
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2076c1937cb5d3948a90a461a282b23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenWrapper
+  margin: 18
 --- !u!114 &4858517369206229748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,25 +166,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Astroid
   astroidLevel: 3
-  maxHealth: 50
   damageOnCollision: 20
-  explosionEffectPrefab: {fileID: 6008809819809278124, guid: c2f612ce6ae600349bf6c84ecd17b91c, type: 3}
+  explosionEffectTag: Astroid_Explosion_Medium
   maxSpeed: 1.4
   minSpeed: 1
   maxRotationSpeed: 1.4
   minRotationSpeed: 1
---- !u!114 &-8489699011133745116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6719550583784912930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6260c7ef458d2478cc3ead0aeb167f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GhostEnabler
 --- !u!60 &1856705779893501095
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -263,3 +252,32 @@ PolygonCollider2D:
       - {x: 0.01748339, y: -0.75796044}
       - {x: 0.20149668, y: -0.7274506}
   m_UseDelaunayMesh: 1
+--- !u!114 &5681302749020901180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719550583784912930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3244de0a9afe76a4897989959292cefc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 50
+  invincibleDuration: 0.4
+--- !u!114 &5617685037562095578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719550583784912930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6aec3482078a24791b5e9933c93cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitReactor
+  defaultMaterial: {fileID: 2100000, guid: 584efb26b598ddd4ca553e1dff8a5095, type: 2}
+  flashMaterial: {fileID: 2100000, guid: fd7951310c6b51e439f66d13ca052b70, type: 2}
+  hitSound: []

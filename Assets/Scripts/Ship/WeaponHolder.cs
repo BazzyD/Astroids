@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 
@@ -30,6 +28,5 @@ public class WeaponHolder : MonoBehaviour{
         CurrentWeapon.ResetWeapon();
         currentWeaponIndex = index;
     }
-
 }
 

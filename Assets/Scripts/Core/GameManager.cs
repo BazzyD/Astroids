@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour {
@@ -26,6 +25,7 @@ public class GameManager : MonoBehaviour {
         _inputActions.Player.Enable();
 
         _inputActions.Player.Pause.performed += TogglePause;
+        ChangeState(GameStates.MainMenu);
     }
     private void OnDisable(){
         if (_inputActions != null){

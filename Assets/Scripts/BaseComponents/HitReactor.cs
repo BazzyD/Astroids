@@ -27,9 +27,11 @@ public class HitReactor : MonoBehaviour{
     }
     private void OnEnable(){
         health.OnTakeDamage += TakeDamage;
+        spriteRenderer.material = defaultMaterial;
     }
     private void OnDisable(){
         health.OnTakeDamage -= TakeDamage;
+        spriteRenderer.material = defaultMaterial;
     }
 
     public void TakeDamage(float damageAmount){
@@ -38,7 +40,7 @@ public class HitReactor : MonoBehaviour{
         }
 
         int randomIdx = Random.Range(0, hitSound.Length);
-        if(hitSound.Length > 0)
+        if(hitSound.Length > 0 && AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(hitSound[randomIdx]);
         activeFlashRoutine =StartCoroutine(HitFlashRoutine());
     }
