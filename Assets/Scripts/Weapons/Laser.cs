@@ -7,15 +7,15 @@ public class Laser : Weapon
     private float currentHeat = 0f;
     private float cooldownTimer = 0f;
     private bool isCoolingDown = false;
-    private float sphereIntervalTimer = 0f;
+    private float sphereIntervalTimer = 2f;
 
     private void Start()
     {
-        base.weapon = laserWeapon;
+        weapon = laserWeapon;
     }
     private void OnValidate()
     {
-        base.weapon = laserWeapon;
+        weapon = laserWeapon;
     }
     protected override void Update()
     {
@@ -48,7 +48,7 @@ public class Laser : Weapon
             laserLine.enabled = true;
             
         
-            laserWeapon.Fire(this.transform, level, isOverDrive, laserLine);
+            laserWeapon.Fire(transform, level, isOverDrive, laserLine);
             float maxHeat = laserWeapon.GetMaxHeat(level, isOverDrive);
             if(maxHeat > 0 && currentHeat >= maxHeat)
             {
@@ -62,7 +62,7 @@ public class Laser : Weapon
             sphereIntervalTimer += Time.deltaTime;
             if(sphereIntervalTimer >= laserWeapon.GetCooldownDuration(level, isOverDrive))
             {
-                laserWeapon.Fire(this.transform, level, isOverDrive);
+                laserWeapon.Fire(transform, level, isOverDrive);
                 sphereIntervalTimer = 0f;
             }
         }

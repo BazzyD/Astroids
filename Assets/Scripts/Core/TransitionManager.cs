@@ -26,9 +26,11 @@ public class TransitionManager : MonoBehaviour
 
     private IEnumerator LoadLevelAsync(int levelIndex)
     {
-        faderAnimator.SetTrigger("FadeIn");
-        yield return new WaitForSecondsRealtime(1f);
-        faderCanvasGroup.blocksRaycasts = true; 
+        if(GameManager.Instance.IsStartPlaying){
+            faderAnimator.SetTrigger("FadeIn");
+            yield return new WaitForSecondsRealtime(1f);
+            faderCanvasGroup.blocksRaycasts = true; 
+        }
 
         // Start loading in the background
         AsyncOperation operation = SceneManager.LoadSceneAsync(levelIndex);
@@ -38,12 +40,14 @@ public class TransitionManager : MonoBehaviour
             //Debug.Log($"Loading progress: {operation.progress * 100}%");
             yield return null; 
         }
-        // Wait a tiny bit more for everything to initialize
-        yield return new WaitForSecondsRealtime(0.5f);
+        if(GameManager.Instance.IsStartPlaying){
+            // Wait a tiny bit more for everything to initialize
+            yield return new WaitForSecondsRealtime(0.5f);
 
-        // 5. Hide the fader
-        faderAnimator.SetTrigger("FadeOut");
-        faderCanvasGroup.blocksRaycasts = false;
-        GameManager.Instance.ChangeState(GameStates.Playing);
+            // 5. Hide the fader
+            faderAnimator.SetTrigger("FadeOut");
+            faderCanvasGroup.blocksRaycasts = false;
+            GameManager.Instance.ChangeState(GameStates.Playing);
+        }
     }
 }

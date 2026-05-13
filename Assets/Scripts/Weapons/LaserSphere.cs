@@ -3,7 +3,7 @@ using UnityEngine;
 public class LaserSphere : MonoBehaviour, IPoolable
 {
     [SerializeField] private float expandSpeed = 10f;
-    [SerializeField] private float maxRadius = 100f;
+    [SerializeField] private float maxRadius = 500f;
     private float currentRadius = 0f;
     private float damage = 0f;
 
@@ -30,7 +30,7 @@ public class LaserSphere : MonoBehaviour, IPoolable
         if (currentRadius >= maxRadius)
         {
             if(ObjectPool.Instance == null) return;
-            ObjectPool.Instance.Despawn("Laser_Shpere",gameObject);
+            ObjectPool.Instance.Despawn("Laser_Sphere",gameObject);
         }
     }
 

@@ -1,12 +1,14 @@
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
     public GameStates CurrentState {get; private set;}
     public event Action<GameStates> OnGameStateChanged;
     private PlayerInputActions _inputActions;
+    public bool IsStartPlaying = false;
 
     private void Awake(){
         // Standard Singleton Setup
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour {
         OnGameStateChanged?.Invoke(CurrentState);
     }
     public void StartGame(){
-        ChangeState(GameStates.Playing);
+        StartCoroutine(StartGameAfterItStarted());
     }
     public void RestartGame(){
         TransitionManager.Instance.RestartGame();
@@ -61,8 +63,21 @@ public class GameManager : MonoBehaviour {
     }
     public void EndGame(){
         ChangeState(GameStates.GameOver);
+        IsStartPlaying = false;
+        RestartGame();
     }
     public void QuitGame(){
         Application.Quit();
     }
+
+    private IEnumerator StartGameAfterItStarted()
+    {
+        if(!IsStartPlaying) IsStartPlaying =true;
+        else{ 
+            RestartGame();
+            yield return new WaitForSecondsRealtime(2);
+        }
+        ChangeState(GameStates.Playing);
+    }
+
 }

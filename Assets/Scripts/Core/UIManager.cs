@@ -50,14 +50,13 @@ public class UIManager : MonoBehaviour{
     }
     public void OnStartButtonClicked() => GameManager.Instance.StartGame();
     public void OnRestartButtonClicked() => GameManager.Instance.RestartGame();
+    public void OnResumeButtonClicked() => GameManager.Instance.ChangeState(GameStates.Playing);
     public void OnQuitButtonClicked() => GameManager.Instance.QuitGame();
     public void OnMainMenuButtonClicked() {
-        Debug.Log("Main Menu Button Clicked");
         GameManager.Instance.ChangeState(GameStates.MainMenu);
     }
     public void OnLeaderboardButtonClicked()
     {
-        Debug.Log("Leaderboard Button Clicked");
         GameManager.Instance.ChangeState(GameStates.Leaderboard);
     }
         
