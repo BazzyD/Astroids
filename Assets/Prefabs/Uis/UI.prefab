@@ -1769,6 +1769,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 275513540931661448}
+  - component: {fileID: 5930578077450381489}
   - component: {fileID: 7967926004133362185}
   m_Layer: 10
   m_Name: HomingMissile
