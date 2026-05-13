@@ -96,3 +96,18 @@ MonoBehaviour:
   - tag: Astroid_lvl5
     prefab: {fileID: 4284798117833914961, guid: 1d80488f6aa790448b31c94606a39883, type: 3}
     size: 20
+  - tag: HealCollactable
+    prefab: {fileID: 372368777397510857, guid: a15a86d2e488b3141a4f8f64b794af96, type: 3}
+    size: 20
+  - tag: LaserWeaponUpgrade
+    prefab: {fileID: 6781010441323152822, guid: 9da36a24d35e4804e89945a1e56841cd, type: 3}
+    size: 20
+  - tag: MineWeaponUpgrade
+    prefab: {fileID: 2695020624148607694, guid: 6ac190dc1e9818e4c9c45fdedbbd5ab3, type: 3}
+    size: 20
+  - tag: MissileWeaponUpgrade
+    prefab: {fileID: 4663027978252116284, guid: f9b0a55a93fbc774eb80fcbb3a3bf5d4, type: 3}
+    size: 20
+  - tag: ProjectileWeaponUpgrade
+    prefab: {fileID: 3438253345979882446, guid: 11e1776bc98de4f49b6de6f7f6442cbe, type: 3}
+    size: 20

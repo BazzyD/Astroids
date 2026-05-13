@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 654288100672318499}
   - component: {fileID: 2389772930937518366}
   m_Layer: 10
-  m_Name: Square
+  m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,12 +81,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3966654026724937289, guid: df833cf5f7269304c9db98be7e99fe55, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df833cf5f7269304c9db98be7e99fe55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.59, y: 2.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -191,8 +191,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2962691943619960268}
-  - component: {fileID: 2853768569128373140}
   - component: {fileID: 1085106849329897918}
+  - component: {fileID: 2853768569128373140}
   m_Layer: 10
   m_Name: LaserWeaponUpgrade
   m_TagString: Untagged
@@ -213,10 +213,28 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8488562510087637686}
   - {fileID: 654288100672318499}
+  - {fileID: 8488562510087637686}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1085106849329897918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781010441323152822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d24a11f8e26e44b23b123c95bfe6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponUpgrade
+  glow: {fileID: 6499884283952530536}
+  visuals: {fileID: 1753169687213295180}
+  poolTag: LaserWeaponUpgrade
+  expandSpeed: 50
+  maxRadius: 10
+  weaponIndex: 1
 --- !u!58 &2853768569128373140
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -253,16 +271,3 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.0058214664, y: 0}
   m_Radius: 1.076318
---- !u!114 &1085106849329897918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6781010441323152822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 216d24a11f8e26e44b23b123c95bfe6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponUpgrade
-  weaponIndex: 1

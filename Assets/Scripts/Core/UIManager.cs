@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 public class UIManager : MonoBehaviour{
     public static UIManager Instance;
@@ -7,18 +9,25 @@ public class UIManager : MonoBehaviour{
     [SerializeField] private GameObject leaderboardPanel;
     [SerializeField] private LeaderboardDisplay leaderboard;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private TextMeshProUGUI nextLevelDisplayer;
+    private Coroutine _levelCoroutine;
+
+
     private void Awake(){
         if (Instance == null) Instance = this;
         else { Destroy(gameObject); return; }
+        nextLevelDisplayer.enabled =false;
     }
     private void Start(){
         HandleGameStateChanged(GameManager.Instance.CurrentState);
     }
     private void OnEnable(){
         GameManager.Instance.OnGameStateChanged += HandleGameStateChanged;
+        PressureManager.Instance.OnChangeLevel += HandleLevelChanged;
     }
     private void OnDisable(){
         GameManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
+        PressureManager.Instance.OnChangeLevel -= HandleLevelChanged;
     }
     private void HandleGameStateChanged(GameStates gameState){
         HideAll();
@@ -40,6 +49,23 @@ public class UIManager : MonoBehaviour{
                 gameOverPanel.SetActive(true);
                 break;
         }
+    }
+    private void HandleLevelChanged(int level)
+    {
+        if (_levelCoroutine != null) StopCoroutine(_levelCoroutine);
+        _levelCoroutine = StartCoroutine(GoingToNextLevel(level));
+    }
+    private IEnumerator GoingToNextLevel(int level)
+    {
+        float duration =3f;
+        float flickerInterval = 0.2f;
+        nextLevelDisplayer.text = $"Going Into Level {level}";
+        while(duration >0){
+            nextLevelDisplayer.enabled = !nextLevelDisplayer.enabled;
+            yield return new WaitForSeconds(flickerInterval);
+            duration -= flickerInterval;
+        }
+        nextLevelDisplayer.enabled = false;
     }
     private void HideAll(){
         leaderboardPanel.SetActive(false);

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c552e8bc1f03484ea74d943f1a15320, type: 3}
-  m_Name: Level_02
+  m_Name: Level_04
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  astroidsToSpwan: 0100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-  maxPressure: 10
-  minPressure: 1
+  astroidsToSpwan: 020000000200000002000000020000000200000002000000
+  maxPressure: 25
+  minPressure: 11
   spawnDelay: 0.5

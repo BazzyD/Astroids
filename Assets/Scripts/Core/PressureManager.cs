@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 
 public class PressureManager : MonoBehaviour
 {
     public static PressureManager Instance;
+    public Action<int> OnChangeLevel;
     [SerializeField] private List<LevelData> levels;
     [SerializeField] private int currentLevel = 0;
     [SerializeField] private List<int> pressurePerAstroidLevel = new() { 1, 5, 10, 25, 50 };
@@ -20,6 +22,7 @@ public class PressureManager : MonoBehaviour
     }
     private void Start(){
         nextSpawnTime = Time.time;
+        OnChangeLevel?.Invoke(currentLevel + 1);
     }
     private void Update(){
         if(isGameFinished) return;
@@ -33,7 +36,8 @@ public class PressureManager : MonoBehaviour
 
         //if current level has more astroids to spawn
         if(currentLevel < levels.Count &&
-            currentAstroidToSpawn < levels[currentLevel].astroidsToSpwan.Count){
+           currentAstroidToSpawn < levels[currentLevel].astroidsToSpwan.Count)
+        {
             SpawnAstroid();
         }
         else {// no more astroids to spawn in current level
@@ -42,9 +46,11 @@ public class PressureManager : MonoBehaviour
                 currentAstroidToSpawn >= levels[currentLevel].astroidsToSpwan.Count&&
                 currentPressure < levels[currentLevel].minPressure){
                 currentLevel++;
+                
                 currentAstroidToSpawn = 0;
 
                 if(currentLevel >= levels.Count) isSpawnFinished = true;
+                else OnChangeLevel?.Invoke(currentLevel+1);
             }
         }
     }

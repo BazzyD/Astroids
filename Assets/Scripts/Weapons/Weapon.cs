@@ -7,6 +7,7 @@ public abstract class Weapon : MonoBehaviour
     public bool IsOverDrive => isOverDrive;
     protected float overdriveTimer = 0f;
     protected bool isFiring = false;
+    public int Level => level;
     
     protected virtual void Update(){
         if(isOverDrive)

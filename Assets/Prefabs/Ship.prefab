@@ -1357,6 +1357,7 @@ MonoBehaviour:
   - {fileID: 8128635828285437976}
   - {fileID: 4894492064031507796}
   currentWeaponIndex: 2
+  currentWeaponData: {fileID: 11400000, guid: b2e3c0cec304aa9469cfc312b21bd120, type: 2}
 --- !u!50 &3197275089718714842
 Rigidbody2D:
   serializedVersion: 5
