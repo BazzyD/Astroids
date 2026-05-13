@@ -61,10 +61,13 @@ public class GameManager : MonoBehaviour {
     public void ResumeGame(){
         ChangeState(GameStates.Playing);
     }
-    public void EndGame(){
-        ChangeState(GameStates.GameOver);
-        IsStartPlaying = false;
-        RestartGame();
+    // Used when Player Dies
+    public void GameOver(){
+        TransitionManager.Instance.YouDiedTransition();
+    }
+    // Used when Player Wins
+    public void WinGame(){
+        TransitionManager.Instance.VictoryTransition();
     }
     public void QuitGame(){
         Application.Quit();
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour {
     private IEnumerator StartGameAfterItStarted()
     {
         if(!IsStartPlaying) IsStartPlaying =true;
-        else{ 
+        else{
             RestartGame();
             yield return new WaitForSecondsRealtime(2);
         }

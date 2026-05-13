@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d870893a0ab85e4cbdb374a47e93cbf, type: 3}
   m_Name: AstroidCount
   m_EditorClassIdentifier: Assembly-CSharp::ScoreData
-  currentScore: 0
+  currentScore: 1

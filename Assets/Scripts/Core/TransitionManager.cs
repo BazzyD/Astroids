@@ -1,12 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.SocialPlatforms;
 
 public class TransitionManager : MonoBehaviour
 {
     public static TransitionManager Instance;
     [SerializeField] private CanvasGroup faderCanvasGroup; 
     [SerializeField] private Animator faderAnimator;
+    [SerializeField] private CanvasGroup victoryCanvasGroup; 
+    [SerializeField] private Animator victoryAnimator;
+    [SerializeField] private CanvasGroup youDiedCanvasGroup; 
+    [SerializeField] private Animator youDiedAnimator;
 
 
     private void Awake()
@@ -49,5 +54,24 @@ public class TransitionManager : MonoBehaviour
             faderCanvasGroup.blocksRaycasts = false;
             GameManager.Instance.ChangeState(GameStates.Playing);
         }
+    }
+    public void VictoryTransition()
+    {
+        StartCoroutine(TransitionRoutine(victoryAnimator,victoryCanvasGroup,GameStates.Win));
+    }
+    public void YouDiedTransition()
+    {
+        StartCoroutine(TransitionRoutine(youDiedAnimator,youDiedCanvasGroup,GameStates.GameOver));
+    }
+    private IEnumerator TransitionRoutine(Animator ani, CanvasGroup cg, GameStates state)
+    {
+        Time.timeScale = 0f;
+        ani.SetTrigger("FadeIn");
+        cg.blocksRaycasts = true; 
+        yield return new WaitForSecondsRealtime(2f);
+        ani.SetTrigger("FadeOut");
+        cg.blocksRaycasts = false;
+        yield return new WaitForSecondsRealtime(1f);
+        GameManager.Instance.ChangeState(state);
     }
 }

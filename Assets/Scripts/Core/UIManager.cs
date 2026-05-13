@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour{
     [SerializeField] private GameObject leaderboardPanel;
     [SerializeField] private LeaderboardDisplay leaderboard;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject WinPanel;
     [SerializeField] private TextMeshProUGUI nextLevelDisplayer;
     private Coroutine _levelCoroutine;
 
@@ -48,6 +49,9 @@ public class UIManager : MonoBehaviour{
             case GameStates.GameOver:
                 gameOverPanel.SetActive(true);
                 break;
+            case GameStates.Win:
+                WinPanel.SetActive(true);
+                break;
         }
     }
     private void HandleLevelChanged(int level)
@@ -68,6 +72,7 @@ public class UIManager : MonoBehaviour{
         nextLevelDisplayer.enabled = false;
     }
     private void HideAll(){
+        WinPanel.SetActive(false);
         leaderboardPanel.SetActive(false);
         mainMenuPanel.SetActive(false);
         hudPanel.SetActive(false);
@@ -85,6 +90,4 @@ public class UIManager : MonoBehaviour{
     {
         GameManager.Instance.ChangeState(GameStates.Leaderboard);
     }
-        
-
 }

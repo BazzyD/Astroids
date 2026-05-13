@@ -32,7 +32,7 @@ public class PressureManager : MonoBehaviour
         if (isSpawnFinished && currentPressure == 0 ) {
             isGameFinished = true;
             astroidCount.ResetScore();
-            GameManager.Instance.EndGame();
+            GameManager.Instance.WinGame();
 
         }
         
