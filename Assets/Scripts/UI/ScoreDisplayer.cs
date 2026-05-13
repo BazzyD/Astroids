@@ -12,9 +12,10 @@ public class ScoreDisplayer : MonoBehaviour
     {
         scoreData.OnScoreChanged -= UpdateScoreDisplay;
     }
-    private void Start()
+    private void Update()
     {
-        UpdateScoreDisplay(0);
+        if($"{scoreData.currentScore}" != scoreText.text)
+            scoreText.text = $"{scoreData.currentScore}";
     }
     private void UpdateScoreDisplay(int score){
         scoreText.text = $"{score}";

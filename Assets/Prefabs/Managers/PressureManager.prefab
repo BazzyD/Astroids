@@ -44,8 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2ae8a3acfc0e94ebb3b199d7458a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PressureManager
+  astroidCount: {fileID: 11400000, guid: 0136fd4544e6d2d44b29eba615772086, type: 2}
   levels:
-  - {fileID: 11400000, guid: 337e6e8ff577551498936c7c02191142, type: 2}
+  - {fileID: 11400000, guid: 4b34edcb9b8b54d4e85b5da83277cf79, type: 2}
   - {fileID: 11400000, guid: 77d01fc887c2f614b8b7ce78cc1f4199, type: 2}
+  - {fileID: 11400000, guid: 7236d00763267e946ab038b428054050, type: 2}
+  - {fileID: 11400000, guid: 51d1e5ff87645e442a38e311d2d83748, type: 2}
+  - {fileID: 11400000, guid: f4ff2dacf9f268c4f8140611fd8d35b4, type: 2}
+  - {fileID: 11400000, guid: f7be49678e1934e42bbc655757b1edd2, type: 2}
+  - {fileID: 11400000, guid: 93ce8332663b0e04e8a8d14416902d58, type: 2}
+  - {fileID: 11400000, guid: 3123c4e23c758524e882e554b3771925, type: 2}
+  - {fileID: 11400000, guid: 826b7a65477de1d488e7c4c69d862079, type: 2}
+  - {fileID: 11400000, guid: 500ab0680d8683046a9b322a27156746, type: 2}
   currentLevel: 0
   pressurePerAstroidLevel: 01000000050000000a0000001900000032000000

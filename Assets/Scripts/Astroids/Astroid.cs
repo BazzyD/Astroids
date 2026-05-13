@@ -47,8 +47,9 @@ public class Astroid : MonoBehaviour, IPoolable
     {
         isDespawning = false;
         spriteRenderer.enabled=true;
-        if(PressureManager.Instance != null)
+        if(PressureManager.Instance != null){
             PressureManager.Instance.AddPressure(astroidLevel);
+        }
 
         health.Heal(health.MaxHealth);
         health.SetInvincible();

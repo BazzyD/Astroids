@@ -5,6 +5,7 @@ using System;
 
 public class PressureManager : MonoBehaviour
 {
+    [SerializeField] private ScoreData astroidCount;
     public static PressureManager Instance;
     public Action<int> OnChangeLevel;
     [SerializeField] private List<LevelData> levels;
@@ -21,6 +22,7 @@ public class PressureManager : MonoBehaviour
         else Destroy(gameObject);
     }
     private void Start(){
+        astroidCount.ResetScore();
         nextSpawnTime = Time.time;
         OnChangeLevel?.Invoke(currentLevel + 1);
     }
@@ -29,7 +31,9 @@ public class PressureManager : MonoBehaviour
         
         if (isSpawnFinished && currentPressure == 0 ) {
             isGameFinished = true;
+            astroidCount.ResetScore();
             GameManager.Instance.EndGame();
+
         }
         
         if (isSpawnFinished) return;
@@ -69,7 +73,6 @@ public class PressureManager : MonoBehaviour
 
             Vector3 spawnPosition = ScreenBounds.GetRandomPosition(astroidToSpwan *6);
             Quaternion spawnRotation = ScreenBounds.GetRandomDirection(spawnPosition);
-
             ObjectPool.Instance.Spawn($"Astroid_lvl{astroidToSpwan}", spawnPosition, spawnRotation);
             
             currentAstroidToSpawn++;
@@ -78,6 +81,12 @@ public class PressureManager : MonoBehaviour
             nextSpawnTime = Time.time + spawnDelay;
         }
     }
-    public void AddPressure(int astroidLevel) => currentPressure += pressurePerAstroidLevel[astroidLevel-1];
-    public void RemovePressure(int astroidLevel) => currentPressure -= pressurePerAstroidLevel[astroidLevel-1];
+    public void AddPressure(int astroidLevel) {
+        astroidCount.AddScore(1);
+        currentPressure += pressurePerAstroidLevel[astroidLevel-1];
+    }
+    public void RemovePressure(int astroidLevel) {
+        astroidCount.AddScore(-1);
+        currentPressure -= pressurePerAstroidLevel[astroidLevel-1];
+    }
 }

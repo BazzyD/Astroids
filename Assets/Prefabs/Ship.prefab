@@ -1294,9 +1294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0097376c6749a864eb32dca0c9022ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseMovment
-  thrustSpeed: 2
-  rotationSpeed: 50
-  maxSpeed: 10
+  thrustSpeed: 8
+  rotationSpeed: 70
+  maxSpeed: 4
 --- !u!114 &1622697134936145225
 MonoBehaviour:
   m_ObjectHideFlags: 0
