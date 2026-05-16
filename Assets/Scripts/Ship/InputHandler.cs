@@ -40,29 +40,23 @@ public class InputHandler : MonoBehaviour
       playerInputActions.Player.Shoot.canceled -= OnShoot;
    }
 
-   private void Update()
-   {
-      var keyboard = Keyboard.current;
-      if (keyboard == null) return;
-
-      if (keyboard.eKey.wasPressedThisFrame)
-      {
-         OnExplodePerformed?.Invoke();
-      }
-   }   
+  
 
    private void OnThrust(InputAction.CallbackContext context)
    {
+      if(Time.timeScale == 0f) return;
       float trustValue =  context.ReadValue<float>();;
       OnThrustChanged?.Invoke(trustValue);
    }
    private void OnRotation(InputAction.CallbackContext context)
    {
+      if(Time.timeScale == 0f) return;
       float rotationValue =  context.ReadValue<float>();
       OnRotationChanged?.Invoke(rotationValue);
    }
    private void OnShoot(InputAction.CallbackContext context)
    {
+      if(Time.timeScale == 0f) return;
       bool isPressed = context.ReadValueAsButton();
       OnFirePerformed?.Invoke(isPressed);
    }

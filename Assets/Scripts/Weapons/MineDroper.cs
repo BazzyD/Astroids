@@ -1,12 +1,9 @@
 using UnityEngine;
-using System.Collections;
 
 public class MineDroper : Weapon
 {
     [SerializeField] private MineData mineDroperWeapon;
-    private bool isVolleying = false;
-    private float nextVolleyTime = 0f;
-    private int minenumber =0;
+    private float nextFireTime = 0f;
 
     private void Start()
     {
@@ -17,45 +14,27 @@ public class MineDroper : Weapon
         base.weapon = mineDroperWeapon;
     }
 
+
     public override void Fire()
     {
-        if (Time.time >= nextVolleyTime && !isVolleying)
+        if (Time.time >= nextFireTime)
         {
-            StartCoroutine(LaunchVolley());
+            mineDroperWeapon.Fire(transform, level, isOverDrive);
+            nextFireTime = Time.time + mineDroperWeapon.GetFireRate(level, isOverDrive);
         }
-    }
-    private IEnumerator LaunchVolley()
-    {
-        isVolleying = true;
-        
-        // Get the current level stats
-        MineLevelData stats = isOverDrive ? mineDroperWeapon.overDriveLevelData : mineDroperWeapon.weaponLevels[level];
-
-        for (int i = 0; i < stats.minesAmount; i++)
-        {
-            // 3. Tell Data to fire just ONE mine from the volley
-            // We pass the specific target from our list
-            mineDroperWeapon.Fire(transform, level, isOverDrive, minenumber);
-            minenumber++;
-            // 4. THE INTERVAL: Wait before the next mine
-            yield return new WaitForSeconds(stats.fireRate);
-        }
-
-        // 5. Start the main cooldown after the volley is finished
-        nextVolleyTime = Time.time + stats.cooldownDuration;
-        minenumber =0;
-        isVolleying = false;
     }
     public override void StopFiring() {}
     public override void UpgradeWeapon()   
     {
         base.UpgradeWeapon();
+        nextFireTime = 0;
     }
-    public override void ResetWeapon()
+    public override float GetCooldownTimer()
     {
-        base.ResetWeapon();
-        minenumber =0;
-        isVolleying = false;
-        nextVolleyTime = 0f;
+        return  GetCooldownDuration() - Mathf.Max(0f, nextFireTime - Time.time);
+    }
+    public override float GetCooldownDuration()
+    {
+        return mineDroperWeapon.GetFireRate(level, isOverDrive);
     }
 }

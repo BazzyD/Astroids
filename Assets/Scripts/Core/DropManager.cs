@@ -4,11 +4,14 @@ using UnityEngine;
 public class DropManager : MonoBehaviour{
     public static DropManager Instance;
 
-    [SerializeField] private int nothingDropValue = 750;
-    [SerializeField] private int healthDropValue = 900;
+    [SerializeField] private int nothingDropValue = 850;
+    [SerializeField] private int healthDropValue = 950;
     //[SerializeField] private int weaponDropValue = 900;
-    [SerializeField] List<GameObject> upgrades;
-    [SerializeField] GameObject heal;
+    private float healDropTimer = 0f;
+    private float healDropCooldown = 3f;
+    private float weaponDropTimer = 0f;
+    private float weaponDropCooldown = 3f;
+    [SerializeField] List<string> upgrades;
 
     private void Awake()
     {
@@ -31,17 +34,23 @@ public class DropManager : MonoBehaviour{
         //     4*4*4*10 = 640
         int startingValue = (int)Mathf.Pow(astroidLevel - 1, 3) * 10;
         int dropValue = Random.Range(startingValue, 1001);
-
         if(dropValue <= nothingDropValue) return;
-        else if(dropValue <= healthDropValue)
+        else if(dropValue <= healthDropValue && healDropTimer <= 0f)
         {
-            Instantiate(heal, position, Quaternion.identity);
+            ObjectPool.Instance.Spawn("HealCollectable", position, Quaternion.identity);
+            healDropTimer = healDropCooldown;
         }
-        else
+        else if(weaponDropTimer <= 0f)
         {
             int weaponIndex = Random.Range(0, 4);
-            Instantiate(upgrades[weaponIndex], position, Quaternion.identity);
+            ObjectPool.Instance.Spawn(upgrades[weaponIndex], position, Quaternion.identity);
+            weaponDropTimer = weaponDropCooldown;
         }
+    }
+    private void Update()
+    {
+        if(healDropTimer > 0f) healDropTimer -= Time.deltaTime;
+        if(weaponDropTimer > 0f) weaponDropTimer -= Time.deltaTime;
     }
 
 }

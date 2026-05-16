@@ -35,8 +35,8 @@ public class MissileData : WeaponData
     public List<GameObject> GetTargets(Transform ship,int level, bool inOverDrive)
     {
         MissileLevelData levelData = inOverDrive ? overDriveLevelData : weaponLevels[level];
-
-        Collider2D[] hits = Physics2D.OverlapCircleAll(ship.transform.position, maxRadius, targetLayer);
+        Vector3 muzzelePosition = ship.position + (ship.up * muzzeleOffset);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(muzzelePosition, maxRadius, targetLayer);
         var sortedTargets = hits
             .OrderBy(h => (h.transform.position - ship.position).sqrMagnitude)
             .Take(levelData.missilesAmount)

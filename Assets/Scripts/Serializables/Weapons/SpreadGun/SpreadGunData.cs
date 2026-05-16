@@ -21,8 +21,9 @@ public class SpreadGunData : WeaponData
 
             float bulletAngle = levelData.shootInAngle ? currentAngle : 0f;
             Quaternion bulletRotation = Quaternion.Euler(0, 0, -bulletAngle + ship.eulerAngles.z);
-            ObjectPool.Instance.Spawn(projectilePrefabName, muzzelePosition, bulletRotation);
-            
+            GameObject bulletObj = ObjectPool.Instance.Spawn(projectilePrefabName, muzzelePosition, bulletRotation);
+            bulletObj.GetComponent<ProjectileBase>().Initialize(levelData.damage, levelData.projectileSpeed);
+
             currentAngle += levelData.spreadAngle;
         }
     }

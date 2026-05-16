@@ -7,11 +7,16 @@ public class WeaponHolder : MonoBehaviour{
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
     [SerializeField] private int currentWeaponIndex = 0;
     [SerializeField] private CurrentWeaponData currentWeaponData;
-    private Weapon CurrentWeapon => weapons[currentWeaponIndex];
+    public Weapon CurrentWeapon => weapons[currentWeaponIndex];
+    public Action<float,float> OnCooldownChanged;
     private void Start()
     {
         currentWeaponData.ResetWeapon();
         currentWeaponData.ChangeWeapon(currentWeaponIndex,CurrentWeapon.Level);
+    }
+    private void Update()
+    {
+        OnCooldownChanged?.Invoke(CurrentWeapon.GetCooldownDuration(), CurrentWeapon.GetCooldownTimer());
     }
     public void HandleFire(bool isFiring)
     {

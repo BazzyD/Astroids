@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     protected WeaponData weapon;
     [SerializeField] protected int level = 0;
     [SerializeField] protected bool isOverDrive = false;
+    
     public bool IsOverDrive => isOverDrive;
     protected float overdriveTimer = 0f;
     protected bool isFiring = false;
@@ -13,13 +15,14 @@ public abstract class Weapon : MonoBehaviour
         if(isOverDrive)
         {
             Fire();
-            overdriveTimer += Time.deltaTime;
-            if(overdriveTimer >= weapon.overDriveDuration)
+            overdriveTimer -= Time.deltaTime;
+            if(overdriveTimer <= 0f )
             {
                 isOverDrive = false;
-                overdriveTimer = 0f;
+                overdriveTimer = weapon.overDriveDuration;
             }
         }
+        
     }
 
     public abstract void Fire();
@@ -37,6 +40,14 @@ public abstract class Weapon : MonoBehaviour
         StopFiring();
         level = 0;
         isOverDrive = false;
-        overdriveTimer = 0f;
+        overdriveTimer = weapon.overDriveDuration;
+    }
+    public virtual float GetCooldownTimer()
+    {
+        return overdriveTimer;
+    }
+    public virtual float GetCooldownDuration()
+    {
+        return weapon.overDriveDuration;
     }
 }

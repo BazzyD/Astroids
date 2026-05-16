@@ -30,6 +30,11 @@ public class ProjectileBase : MonoBehaviour, IPoolable
             ObjectPool.Instance.Despawn(poolTag, gameObject);
         }
     }
+    public void Initialize(float damage, float speed)
+    {
+        this.damage = damage;
+        this.speed = speed;
+    }
     public virtual void OnDespawn()
     {
         _lifeTimer = 0f;

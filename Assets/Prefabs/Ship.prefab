@@ -983,7 +983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a810c2bcbfe2d4689d823ac4537308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MissileLuncher
-  level: 4
+  level: 0
   isOverDrive: 0
   missileLuncherWeapon: {fileID: 11400000, guid: 642bbda9048a2e946a54ce529edd0a4c, type: 2}
 --- !u!1 &6587883263729768222
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641906d6df6d94948a191d57c77679f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpreadGun
-  level: 1
+  level: 0
   isOverDrive: 0
   spreadGunweapon: {fileID: 11400000, guid: 9e0dcda926853a343af5a74e4b047e1b, type: 2}
 --- !u!1 &7269500439891244991
@@ -1189,7 +1189,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3341482830204270894}
@@ -1295,8 +1295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseMovment
   thrustSpeed: 8
-  rotationSpeed: 70
-  maxSpeed: 4
+  rotationSpeed: 150
+  maxSpeed: 5
 --- !u!114 &1622697134936145225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1356,7 +1356,7 @@ MonoBehaviour:
   - {fileID: 7491847097304484651}
   - {fileID: 8128635828285437976}
   - {fileID: 4894492064031507796}
-  currentWeaponIndex: 2
+  currentWeaponIndex: 0
   currentWeaponData: {fileID: 11400000, guid: b2e3c0cec304aa9469cfc312b21bd120, type: 2}
 --- !u!50 &3197275089718714842
 Rigidbody2D:
@@ -1371,7 +1371,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 0.5
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

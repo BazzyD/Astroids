@@ -27,13 +27,4 @@ public class MineData : WeaponData
     {
         return inOverDrive ? overDriveLevelData.fireRate : weaponLevels[level].fireRate;
     }
-    public float GetCooldownDuration(int level, bool inOverDrive)
-    {
-        return inOverDrive ? overDriveLevelData.cooldownDuration : weaponLevels[level].cooldownDuration;
-    }
-    public float GetMineAmount(int level, bool inOverDrive)
-    {
-        return inOverDrive ? overDriveLevelData.minesAmount : weaponLevels[level].minesAmount;
-    }
-
 }

@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class ScreenWrapper : MonoBehaviour
 {
     [Tooltip("0 for Ship/Mines (instant wrap), higher for Asteroids (leeway)")]

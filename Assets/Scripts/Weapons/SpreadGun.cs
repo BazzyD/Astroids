@@ -13,6 +13,7 @@ public class SpreadGun : Weapon
     {
         base.weapon = spreadGunweapon;
     }
+
     public override void Fire()
     {
         float rate = spreadGunweapon.GetFireRate(level, isOverDrive);
@@ -34,5 +35,13 @@ public class SpreadGun : Weapon
     {
         base.ResetWeapon();
         nextFireTime = 0f;
+    }
+    public override float GetCooldownTimer()
+    {
+        return GetCooldownDuration() - Mathf.Max(0f, nextFireTime - Time.time);
+    }
+    public override float GetCooldownDuration()
+    {
+        return spreadGunweapon.GetFireRate(level, isOverDrive);
     }
 }

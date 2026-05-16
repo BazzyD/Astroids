@@ -13,32 +13,32 @@ MonoBehaviour:
   m_Name: NewLaserData
   m_EditorClassIdentifier: Assembly-CSharp::LaserData
   weaponName: Laser
-  muzzeleOffset: 3.1
+  muzzeleOffset: 1.5
   overDriveDuration: 4
   projectilePrefabName: Laser_Sphere
   weaponLevels:
-  - damage: 20
+  - damage: 4
     width: 0.2
     maxHeat: 3
     cooldownDuration: 2
-  - damage: 25
+  - damage: 9
     width: 0.5
     maxHeat: 4
     cooldownDuration: 1.8
-  - damage: 30
+  - damage: 15
     width: 1
     maxHeat: 8
     cooldownDuration: 1.5
-  - damage: 40
+  - damage: 35
     width: 2.5
     maxHeat: 10
     cooldownDuration: 1
-  - damage: 50
+  - damage: 55
     width: 5
-    maxHeat: 0
+    maxHeat: 10000000
     cooldownDuration: 0
   overDriveLevelData:
-    damage: 100
+    damage: 200
     width: 1
     maxHeat: 0
     cooldownDuration: 2

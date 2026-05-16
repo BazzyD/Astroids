@@ -83,4 +83,19 @@ public class Laser : Weapon
         isCoolingDown = false;
         sphereIntervalTimer = 0f;
     }
+    public override float GetCooldownTimer()
+    {
+        if(isCoolingDown)
+            return cooldownTimer;
+
+        float maxHeat = laserWeapon.GetMaxHeat(level, isOverDrive);
+        return Mathf.Max(0f, maxHeat - currentHeat);
+    }
+    public override float GetCooldownDuration()
+    {
+        if(isCoolingDown)
+            return laserWeapon.GetCooldownDuration(level, isOverDrive);
+
+        return laserWeapon.GetMaxHeat(level, isOverDrive);
+    }
 }

@@ -167,12 +167,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Astroid
   astroidLevel: 1
-  damageOnCollision: 5
+  damageOnCollision: 10
   explosionEffectTag: Astroid_Explosion_Tiny
-  maxSpeed: 2
-  minSpeed: 1.5
-  maxRotationSpeed: 2
-  minRotationSpeed: 1.5
+  maxSpeed: 4.2
+  minSpeed: 3.6
+  maxRotationSpeed: 6
+  minRotationSpeed: 5
 --- !u!60 &176913682964210330
 PolygonCollider2D:
   m_ObjectHideFlags: 0

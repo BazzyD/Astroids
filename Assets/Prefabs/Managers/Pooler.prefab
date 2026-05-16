@@ -59,7 +59,7 @@ MonoBehaviour:
     size: 20
   - tag: Astroid_Explosion_Huge
     prefab: {fileID: 6008809819809278124, guid: 4a7991d74c01d8b4ebfc60c212ec6ea1, type: 3}
-    size: 5
+    size: 20
   - tag: Damage_Explosion
     prefab: {fileID: 8161286621162351057, guid: e7c65d985807982469f533079bcd8788, type: 3}
     size: 20
@@ -96,7 +96,7 @@ MonoBehaviour:
   - tag: Astroid_lvl5
     prefab: {fileID: 4284798117833914961, guid: 1d80488f6aa790448b31c94606a39883, type: 3}
     size: 20
-  - tag: HealCollactable
+  - tag: HealCollectable
     prefab: {fileID: 372368777397510857, guid: a15a86d2e488b3141a4f8f64b794af96, type: 3}
     size: 20
   - tag: LaserWeaponUpgrade

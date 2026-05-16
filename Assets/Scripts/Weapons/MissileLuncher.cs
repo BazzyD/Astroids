@@ -16,7 +16,6 @@ public class MissileLuncher : Weapon
     {
         base.weapon = missileLuncherWeapon;
     }
-
     public override void Fire()
     {
         if (Time.time >= nextVolleyTime && !isVolleying)
@@ -61,5 +60,17 @@ public class MissileLuncher : Weapon
         missilenumber =0;
         isVolleying = false;
         nextVolleyTime = 0f;
+    }
+    public override float GetCooldownTimer()
+    {
+        if (isVolleying)
+        {
+            return 0f;
+        }
+        return missileLuncherWeapon.GetCooldownDuration(level, isOverDrive) - Mathf.Max(0f, nextVolleyTime - Time.time);
+    }
+    public override float GetCooldownDuration()
+    {
+        return missileLuncherWeapon.GetCooldownDuration(level, isOverDrive); 
     }
 }

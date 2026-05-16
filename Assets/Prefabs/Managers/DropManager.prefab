@@ -47,8 +47,7 @@ MonoBehaviour:
   nothingDropValue: 750
   healthDropValue: 900
   upgrades:
-  - {fileID: 3438253345979882446, guid: 11e1776bc98de4f49b6de6f7f6442cbe, type: 3}
-  - {fileID: 6781010441323152822, guid: 9da36a24d35e4804e89945a1e56841cd, type: 3}
-  - {fileID: 4663027978252116284, guid: f9b0a55a93fbc774eb80fcbb3a3bf5d4, type: 3}
-  - {fileID: 2695020624148607694, guid: 6ac190dc1e9818e4c9c45fdedbbd5ab3, type: 3}
-  heal: {fileID: 372368777397510857, guid: a15a86d2e488b3141a4f8f64b794af96, type: 3}
+  - ProjectileWeaponUpgrade
+  - LaserWeaponUpgrade
+  - MissileWeaponUpgrade
+  - MineWeaponUpgrade

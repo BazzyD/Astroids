@@ -21,7 +21,7 @@ public class SaveManager : MonoBehaviour{
     }
 
     private void HandleGameStateChanged(GameStates gameState){
-        if(gameState == GameStates.GameOver){
+        if(gameState == GameStates.GameOver || gameState == GameStates.Win){
             SaveData();
         }
     }
