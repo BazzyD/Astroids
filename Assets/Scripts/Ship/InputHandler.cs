@@ -7,6 +7,7 @@ public class InputHandler : MonoBehaviour
    private PlayerInputActions playerInputActions;
    public Action<float> OnThrustChanged;
    public Action<float> OnRotationChanged;
+   public Action<Vector2> OnMovmentChange; 
    public Action<bool> OnFirePerformed;
    public Action OnExplodePerformed;
 
@@ -18,11 +19,8 @@ public class InputHandler : MonoBehaviour
    private void OnEnable() {
       playerInputActions.Player.Enable();
 
-      playerInputActions.Player.Move.performed += OnThrust;
-      playerInputActions.Player.Move.canceled += OnThrust;
-
-      playerInputActions.Player.Rotation.performed += OnRotation;
-      playerInputActions.Player.Rotation.canceled += OnRotation;
+      playerInputActions.Player.Move.performed += OnNavigate;
+      playerInputActions.Player.Move.canceled += OnNavigate;
 
       playerInputActions.Player.Shoot.performed += OnShoot;
       playerInputActions.Player.Shoot.canceled += OnShoot;
@@ -30,29 +28,30 @@ public class InputHandler : MonoBehaviour
    private void OnDisable() {
       playerInputActions.Player.Disable();
 
-      playerInputActions.Player.Move.performed -= OnThrust;
-      playerInputActions.Player.Move.canceled -= OnThrust;
-
-      playerInputActions.Player.Rotation.performed -= OnRotation;
-      playerInputActions.Player.Rotation.canceled -= OnRotation;
+      playerInputActions.Player.Move.performed -= OnNavigate;
+      playerInputActions.Player.Move.canceled -= OnNavigate;
 
       playerInputActions.Player.Shoot.performed -= OnShoot;
       playerInputActions.Player.Shoot.canceled -= OnShoot;
    }
 
   
+   private void OnNavigate(InputAction.CallbackContext context)
+   {
+      if(Time.timeScale == 0f) return;
 
-   private void OnThrust(InputAction.CallbackContext context)
-   {
-      if(Time.timeScale == 0f) return;
-      float trustValue =  context.ReadValue<float>();;
-      OnThrustChanged?.Invoke(trustValue);
-   }
-   private void OnRotation(InputAction.CallbackContext context)
-   {
-      if(Time.timeScale == 0f) return;
-      float rotationValue =  context.ReadValue<float>();
-      OnRotationChanged?.Invoke(rotationValue);
+      // Read the 2D position of the joystick or WASD keys
+      Vector2 navigationInput = context.ReadValue<Vector2>();
+      if(GameManager.Instance.GetOnPhone()){
+         OnMovmentChange?.Invoke(navigationInput);
+         return;
+      }
+      
+      // 1. The Y axis represents forward/backward push (Thrust)
+      OnThrustChanged?.Invoke(navigationInput.y);
+
+      // 2. The X axis represents left/right push (Rotation)
+      OnRotationChanged?.Invoke(navigationInput.x);
    }
    private void OnShoot(InputAction.CallbackContext context)
    {

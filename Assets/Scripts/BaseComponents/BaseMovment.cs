@@ -10,16 +10,44 @@ public class BaseMovment : MonoBehaviour
     private float _thrustForce;
     private float _rotationTorque;
     private bool selfRotate = false;
+
     private Rigidbody2D rb;
+    private Vector2 targetDirection;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+    private void Update()
+    {
+        if(GameManager.Instance.GetOnPhone()){
+            if (targetDirection.magnitude > 0.1f)
+            {
+                // (Subtracting 90 degrees assumes your ship sprite naturally faces UP)
+                float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
+                
+                // Smoothly rotate toward that target angle over time
+                float smoothedAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * 3f * Time.deltaTime);
+                transform.rotation = Quaternion.Euler(0, 0, smoothedAngle);
+            }
+        }
+    }
     private void FixedUpdate()
     {
+        if(GameManager.Instance.GetOnPhone()){
+            if (targetDirection.magnitude > 0.1f)
+            {
+                float currentThrustPower = targetDirection.magnitude * thrustSpeed *50f;
+                rb.AddForce(transform.up * currentThrustPower * Time.fixedDeltaTime);
+            }
+            return;
+        }
         HandleThrust();
         HandleRotation();
         
+    }
+    public void UpdateMovementInput(Vector2 dir){
+        targetDirection = dir;
     }
     private void HandleThrust()
     {

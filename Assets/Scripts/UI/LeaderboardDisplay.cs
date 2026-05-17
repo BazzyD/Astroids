@@ -15,37 +15,41 @@ public class LeaderboardDisplay : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        LeaderboardData data = SaveManager.LoadData();
-
-        // Sort the data by score (Highest first)
-        // If scores are equal, we sort by time (Lowest time is better)
-        var sortedEntries = data.entries
-            .OrderByDescending(e => e.score)
-            .ThenBy(e => e.time)
-            .ToList();
-
-        for (int i = 0; i < sortedEntries.Count; i++)
+        SaveManager.Instance.LoadData((data) =>
         {
-            GameObject newEntry = Instantiate(entryPrefab, contentContainer);
-            PopulateEntry(newEntry, sortedEntries[i], i + 1);
-        }
+            // 3. This block runs automatically ONLY after the web data arrives!
+            // We still sort locally to perfectly resolve tie-breaker times
+            var sortedEntries = data.entries
+                .OrderByDescending(e => e.score)
+                .ThenBy(e => e.time)
+                .ToList();
+
+            for (int i = 0; i < sortedEntries.Count; i++)
+            {
+                GameObject newEntry = Instantiate(entryPrefab, contentContainer);
+                PopulateEntry(newEntry, sortedEntries[i], i + 1);
+            }
+        });
     }
 
     private void PopulateEntry(GameObject entryObject, SaveEntry entryData, int rank)
     {
-        // Pro-tip: Use a small script on the prefab to hold these references instead of GetComponent
         TMP_Text[] texts = entryObject.GetComponentsInChildren<TMP_Text>();
         
-        texts[0].text = rank.ToString();
-        texts[1].text = entryData.score.ToString();
-        texts[2].text = FormatTime(entryData.time);
+        texts[0].text = rank.ToString() + ".";
+        texts[1].text = entryData.playerName;
+        texts[2].text = entryData.score.ToString();
+        
+        // Formats the raw float seconds (e.g., 72.4f) into a readable clock string ("01:12")
+        texts[3].text = FormatTime(entryData.time);
     }
 
-    private string FormatTime(float seconds)
+    private string FormatTime(float timeInSeconds)
     {
-        // Formats seconds into 00:00 style
-        int minutes = (int)seconds / 60;
-        int secs = (int)seconds % 60;
-        return string.Format("{0:00}:{1:00}", minutes, secs);
+        int minutes = Mathf.FloorToInt(timeInSeconds / 60);
+        int seconds = Mathf.FloorToInt(timeInSeconds % 60);
+        return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
+
 }

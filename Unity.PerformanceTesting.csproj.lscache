@@ -355,6 +355,7 @@ C:/Program Files/Unity/Hub/Editor/6000.3.7f1/Editor/Data/NetStandard/
 C:/Program Files/Unity/Hub/Editor/6000.3.7f1/Editor/Data/PlaybackEngines/WebGLSupport/Managed/UnityEngine.WebGLModule.dll
 Library/PackageCache/com.unity.ext.nunit@d8c07649098d/net40/unity-custom/nunit.framework.dll
 Temp/bin/Debug/
+ UnityEditor.TestRunner.dll
  UnityEditor.UI.dll
  UnityEngine.TestRunner.dll
  UnityEngine.UI.dll

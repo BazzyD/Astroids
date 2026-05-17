@@ -34,6 +34,7 @@ public class ShipController : MonoBehaviour{
         inputHandler.OnRotationChanged += SetRotation;
         inputHandler.OnFirePerformed += OnFireInput;
         inputHandler.OnExplodePerformed += OnDeath;
+        inputHandler.OnMovmentChange += UpdateMovementInput;
 
         health.OnTakeDamage += OnTakeDamage;
         health.OnDeath += OnDeath;
@@ -42,9 +43,12 @@ public class ShipController : MonoBehaviour{
         inputHandler.OnThrustChanged -= SetThrust;
         inputHandler.OnRotationChanged -= SetRotation;
         inputHandler.OnFirePerformed -= OnFireInput;
+        inputHandler.OnMovmentChange -= UpdateMovementInput;
         health.OnTakeDamage -= OnTakeDamage;
         health.OnDeath -= OnDeath;
     }
+
+    private void UpdateMovementInput(Vector2 dir) => baseMovment.UpdateMovementInput(dir);
 
     private void SetThrust(float val) => baseMovment.SetForce(val);
     private void SetRotation(float val) => baseMovment.SetTorque(val);

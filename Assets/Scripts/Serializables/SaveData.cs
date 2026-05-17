@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SaveEntry
 {
-    //public string playerName;
+    public string playerName;
     public int score;
     public float time;
 }

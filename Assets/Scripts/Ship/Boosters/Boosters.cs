@@ -14,10 +14,12 @@ public class Boosters : MonoBehaviour
     private void OnEnable() {
         _inputHandler.OnThrustChanged += OnThrustChanged;
         _inputHandler.OnRotationChanged += OnRotationChanged;
+        _inputHandler.OnMovmentChange += UpdateMovementInput;
     }
     private void OnDisable() {
         _inputHandler.OnThrustChanged -= OnThrustChanged;
         _inputHandler.OnRotationChanged -= OnRotationChanged;
+        _inputHandler.OnMovmentChange -= UpdateMovementInput;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +31,10 @@ public class Boosters : MonoBehaviour
         turnLeftBoosters.SetActive(false);
     }
 
+    private void UpdateMovementInput(Vector2 dir){
+        OnThrustChanged(dir.y);
+        OnRotationChanged(dir.x);
+    }
     private void OnThrustChanged(float thrustValue)
     {
         if(thrustValue > 0f)

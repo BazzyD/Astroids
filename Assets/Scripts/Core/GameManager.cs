@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour {
     public event Action<GameStates> OnGameStateChanged;
     private PlayerInputActions _inputActions;
     public bool IsStartPlaying = false;
+    private bool isOnPhone = false;
+    private string userName;
 
     private void Awake(){
         // Standard Singleton Setup
         if (Instance == null) {
             Instance = this;
+            _inputActions = new PlayerInputActions();
             DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
@@ -23,13 +26,18 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 0f;
     }
     private void OnEnable(){
-        _inputActions = new PlayerInputActions();
+        if (Instance != this) return;
+        if (_inputActions == null) _inputActions = new PlayerInputActions();
+
         _inputActions.Player.Enable();
 
+        _inputActions.Player.Pause.performed -= TogglePause;
         _inputActions.Player.Pause.performed += TogglePause;
         ChangeState(GameStates.MainMenu);
     }
     private void OnDisable(){
+        if (Instance != this) return;
+
         if (_inputActions != null){
             _inputActions.Player.Pause.performed -= TogglePause;
             _inputActions.Player.Disable();
@@ -48,6 +56,18 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = (CurrentState == GameStates.Playing) ? 1f : 0f;
 
         OnGameStateChanged?.Invoke(CurrentState);
+    }
+    public void SetUserName(string userName){
+        this.userName = userName;
+    }
+    public string GetUserName(){
+        return userName;
+    }
+    public void SetOnPhone(bool onPhone){
+        isOnPhone = onPhone;
+    }
+    public bool GetOnPhone(){
+        return isOnPhone;
     }
     public void StartGame(){
         StartCoroutine(StartGameAfterItStarted());

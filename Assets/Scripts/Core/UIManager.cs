@@ -1,17 +1,26 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 public class UIManager : MonoBehaviour{
     public static UIManager Instance;
     [SerializeField] private GameObject mainMenuPanel;
-    [SerializeField] private GameObject hudPanel;
-    [SerializeField] private GameObject pauseMenuPanel;
+    [SerializeField] private GameObject StartNewGamePanel;
+    [SerializeField] private TextMeshProUGUI playerNameText;
+    [SerializeField] private TMP_InputField playerNameinput;
+    [SerializeField] private Button StartNewGameButton;
     [SerializeField] private GameObject leaderboardPanel;
     [SerializeField] private LeaderboardDisplay leaderboard;
+
+    [SerializeField] private GameObject hudPanel;
+    [SerializeField] private GameObject touchInputs;
+    [SerializeField] private TextMeshProUGUI nextLevelDisplayer;
+    [SerializeField] private GameObject pauseMenuPanel;
+    
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject WinPanel;
-    [SerializeField] private TextMeshProUGUI nextLevelDisplayer;
     private Coroutine _levelCoroutine;
+    private string userName;
 
 
     private void Awake(){
@@ -36,8 +45,13 @@ public class UIManager : MonoBehaviour{
             case GameStates.MainMenu:
                 mainMenuPanel.SetActive(true);
                 break;
+            case GameStates.NewGameMenu:
+                StartNewGamePanel.SetActive(true);
+                StartNewGameButton.interactable = false;
+                break;
             case GameStates.Playing:
                 hudPanel.SetActive(true);
+                touchInputs.SetActive(GameManager.Instance.GetOnPhone());
                 break;
             case GameStates.Pause:
                 pauseMenuPanel.SetActive(true);
@@ -72,14 +86,34 @@ public class UIManager : MonoBehaviour{
         nextLevelDisplayer.enabled = false;
     }
     private void HideAll(){
+        StartNewGameButton.interactable = false;
+        StartNewGamePanel.SetActive(false);
         WinPanel.SetActive(false);
         leaderboardPanel.SetActive(false);
         mainMenuPanel.SetActive(false);
         hudPanel.SetActive(false);
+        touchInputs.SetActive(false);
         pauseMenuPanel.SetActive(false);
         gameOverPanel.SetActive(false);
     }
-    public void OnStartButtonClicked() => GameManager.Instance.StartGame();
+    public void OnStartButtonClicked() {
+        GameManager.Instance.SetUserName(userName);
+        GameManager.Instance.StartGame();
+    }
+    public void OnStartNewGameButtonClicked() {
+        HideAll();
+        playerNameText.text = "";
+        playerNameinput.text ="";
+        GameManager.Instance.SetUserName("");
+        GameManager.Instance.ChangeState(GameStates.NewGameMenu);
+    }
+    public void AllowStartNewGame(string currentText) {
+        if(currentText.Length >= 3)
+            StartNewGameButton.interactable = true;
+        else
+            StartNewGameButton.interactable = false;
+        userName = currentText;
+    }
     public void OnRestartButtonClicked() => GameManager.Instance.RestartGame();
     public void OnResumeButtonClicked() => GameManager.Instance.ChangeState(GameStates.Playing);
     public void OnQuitButtonClicked() => GameManager.Instance.QuitGame();
