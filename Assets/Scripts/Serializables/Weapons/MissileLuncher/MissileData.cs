@@ -12,18 +12,12 @@ public class MissileData : WeaponData
     public override void Fire(Transform ship, int level, bool inOverDrive, params object[] args)
     {
         MissileLevelData levelData = inOverDrive ? overDriveLevelData : weaponLevels[level];
-
-        //int missilenumber = (int)args[0];
         
         GameObject target = args[1] as GameObject;
 
         Vector3 muzzelePosition = ship.position + (ship.up * muzzeleOffset);
 
         if(ObjectPool.Instance == null) return;
-
-        // int missileSign = missilenumber % 2 ==0 ? 1 :-1;
-        // int missileOffsetX = (missilenumber+1) /2 * missileSign;
-        // Vector3 missileOffset = muzzelePosition + (ship.right *missileOffsetX);
 
         GameObject missileObj = ObjectPool.Instance.Spawn(projectilePrefabName,muzzelePosition,Quaternion.Euler(0, 0, ship.eulerAngles.z));
         

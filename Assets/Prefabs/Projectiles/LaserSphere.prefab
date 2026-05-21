@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserSphere
   expandSpeed: 10
-  maxRadius: 15
+  maxRadius: 100
 --- !u!212 &2904428189551864808
 SpriteRenderer:
   serializedVersion: 2
@@ -93,9 +93,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -978571705
+  m_SortingLayer: 3
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8900311808545044217, guid: 9783ab5c3c1da2843b85f18bfb0d4165, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -21,27 +21,34 @@ MonoBehaviour:
     width: 0.2
     maxHeat: 3
     cooldownDuration: 2
+    laserOffset: 1.53
   - damage: 9
     width: 0.5
     maxHeat: 4
     cooldownDuration: 1.8
+    laserOffset: 1.6
   - damage: 15
     width: 1
     maxHeat: 8
     cooldownDuration: 1.5
+    laserOffset: 1.7
   - damage: 35
     width: 2.5
     maxHeat: 10
     cooldownDuration: 1
+    laserOffset: 2.1
   - damage: 55
     width: 5
     maxHeat: 10000000
     cooldownDuration: 0
+    laserOffset: 2.7
   overDriveLevelData:
     damage: 200
     width: 1
     maxHeat: 0
     cooldownDuration: 2
+    laserOffset: 10
   layerMask:
     serializedVersion: 2
     m_Bits: 128
+  maxDistance: 500

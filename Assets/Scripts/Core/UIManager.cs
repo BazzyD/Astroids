@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour{
     [SerializeField] private GameObject StartNewGamePanel;
     [SerializeField] private TextMeshProUGUI playerNameText;
     [SerializeField] private TMP_InputField playerNameinput;
+    [SerializeField] private Toggle myToggle;
     [SerializeField] private Button StartNewGameButton;
     [SerializeField] private GameObject leaderboardPanel;
     [SerializeField] private LeaderboardDisplay leaderboard;
@@ -34,10 +35,28 @@ public class UIManager : MonoBehaviour{
     private void OnEnable(){
         GameManager.Instance.OnGameStateChanged += HandleGameStateChanged;
         PressureManager.Instance.OnChangeLevel += HandleLevelChanged;
+        if (myToggle != null)
+        {
+            // Clean up any old listeners first to prevent double-triggering
+            myToggle.onValueChanged.RemoveListener(OnToggleChanged);
+            
+            // Dynamically assign the method when the scene loads/enables
+            myToggle.onValueChanged.AddListener(OnToggleChanged);
+            myToggle.isOn = GameManager.Instance.GetOnPhone(); // Set initial state based on GameManager's value
+        }
     }
     private void OnDisable(){
         GameManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
         PressureManager.Instance.OnChangeLevel -= HandleLevelChanged;
+        if (myToggle != null)
+        {
+            // Unsubscribe when leaving the scene to prevent memory leaks
+            myToggle.onValueChanged.RemoveListener(OnToggleChanged);
+        }
+    }
+    private void OnToggleChanged(bool isOn)
+    {
+        GameManager.Instance.SetOnPhone(isOn); 
     }
     private void HandleGameStateChanged(GameStates gameState){
         HideAll();

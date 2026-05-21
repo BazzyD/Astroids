@@ -5,6 +5,7 @@ public class BaseMovment : MonoBehaviour
 {
     [SerializeField] private float thrustSpeed = 2f;
     [SerializeField] private float rotationSpeed = 50f;
+    //[SerializeField] private float phoneThrustMultiplier = 0.8f;
     [SerializeField] private float maxSpeed = 10f;
     //[SerializeField] private float maxRotationSpeed = 100f;
     private float _thrustForce;
@@ -20,6 +21,7 @@ public class BaseMovment : MonoBehaviour
     }
     private void Update()
     {
+        if(selfRotate) return;
         if(GameManager.Instance.GetOnPhone()){
             if (targetDirection.magnitude > 0.1f)
             {
@@ -27,18 +29,26 @@ public class BaseMovment : MonoBehaviour
                 float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
                 
                 // Smoothly rotate toward that target angle over time
-                float smoothedAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * 3f * Time.deltaTime);
+                float smoothedAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed);
                 transform.rotation = Quaternion.Euler(0, 0, smoothedAngle);
             }
         }
     }
     private void FixedUpdate()
     {
+        if(selfRotate) return;
         if(GameManager.Instance.GetOnPhone()){
             if (targetDirection.magnitude > 0.1f)
             {
-                float currentThrustPower = targetDirection.magnitude * thrustSpeed *50f;
-                rb.AddForce(transform.up * currentThrustPower * Time.fixedDeltaTime);
+                rb.AddForce( thrustSpeed * transform.up);
+            }
+            if (rb.linearVelocity.magnitude > maxSpeed)
+            {
+                rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+            }
+            if (!selfRotate)
+            {
+                rb.angularVelocity = 0f;
             }
             return;
         }
@@ -51,7 +61,6 @@ public class BaseMovment : MonoBehaviour
     }
     private void HandleThrust()
     {
-        if(selfRotate) return;
         rb.AddForce(_thrustForce * thrustSpeed * transform.up);
         if (rb.linearVelocity.magnitude > maxSpeed)
         {
@@ -60,7 +69,6 @@ public class BaseMovment : MonoBehaviour
     }
     private void HandleRotation()
     {
-        if(selfRotate) return;
         rb.angularVelocity = _rotationTorque * -rotationSpeed;
         // rb.AddTorque(_rotationInput * -rotationSpeed);
         // if (rb.angularVelocity > maxRotationSpeed)

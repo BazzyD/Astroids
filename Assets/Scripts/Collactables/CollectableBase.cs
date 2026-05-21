@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 
+[RequireComponent(typeof(Collider2D))]
 public class CollectableBase : MonoBehaviour, ICollectable,IPoolable
 {
     [SerializeField] private GameObject glow;
@@ -12,36 +13,45 @@ public class CollectableBase : MonoBehaviour, ICollectable,IPoolable
     [SerializeField] private float maxRadius = 20f;
     private float currentRadius = 0f;
     private float initialRadius;
+    private Collider2D col; 
 
     private float disaperTimer = 0f;
-    private float disaperDuration = 10f;
+    [SerializeField] private float disaperDuration = 15f;
     private bool isFlashing = false;
+    private void Awake()
+    {
+        col = GetComponent<Collider2D>();
+        initialRadius = glow.transform.localScale.x;
+    }
     private void Start()
     {
+        col.enabled = true;
         disaperTimer = disaperDuration;
         isFlashing = false;
 
         visuals.SetActive(true);
         glow.SetActive(true);
-        currentRadius = glow.transform.localScale.x;
-        initialRadius = glow.transform.localScale.x;
+        currentRadius = initialRadius;
+        glow.transform.localScale = new Vector3(initialRadius, initialRadius, 1f);
     }
     public void OnSpawn()
     {
+        col.enabled = true;
         disaperTimer = disaperDuration;
         isFlashing = false;
 
         visuals.SetActive(true);
         glow.SetActive(true);
-        currentRadius = glow.transform.localScale.x;
-        initialRadius = glow.transform.localScale.x;
+        currentRadius = initialRadius;
+        glow.transform.localScale = new Vector3(initialRadius, initialRadius, 1f);
     }
     public void OnDespawn()
     {
         StopAllCoroutines();
         glow.SetActive(false);
         visuals.SetActive(false);
-        glow.transform.localScale = new Vector3(initialRadius,initialRadius,1);
+        glow.transform.localScale = new Vector3(initialRadius, initialRadius, 1f);
+        col.enabled = false;
     }
     private void DespawnSelf()
     {
@@ -67,7 +77,7 @@ public class CollectableBase : MonoBehaviour, ICollectable,IPoolable
     {
         StopAllCoroutines();
         glow.SetActive(true);
-        GetComponent<Collider2D>().enabled = false; 
+        col.enabled = false; 
     
         // 2. Start the expansion animation
         StartCoroutine(GlowExpansionRoutine());
@@ -105,10 +115,5 @@ public class CollectableBase : MonoBehaviour, ICollectable,IPoolable
         }
 
         DespawnSelf();
-        
     }
-
-
-
-
 }

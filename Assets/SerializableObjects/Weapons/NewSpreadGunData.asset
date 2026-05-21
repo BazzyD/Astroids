@@ -17,38 +17,38 @@ MonoBehaviour:
   overDriveDuration: 5
   projectilePrefabName: Projectile
   weaponLevels:
-  - fireRate: 1
+  - fireRate: 0.8
     numberOfProjectiles: 1
     startingAngle: 0
     spreadAngle: 0
     damage: 10
-    projectileSpeed: 10
-    shootInAngle: 0
-  - fireRate: 0.8
-    numberOfProjectiles: 2
-    startingAngle: -10
-    spreadAngle: 20
-    damage: 13
     projectileSpeed: 12
     shootInAngle: 0
-  - fireRate: 0.5
+  - fireRate: 0.6
     numberOfProjectiles: 3
-    startingAngle: -20
-    spreadAngle: 20
-    damage: 18
+    startingAngle: -30
+    spreadAngle: 30
+    damage: 13
     projectileSpeed: 14
     shootInAngle: 0
-  - fireRate: 0.3
+  - fireRate: 0.5
     numberOfProjectiles: 5
     startingAngle: -90
     spreadAngle: 45
+    damage: 18
+    projectileSpeed: 15
+    shootInAngle: 0
+  - fireRate: 0.3
+    numberOfProjectiles: 12
+    startingAngle: -90
+    spreadAngle: 15
     damage: 25
     projectileSpeed: 16
     shootInAngle: 1
-  - fireRate: 0.5
-    numberOfProjectiles: 18
+  - fireRate: 0.3
+    numberOfProjectiles: 21
     startingAngle: -90
-    spreadAngle: 10
+    spreadAngle: 9
     damage: 35
     projectileSpeed: 20
     shootInAngle: 1

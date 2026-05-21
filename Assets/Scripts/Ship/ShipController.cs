@@ -12,6 +12,7 @@ public class ShipController : MonoBehaviour{
     private Health health;
     private WeaponHolder weaponHolder;
     private SpriteRenderer spriteRenderer;
+    
     private PlayerStates currentState = PlayerStates.Idle;
     private bool _isHoldingFire;
     private float hurtTimer = 0f;
@@ -62,8 +63,9 @@ public class ShipController : MonoBehaviour{
         
         currentState = PlayerStates.Hurt;
         _isHoldingFire = false;
-        if(ObjectPool.Instance != null)
-                ObjectPool.Instance.Spawn(hitEffectTag, this.transform.position, this.transform.rotation);
+        
+        if(ObjectPool.Instance == null) return;
+        ObjectPool.Instance.Spawn(hitEffectTag, transform.position, transform.rotation);
 
     }
     private void OnDeath()
@@ -79,7 +81,7 @@ public class ShipController : MonoBehaviour{
     private IEnumerator ExplosionEffect()
     {
         if(ObjectPool.Instance != null)
-                ObjectPool.Instance.Spawn(explosionEffectTag, this.transform.position, this.transform.rotation);
+                ObjectPool.Instance.Spawn(explosionEffectTag, transform.position, transform.rotation);
 
         yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);

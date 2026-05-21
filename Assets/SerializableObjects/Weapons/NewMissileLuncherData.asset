@@ -13,48 +13,48 @@ MonoBehaviour:
   m_Name: NewMissileLuncherData
   m_EditorClassIdentifier: Assembly-CSharp::MissileData
   weaponName: MissileLuncher
-  muzzeleOffset: 2
+  muzzeleOffset: 1
   overDriveDuration: 2
   projectilePrefabName: Missile
   weaponLevels:
   - damage: 10
     missilesAmount: 1
-    flightSpeed: 7
+    flightSpeed: 9
     rotateSpeed: 200
     fireRate: 0
     cooldownDuration: 1
   - damage: 15
-    missilesAmount: 2
-    flightSpeed: 7
-    rotateSpeed: 200
-    fireRate: 0.5
-    cooldownDuration: 1
-  - damage: 25
     missilesAmount: 3
-    flightSpeed: 9
-    rotateSpeed: 250
+    flightSpeed: 11
+    rotateSpeed: 200
     fireRate: 0.33
     cooldownDuration: 1
-  - damage: 40
+  - damage: 25
     missilesAmount: 5
-    flightSpeed: 9
-    rotateSpeed: 300
+    flightSpeed: 11
+    rotateSpeed: 250
     fireRate: 0.2
     cooldownDuration: 1
-  - damage: 60
+  - damage: 40
     missilesAmount: 10
-    flightSpeed: 12
-    rotateSpeed: 350
+    flightSpeed: 13
+    rotateSpeed: 300
     fireRate: 0.1
+    cooldownDuration: 1
+  - damage: 60
+    missilesAmount: 20
+    flightSpeed: 15
+    rotateSpeed: 350
+    fireRate: 0.05
     cooldownDuration: 1
   overDriveLevelData:
     damage: 50
     missilesAmount: 20
-    flightSpeed: 15
+    flightSpeed: 20
     rotateSpeed: 500
     fireRate: 0.1
     cooldownDuration: 2
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  maxRadius: 200
+  maxRadius: 500

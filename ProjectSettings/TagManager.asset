@@ -41,5 +41,29 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1003646425
+    locked: 0
+  - name: Astroids
+    uniqueID: 3233482683
+    locked: 0
+  - name: Projectiles
+    uniqueID: 3316395591
+    locked: 0
+  - name: Collectables
+    uniqueID: 2331613617
+    locked: 0
+  - name: Ship
+    uniqueID: 2643688347
+    locked: 0
+  - name: Explosions
+    uniqueID: 3251513783
+    locked: 0
+  - name: AstroidsIndicators
+    uniqueID: 1186308209
+    locked: 0
+  - name: UI
+    uniqueID: 3116420963
+    locked: 0
   m_RenderingLayers:
   - Default

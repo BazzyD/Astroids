@@ -7,6 +7,7 @@ public class LaserData : WeaponData
     public List<LaserLevelData> weaponLevels = new();
     public LaserLevelData overDriveLevelData;
     public LayerMask layerMask;
+    public float maxDistance = 500f;
     public override void Fire(Transform ship, int level, bool inOverDrive, params object[] args)
     {
         
@@ -20,12 +21,12 @@ public class LaserData : WeaponData
     {
         LaserLevelData levelData = weaponLevels[level];
 
-        Vector3 offsetVector = Quaternion.Euler(0, 0, ship.eulerAngles.z) * Vector3.up * (muzzeleOffset+level/2);
+        Vector3 offsetVector = Quaternion.Euler(0, 0, ship.eulerAngles.z) * Vector3.up * levelData.laserOffset;
         Vector2 muzzelePosition = (Vector2)ship.position + (Vector2)offsetVector;
 
         Vector2 direction = ship.up;
 
-        float maxDistance = 50f; // Far enough to go off screen
+         // Far enough to go off screen
         RaycastHit2D hit = Physics2D.BoxCast(muzzelePosition, new Vector2(levelData.width, 0.1f), ship.eulerAngles.z, direction, maxDistance, layerMask);
         
         float beamLength = maxDistance;

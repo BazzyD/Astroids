@@ -7,6 +7,7 @@ public class PressureManager : MonoBehaviour
 {
     [SerializeField] private ScoreData astroidCount;
     public static PressureManager Instance;
+    public  int CurrentLevel => currentLevel;
     public Action<int> OnChangeLevel;
     [SerializeField] private List<LevelData> levels;
     [SerializeField] private int currentLevel = 0;

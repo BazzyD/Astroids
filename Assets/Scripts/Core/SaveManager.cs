@@ -25,7 +25,7 @@ public class SaveManager : MonoBehaviour{
         // Connect anonymously to the web server as soon as the game boots up
         LootLockerSDKManager.StartGuestSession((response) =>
         {
-            if (response.success) Debug.Log("Connected to Web Leaderboard Backend!");
+            if (response.success) return;
             else Debug.LogError("Web Leaderboard Connection Failed: " + response.errorData.message);
         });
     }
@@ -51,7 +51,7 @@ public class SaveManager : MonoBehaviour{
             // 2. Push the score and completion time string to the cloud
             LootLockerSDKManager.SubmitScore("", score, leaderboardKey, formattedTime, (scoreResponse) =>
             {
-                if (scoreResponse.success) Debug.Log("Score successfully saved to the cloud!");
+                if (scoreResponse.success) return;
                 else Debug.LogError("Failed to upload score: " + scoreResponse.errorData.message);
             });
         });

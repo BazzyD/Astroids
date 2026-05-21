@@ -8,6 +8,7 @@ public class WeaponUpgrade : CollectableBase
         if(!collector.TryGetComponent(out WeaponHolder playerWeapon)) return;
 
         playerWeapon.SwapWeapon(weaponIndex);
+        
         base.Collect(collector);
     }
 
