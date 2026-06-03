@@ -1245,12 +1245,12 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8121387086531334505, guid: 7e81d8ca4b1fbec4688840279c637076, type: 3}
+  m_Sprite: {fileID: -1091535913536270133, guid: 94d8708202f9b18479ceb0e70bb8e1b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.06, y: 5.8}
+  m_Size: {x: 4.74, y: 6.26}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1423,35 +1423,35 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.06, y: 5.8}
-    newSize: {x: 5.06, y: 5.8}
+    oldSize: {x: 4.74, y: 6.26}
+    newSize: {x: 4.74, y: 6.26}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.3882396, y: -2.2977417}
-      - {x: 0.43779516, y: -1.1038225}
-      - {x: 0.55790865, y: -0.7992271}
-      - {x: 1.3210499, y: -1.3781613}
-      - {x: 2.5220406, y: -1.9304081}
-      - {x: 2.506248, y: -1.217711}
-      - {x: 0.6834644, y: 0.31792682}
-      - {x: 1.3167467, y: 0.19651863}
-      - {x: 1.272793, y: 0.5252928}
-      - {x: 0.61492515, y: 1.0826825}
+    - - {x: 1.4810964, y: -2.4274778}
+      - {x: 1.6590624, y: -2.3975968}
+      - {x: 1.8955063, y: -2.3817372}
+      - {x: 2.1108832, y: -2.3853388}
+      - {x: 2.3191848, y: -2.390522}
+      - {x: 2.374194, y: -1.832445}
+      - {x: 0.77389807, y: -0.068801}
+      - {x: 0.8176956, y: 0.33264002}
+      - {x: 0.78339523, y: 0.810836}
+      - {x: 0.699096, y: 1.1349541}
       - {x: 0, y: 2.9601116}
       - {x: -0.652004, y: 1.1210511}
-      - {x: -1.286622, y: 0.5507258}
-      - {x: -1.3097311, y: 0.17640692}
-      - {x: -0.6936145, y: 0.316727}
-      - {x: -2.5439415, y: -1.3154248}
-      - {x: -2.5324306, y: -1.9524726}
-      - {x: -1.3273739, y: -1.3405962}
-      - {x: -0.607898, y: -0.79701436}
-      - {x: -0.46868297, y: -1.1043544}
-      - {x: -1.373395, y: -2.2670588}
+      - {x: -0.79754496, y: 0.79613376}
+      - {x: -0.8217851, y: 0.22567457}
+      - {x: -0.8538208, y: -0.019181132}
+      - {x: -2.3345013, y: -1.8252611}
+      - {x: -2.3422651, y: -2.4033537}
+      - {x: -1.9373981, y: -2.3861272}
+      - {x: -1.5983886, y: -2.3719778}
+      - {x: -1.4813408, y: -2.386565}
+      - {x: -1.4649074, y: -2.3938055}
       - {x: -1.3561625, y: -2.9162}
       - {x: 1.370924, y: -2.9162}
   m_UseDelaunayMesh: 1
@@ -1586,6 +1586,8 @@ GameObject:
   - component: {fileID: 7487482198293070740}
   - component: {fileID: 7491847097304484651}
   - component: {fileID: 4804805070230792033}
+  - component: {fileID: 5064081659820252460}
+  - component: {fileID: 2232161340561416432}
   m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
@@ -1743,6 +1745,34 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &5064081659820252460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655941142720450278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3558c7b762fcb48ac0c403d6643cb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaserAudioController
+  laserSource: {fileID: 0}
+  laserClip: {fileID: 0}
+--- !u!114 &2232161340561416432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655941142720450278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3558c7b762fcb48ac0c403d6643cb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  laserSource: {fileID: 0}
+  laserClip: {fileID: 0}
 --- !u!1 &9204419690317552670
 GameObject:
   m_ObjectHideFlags: 0

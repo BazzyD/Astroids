@@ -6,12 +6,16 @@ using UnityEngine;
 
 
 public class WeaponHolder : MonoBehaviour{
+
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
     [SerializeField] private int currentWeaponIndex = 0;
     [SerializeField] private CurrentWeaponData currentWeaponData;
+
+    public Action<float,float> OnCooldownChanged;
+    
     public Weapon CurrentWeapon => weapons[currentWeaponIndex];
     public int CurrentWeaponIndex => currentWeaponIndex;
-    public Action<float,float> OnCooldownChanged;
+
     private void Start()
     {
         currentWeaponData.ResetWeapon();

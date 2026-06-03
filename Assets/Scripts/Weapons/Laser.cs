@@ -1,14 +1,20 @@
 using UnityEngine;
 
+[RequireComponent(typeof(LaserAudioController))]
 public class Laser : Weapon
 {
     [SerializeField] private LaserData laserWeapon;
     [SerializeField] private LineRenderer laserLine;
+    private LaserAudioController audioController;
     private float currentHeat = 0f;
     private float cooldownTimer = 0f;
     private bool isCoolingDown = false;
     private float sphereIntervalTimer = 2f;
 
+    void Awake()
+    {
+        audioController = GetComponent<LaserAudioController>();
+    }
     private void Start()
     {
         weapon = laserWeapon;
@@ -20,7 +26,7 @@ public class Laser : Weapon
     protected override void Update()
     {
         base.Update();
-        //Debug.Log($"current heat {currentHeat} Max Heat: {laserWeapon.GetMaxHeat(level, isOverDrive)}");
+        // cooling down
         if(isCoolingDown)
         {
             cooldownTimer += Time.deltaTime;
@@ -35,6 +41,7 @@ public class Laser : Weapon
             currentHeat -= Time.deltaTime;
             currentHeat = Mathf.Max(currentHeat, 0);
         }
+        // fire
         else if (isFiring && !isOverDrive)
         {
             currentHeat += Time.deltaTime;
@@ -43,6 +50,9 @@ public class Laser : Weapon
     public override void Fire()
     {
         if(isCoolingDown) return;
+
+        audioController.StartLaser();
+
         isFiring = true;
         if(!isOverDrive){
             laserLine.enabled = true;
@@ -68,6 +78,10 @@ public class Laser : Weapon
         }
     }
     public override void StopFiring() {
+        if (isFiring)
+        {
+            audioController.StopLaser();
+        }
         laserLine.enabled = false;
         isFiring = false;
     }
@@ -82,6 +96,7 @@ public class Laser : Weapon
         cooldownTimer = 0f;
         isCoolingDown = false;
         sphereIntervalTimer = 0f;
+        if (audioController != null) audioController.StopLaser();
     }
     public override float GetCooldownTimer()
     {
