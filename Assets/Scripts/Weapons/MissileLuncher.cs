@@ -4,13 +4,14 @@ using System.Collections;
 public class MissileLuncher : Weapon
 {
     [SerializeField] private MissileData missileLuncherWeapon;
+    [SerializeField] private AudioClip fireSound;
     private bool isVolleying = false;
     private float nextVolleyTime = 0f;
-    private int missilenumber =0;
 
     private void Start()
     {
         base.weapon = missileLuncherWeapon;
+        overdriveTimer = weapon.overDriveDuration;
     }
     private void OnValidate()
     {
@@ -18,10 +19,9 @@ public class MissileLuncher : Weapon
     }
     public override void Fire()
     {
-        if (Time.time >= nextVolleyTime && !isVolleying)
-        {
-            StartCoroutine(LaunchVolley());
-        }
+        if (Time.time < nextVolleyTime || isVolleying) return;
+        
+        StartCoroutine(LaunchVolley());
     }
     private IEnumerator LaunchVolley()
     {
@@ -35,18 +35,19 @@ public class MissileLuncher : Weapon
 
         for (int i = 0; i < stats.missilesAmount; i++)
         {
-            // 3. Tell Data to fire just ONE missile from the volley
-            // We pass the specific target from our list
+            // Fire ONE missile from the volley withthe specific target
             GameObject target = (targets.Count > 0) ? targets[i % targets.Count] : null;
-            missileLuncherWeapon.Fire(transform, level, isOverDrive, missilenumber,target);
-            missilenumber++;
-            // 4. THE INTERVAL: Wait before the next missile
+
+            // Play sound for each missile launch
+            AudioManager.Instance.PlaySFX(fireSound);
+
+            missileLuncherWeapon.Fire(transform, level, isOverDrive,target);
+            // Wait before the next missile
             yield return new WaitForSeconds(stats.fireRate);
         }
 
-        // 5. Start the main cooldown after the volley is finished
+        // Start the main cooldown after the volley is finished
         nextVolleyTime = Time.time + stats.cooldownDuration;
-        missilenumber =0;
         isVolleying = false;
     }
     public override void StopFiring() {}
@@ -57,7 +58,6 @@ public class MissileLuncher : Weapon
     public override void ResetWeapon()
     {
         base.ResetWeapon();
-        missilenumber =0;
         isVolleying = false;
         nextVolleyTime = 0f;
     }

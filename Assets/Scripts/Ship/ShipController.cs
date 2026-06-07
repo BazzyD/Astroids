@@ -21,6 +21,8 @@ public class ShipController : MonoBehaviour{
     [Header("Effects")]
     [SerializeField] private string explosionEffectTag = "Ship_Explosion";
     [SerializeField] private string hitEffectTag = "Ship_Hit";
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip destroySound;
 
     private void Awake(){
         inputHandler = GetComponent<InputHandler>();
@@ -64,8 +66,8 @@ public class ShipController : MonoBehaviour{
         currentState = PlayerStates.Hurt;
         _isHoldingFire = false;
         
-        if(ObjectPool.Instance == null) return;
-        ObjectPool.Instance.Spawn(hitEffectTag, transform.position, transform.rotation);
+        ObjectPool.Instance?.Spawn(hitEffectTag, transform.position, transform.rotation);
+        AudioManager.Instance.PlaySFX(hitSound);
 
     }
     private void OnDeath()
@@ -76,17 +78,17 @@ public class ShipController : MonoBehaviour{
         _isHoldingFire = false;
         OnTakeDamage(0);
         spriteRenderer.enabled = false;
+        AudioManager.Instance.PlaySFX(destroySound);
         StartCoroutine(ExplosionEffect());
     }
     private IEnumerator ExplosionEffect()
     {
-        if(ObjectPool.Instance != null)
-                ObjectPool.Instance.Spawn(explosionEffectTag, transform.position, transform.rotation);
+        ObjectPool.Instance?.Spawn(explosionEffectTag, transform.position, transform.rotation);
 
         yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);
-        if(GameManager.Instance != null)
-            GameManager.Instance.GameOver();
+
+        GameManager.Instance?.GameOver();
     }
 
     private void Update()
@@ -103,10 +105,8 @@ public class ShipController : MonoBehaviour{
                 return;
             }
         }
-
-
-        weaponHolder.HandleFire(_isHoldingFire);
         
+        weaponHolder.HandleFire(_isHoldingFire);
     }
 
 }

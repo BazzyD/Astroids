@@ -10,18 +10,15 @@ public class MineData : WeaponData
     {
         MineLevelData levelData = inOverDrive ? overDriveLevelData : weaponLevels[level];
         
-
         Vector3 rearPosition = ship.position - (ship.up * muzzeleOffset);
 
         if(ObjectPool.Instance == null) return;
-
 
         GameObject mineObj = ObjectPool.Instance.Spawn(projectilePrefabName,rearPosition,Quaternion.Euler(0, 0, ship.eulerAngles.z));
         
         if(!mineObj.TryGetComponent(out Mine mine)) return;
         
         mine.Initialize(levelData.damage, levelData.minesToSpwan,levelData.explosionRadius,levelData.mineSize);
-        
     }
     public float GetFireRate(int level, bool inOverDrive)
     {

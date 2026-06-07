@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2ce0c987f044d984cbfb30a5161557e4
+guid: 6c7d5e3926dbcf4498f36a34d00ad922
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -22,8 +22,9 @@ AudioImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 214929
-  packageName: Free Laser Weapons
+  productId: 144353
+  packageName: Abstract Spaceships (Free Sample Pack)
   packageVersion: 1.0
-  assetPath: Assets/Laser Weapons Sound Pack/Free/continuous_beam_2.wav
-  uploadId: 484299
+  assetPath: Assets/Abstract Spaceships (Free Sample Pack)/Abstract Spaceships (Free
+    Sample Pack)/AbstractSpaceshipA01_Descending.wav
+  uploadId: 305872

@@ -3,11 +3,13 @@ using UnityEngine;
 public class SpreadGun : Weapon
 {
     [SerializeField] private SpreadGunData spreadGunweapon;
+    [SerializeField] private AudioClip fireSound;
     private float nextFireTime = 0f;
     
     private void Start()
     {
         base.weapon = spreadGunweapon;
+        overdriveTimer = weapon.overDriveDuration;
     }
     private void OnValidate()
     {
@@ -16,12 +18,14 @@ public class SpreadGun : Weapon
 
     public override void Fire()
     {
-        float rate = spreadGunweapon.GetFireRate(level, isOverDrive);
+        if (Time.time < nextFireTime)  return;
 
-        if (Time.time >= nextFireTime) {
-            nextFireTime = Time.time + rate;
-            spreadGunweapon.Fire(this.transform, level, isOverDrive);
-        }
+        float rate = spreadGunweapon.GetFireRate(level, isOverDrive);
+        nextFireTime = Time.time + rate;
+
+        AudioManager.Instance.PlaySFX(fireSound);
+
+        spreadGunweapon.Fire(this.transform, level, isOverDrive);
     }
     public override void StopFiring()
     {

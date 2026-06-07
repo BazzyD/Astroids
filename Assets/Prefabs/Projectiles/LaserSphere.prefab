@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f8f40e914240c4da5f3f18fc216b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserSphere
-  expandSpeed: 10
-  maxRadius: 100
+  expandSpeed: 30
+  maxRadius: 60
 --- !u!212 &2904428189551864808
 SpriteRenderer:
   serializedVersion: 2

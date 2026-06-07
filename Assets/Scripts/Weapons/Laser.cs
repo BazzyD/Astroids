@@ -6,10 +6,12 @@ public class Laser : Weapon
     [SerializeField] private LaserData laserWeapon;
     [SerializeField] private LineRenderer laserLine;
     private LaserAudioController audioController;
+    [SerializeField] private AudioClip laserSphereSound;
+    
     private float currentHeat = 0f;
     private float cooldownTimer = 0f;
     private bool isCoolingDown = false;
-    private float sphereIntervalTimer = 2f;
+    private bool isSphereFiring = false;
 
     void Awake()
     {
@@ -18,6 +20,7 @@ public class Laser : Weapon
     private void Start()
     {
         weapon = laserWeapon;
+        overdriveTimer = weapon.overDriveDuration;
     }
     private void OnValidate()
     {
@@ -51,14 +54,16 @@ public class Laser : Weapon
     {
         if(isCoolingDown) return;
 
-        audioController.StartLaser();
 
         isFiring = true;
         if(!isOverDrive){
+
+            audioController.StartLaser();
+
             laserLine.enabled = true;
             
-        
             laserWeapon.Fire(transform, level, isOverDrive, laserLine);
+            
             float maxHeat = laserWeapon.GetMaxHeat(level, isOverDrive);
             if(maxHeat > 0 && currentHeat >= maxHeat)
             {
@@ -68,14 +73,25 @@ public class Laser : Weapon
         }
         else// in over drive
         {
+            if(isSphereFiring)  return;
+
             laserLine.enabled = false;
-            sphereIntervalTimer += Time.deltaTime;
-            if(sphereIntervalTimer >= laserWeapon.GetCooldownDuration(level, isOverDrive))
-            {
-                laserWeapon.Fire(transform, level, isOverDrive);
-                sphereIntervalTimer = 0f;
-            }
+
+            isSphereFiring=true;
+            StartCoroutine(FireSpheres());
         }
+    }
+    private System.Collections.IEnumerator FireSpheres()
+    {
+        AudioManager.Instance.PlaySFX(laserSphereSound);
+        laserWeapon.Fire(transform, level, isOverDrive);
+        yield return new WaitForSeconds(laserWeapon.GetCooldownDuration(level, isOverDrive));
+
+        AudioManager.Instance.PlaySFX(laserSphereSound);
+        laserWeapon.Fire(transform, level, isOverDrive);
+        yield return new WaitForSeconds(laserWeapon.GetCooldownDuration(level, isOverDrive));
+
+        isSphereFiring=false;
     }
     public override void StopFiring() {
         if (isFiring)
@@ -84,6 +100,7 @@ public class Laser : Weapon
         }
         laserLine.enabled = false;
         isFiring = false;
+
     }
     public override void UpgradeWeapon()   
     {
@@ -95,8 +112,9 @@ public class Laser : Weapon
         currentHeat = 0f;
         cooldownTimer = 0f;
         isCoolingDown = false;
-        sphereIntervalTimer = 0f;
-        if (audioController != null) audioController.StopLaser();
+        isFiring = false;
+        isSphereFiring = false;
+        audioController?.StopLaser();
     }
     public override float GetCooldownTimer()
     {

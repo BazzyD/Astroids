@@ -22,21 +22,24 @@ public class BaseMovment : MonoBehaviour
     private void Update()
     {
         if(selfRotate) return;
-        if(GameManager.Instance.GetOnPhone()){
-            if (targetDirection.magnitude > 0.1f)
-            {
-                // (Subtracting 90 degrees assumes your ship sprite naturally faces UP)
-                float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
-                
-                // Smoothly rotate toward that target angle over time
-                float smoothedAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed);
-                transform.rotation = Quaternion.Euler(0, 0, smoothedAngle);
-            }
+
+        if(!GameManager.Instance.GetOnPhone()) return;
+        
+        if (targetDirection.magnitude > 0.1f) return;
+        {
+            // (Subtracting 90 degrees assumes your ship sprite naturally faces UP)
+            float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
+            
+            // Smoothly rotate toward that target angle over time
+            float smoothedAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed);
+            transform.rotation = Quaternion.Euler(0, 0, smoothedAngle);
         }
+        
     }
     private void FixedUpdate()
     {
         if(selfRotate) return;
+        
         if(GameManager.Instance.GetOnPhone()){
             if (targetDirection.magnitude > 0.1f)
             {
@@ -52,6 +55,7 @@ public class BaseMovment : MonoBehaviour
             }
             return;
         }
+        
         HandleThrust();
         HandleRotation();
         

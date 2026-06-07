@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class Boosters : MonoBehaviour
@@ -6,10 +7,13 @@ public class Boosters : MonoBehaviour
     [SerializeField] private GameObject bottomBoosters;
     [SerializeField] private GameObject turnRightBoosters;
     [SerializeField] private GameObject turnLeftBoosters;
+    private BoostersAudioController audioController;
+    private bool isMoving => topBoosters.activeSelf || bottomBoosters.activeSelf || turnRightBoosters.activeSelf || turnLeftBoosters.activeSelf;
+
     private InputHandler _inputHandler;
     private void Awake() {
         _inputHandler = GetComponentInParent<InputHandler>();
-        
+        audioController = GetComponent<BoostersAudioController>();
     }
     private void OnEnable() {
         _inputHandler.OnThrustChanged += OnThrustChanged;
@@ -30,7 +34,10 @@ public class Boosters : MonoBehaviour
         turnRightBoosters.SetActive(false);
         turnLeftBoosters.SetActive(false);
     }
-
+    private void Update() {
+        if(isMoving) audioController.StartBoosters();
+        else audioController.StopBoosters();
+    }
     private void UpdateMovementInput(Vector2 dir){
         OnThrustChanged(dir.y);
         OnRotationChanged(dir.x);

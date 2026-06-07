@@ -13,7 +13,7 @@ public class MissileData : WeaponData
     {
         MissileLevelData levelData = inOverDrive ? overDriveLevelData : weaponLevels[level];
         
-        GameObject target = args[1] as GameObject;
+        GameObject target = args[0] as GameObject;
 
         Vector3 muzzelePosition = ship.position + (ship.up * muzzeleOffset);
 

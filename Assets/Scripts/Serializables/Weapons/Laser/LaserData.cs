@@ -50,13 +50,12 @@ public class LaserData : WeaponData
     private void OverDriveLaser(Transform ship)
     {
         LaserLevelData levelData = overDriveLevelData;
-        if(ObjectPool.Instance != null){
-            GameObject sphere = ObjectPool.Instance.Spawn(projectilePrefabName, ship.position, Quaternion.identity);
-            if(sphere.TryGetComponent(out LaserSphere ls))
-            {
-                ls.Initialize(levelData.damage);
-            }
-        }
+        
+        if(ObjectPool.Instance == null) return;
+        GameObject sphere = ObjectPool.Instance.Spawn(projectilePrefabName, ship.position, Quaternion.identity);
+        
+        if(!sphere.TryGetComponent(out LaserSphere ls)) return; 
+        ls.Initialize(levelData.damage);  
     }
     public float GetCooldownDuration(int level, bool inOverDrive)
     {

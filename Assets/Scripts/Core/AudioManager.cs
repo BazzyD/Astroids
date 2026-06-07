@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour{
             Destroy(gameObject);
         }
     }
-    public void PlaySFX(AudioClip clip, float minPitch = 0.9f, float maxPitch = 1.1f){
+    public void PlaySFX(AudioClip clip, float minPitch = 0.7f, float maxPitch = 1.1f){
         if (clip == null) return;
 
         // Randomize pitch
