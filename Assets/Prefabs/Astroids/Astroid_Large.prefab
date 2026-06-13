@@ -166,6 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f058edf6bd646954f87c9e574dcfb0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Astroid
+  astroidGettingHitSound: {fileID: 8300000, guid: b7cc6d8f5b651d3458c69e28d700ff33, type: 3}
+  astroidHitShipSound: {fileID: 8300000, guid: 8ca95333ae08b3749b108a3755110b38, type: 3}
+  astroidDeathSound:
+  - {fileID: 8300000, guid: ec71d7ec9c5e4624d9415d082fbbbfc1, type: 3}
+  - {fileID: 8300000, guid: 686a713a62b3b7146a2361bd192b3cf4, type: 3}
   astroidLevel: 4
   damageOnCollision: 60
   explosionEffectTag: Astroid_Explosion_Large

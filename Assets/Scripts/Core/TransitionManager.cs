@@ -12,6 +12,10 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] private Animator victoryAnimator;
     [SerializeField] private CanvasGroup youDiedCanvasGroup; 
     [SerializeField] private Animator youDiedAnimator;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip fadeinSound;
+    [SerializeField] private AudioClip fadeOutSound;
 
 
     private void Awake()
@@ -33,6 +37,7 @@ public class TransitionManager : MonoBehaviour
     {
         if(GameManager.Instance.IsStartPlaying){
             faderAnimator.SetTrigger("FadeIn");
+            AudioManager.Instance.PlaySFX(fadeinSound);
             yield return new WaitForSecondsRealtime(1f);
             faderCanvasGroup.blocksRaycasts = true; 
         }
@@ -51,6 +56,7 @@ public class TransitionManager : MonoBehaviour
 
             // 5. Hide the fader
             faderAnimator.SetTrigger("FadeOut");
+            AudioManager.Instance.PlaySFX(fadeOutSound);
             faderCanvasGroup.blocksRaycasts = false;
             GameManager.Instance.ChangeState(GameStates.Playing);
         }
@@ -67,9 +73,11 @@ public class TransitionManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         ani.SetTrigger("FadeIn");
+        AudioManager.Instance.PlaySFX(fadeinSound);
         cg.blocksRaycasts = true; 
         yield return new WaitForSecondsRealtime(2f);
         ani.SetTrigger("FadeOut");
+        AudioManager.Instance.PlaySFX(fadeOutSound);
         cg.blocksRaycasts = false;
         yield return new WaitForSecondsRealtime(1f);
         GameManager.Instance.ChangeState(state);

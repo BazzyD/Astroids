@@ -23,6 +23,11 @@ public class UIManager : MonoBehaviour{
     private Coroutine _levelCoroutine;
     private string userName;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip buttonClickSound;
+    [SerializeField] private AudioClip toggleSound;
+    [SerializeField] private AudioClip nextLevelSound;
+
 
     private void Awake(){
         if (Instance == null) Instance = this;
@@ -48,20 +53,19 @@ public class UIManager : MonoBehaviour{
     private void OnDisable(){
         GameManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
         PressureManager.Instance.OnChangeLevel -= HandleLevelChanged;
-        if (myToggle != null)
-        {
-            // Unsubscribe when leaving the scene to prevent memory leaks
-            myToggle.onValueChanged.RemoveListener(OnToggleChanged);
-        }
+        // Unsubscribe when leaving the scene to prevent memory leaks
+        myToggle?.onValueChanged.RemoveListener(OnToggleChanged);
     }
     private void OnToggleChanged(bool isOn)
     {
+        AudioManager.Instance.PlaySFX(toggleSound);
         GameManager.Instance.SetOnPhone(isOn); 
     }
     private void HandleGameStateChanged(GameStates gameState){
         HideAll();
         switch(gameState){
             case GameStates.MainMenu:
+                AudioManager.Instance.PlayMenuBGMusic();
                 mainMenuPanel.SetActive(true);
                 break;
             case GameStates.NewGameMenu:
@@ -69,20 +73,25 @@ public class UIManager : MonoBehaviour{
                 StartNewGameButton.interactable = false;
                 break;
             case GameStates.Playing:
+                AudioManager.Instance.PlayGameBGMusic();
                 hudPanel.SetActive(true);
                 touchInputs.SetActive(GameManager.Instance.GetOnPhone());
                 break;
             case GameStates.Pause:
+                //AudioManager.Instance.PlayMenuBGMusic();
                 pauseMenuPanel.SetActive(true);
                 break;
             case GameStates.Leaderboard:
+                AudioManager.Instance.PlayMenuBGMusic();
                 leaderboardPanel.SetActive(true);
                 leaderboard.DisplayLeaderboard();
                 break;
             case GameStates.GameOver:
+                AudioManager.Instance.PlayGameOverBGMusic();
                 gameOverPanel.SetActive(true);
                 break;
             case GameStates.Win:
+                AudioManager.Instance.PlayWinBGMusic();
                 WinPanel.SetActive(true);
                 break;
         }
@@ -94,7 +103,10 @@ public class UIManager : MonoBehaviour{
     }
     private IEnumerator GoingToNextLevel(int level)
     {
-        float duration =3f;
+        if(level<=1) yield break; // No need to show for level 1
+
+        AudioManager.Instance.PlayAlarm(nextLevelSound);
+        float duration =5f;
         float flickerInterval = 0.2f;
         nextLevelDisplayer.text = $"Going Into Level {level}";
         while(duration >0){
@@ -103,6 +115,7 @@ public class UIManager : MonoBehaviour{
             duration -= flickerInterval;
         }
         nextLevelDisplayer.enabled = false;
+        AudioManager.Instance.StopAlarm();
     }
     private void HideAll(){
         StartNewGameButton.interactable = false;
@@ -116,11 +129,13 @@ public class UIManager : MonoBehaviour{
         gameOverPanel.SetActive(false);
     }
     public void OnStartButtonClicked() {
+        ButtonClickSound();
         GameManager.Instance.SetUserName(userName);
         GameManager.Instance.StartGame();
     }
     public void OnStartNewGameButtonClicked() {
         HideAll();
+        ButtonClickSound();
         playerNameText.text = "";
         playerNameinput.text ="";
         GameManager.Instance.SetUserName("");
@@ -133,14 +148,31 @@ public class UIManager : MonoBehaviour{
             StartNewGameButton.interactable = false;
         userName = currentText;
     }
-    public void OnRestartButtonClicked() => GameManager.Instance.RestartGame();
-    public void OnResumeButtonClicked() => GameManager.Instance.ChangeState(GameStates.Playing);
-    public void OnQuitButtonClicked() => GameManager.Instance.QuitGame();
+    public void OnRestartButtonClicked() {
+        ButtonClickSound();
+        GameManager.Instance.RestartGame();
+    }
+    public void OnResumeButtonClicked(){
+        ButtonClickSound();
+        GameManager.Instance.ChangeState(GameStates.Playing);
+    }
+    public void OnQuitButtonClicked()
+    {
+        ButtonClickSound();
+        GameManager.Instance.QuitGame();
+    }
     public void OnMainMenuButtonClicked() {
+        ButtonClickSound();
         GameManager.Instance.ChangeState(GameStates.MainMenu);
     }
     public void OnLeaderboardButtonClicked()
     {
+        ButtonClickSound();
         GameManager.Instance.ChangeState(GameStates.Leaderboard);
+    }
+
+    private void ButtonClickSound()
+    {
+        AudioManager.Instance.PlaySFX(buttonClickSound);
     }
 }

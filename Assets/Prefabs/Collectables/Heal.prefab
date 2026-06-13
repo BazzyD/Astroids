@@ -50,6 +50,7 @@ MonoBehaviour:
   glow: {fileID: 2720129810972633371}
   visuals: {fileID: 5654210713722191268}
   poolTag: HealCollectable
+  collectSound: {fileID: 8300000, guid: 8267f63fcc20045be837b4cf2c8f16e9, type: 3}
   expandSpeed: 50
   maxRadius: 10
   disaperDuration: 15

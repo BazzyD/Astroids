@@ -395,6 +395,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: winTracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: gameTracks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: menuTracks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: 'winTracks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d7badf8bb60191b4ca9f975dffbaf67f, type: 3}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: 'gameTracks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 17600b0e90bad2b4f8721fcb6ee62c2f, type: 3}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: 'gameTracks.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e38b6b9e65e4a124b9e88bb226c88cfa, type: 3}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: 'gameTracks.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 078bdb5fc49351143ae4c4e3449505d6, type: 3}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: 'menuTracks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 6947e887045360c42852565100349c6f, type: 3}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: 'menuTracks.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 5f5abc6be389adb4eb9ca44464173e0d, type: 3}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: gameOverTracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598162470254298411, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
+      propertyPath: 'gameOverTracks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 00f91682b4b4f164bb9ef3565e607a38, type: 3}
     - target: {fileID: 9101050546783477048, guid: 0d1ede7743c150a40b0ab9e2ad01f6a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.55894
@@ -475,6 +519,8 @@ MonoBehaviour:
   victoryAnimator: {fileID: 2046519544}
   youDiedCanvasGroup: {fileID: 1814887050}
   youDiedAnimator: {fileID: 1814887051}
+  fadeinSound: {fileID: 8300000, guid: c14ba3a9d7577cc4dac94637499ae8f5, type: 3}
+  fadeOutSound: {fileID: 8300000, guid: b78afaff6e751f1429de9c0407e5ceb9, type: 3}
 --- !u!4 &373927564
 Transform:
   m_ObjectHideFlags: 0
@@ -1603,6 +1649,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 880808562}
     - target: {fileID: 7191604381484288013, guid: 7d4592fe860abbc4491b5bf21c57c92b, type: 3}
+      propertyPath: toggleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d88e458df060b84783b2e2fbfe92318, type: 3}
+    - target: {fileID: 7191604381484288013, guid: 7d4592fe860abbc4491b5bf21c57c92b, type: 3}
       propertyPath: touchInputs
       value: 
       objectReference: {fileID: 233883259}
@@ -1619,6 +1669,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7191604381484288013, guid: 7d4592fe860abbc4491b5bf21c57c92b, type: 3}
+      propertyPath: nextLevelSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e9c1887ea1764ef4cb56475f840fc1d6, type: 3}
+    - target: {fileID: 7191604381484288013, guid: 7d4592fe860abbc4491b5bf21c57c92b, type: 3}
       propertyPath: pauseMenuPanel
       value: 
       objectReference: {fileID: 1947955879}
@@ -1630,6 +1684,10 @@ PrefabInstance:
       propertyPath: playerNameinput
       value: 
       objectReference: {fileID: 1986809240}
+    - target: {fileID: 7191604381484288013, guid: 7d4592fe860abbc4491b5bf21c57c92b, type: 3}
+      propertyPath: buttonClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3bd7393fe6684f84f960e3ecaafeb200, type: 3}
     - target: {fileID: 7191604381484288013, guid: 7d4592fe860abbc4491b5bf21c57c92b, type: 3}
       propertyPath: leaderboardPanel
       value: 
@@ -1749,9 +1807,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 229629071377111793, guid: 283459b1af34ffd4bbc505f767f106ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 229629071377111793, guid: 283459b1af34ffd4bbc505f767f106ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 229629071377111793, guid: 283459b1af34ffd4bbc505f767f106ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1427253526}
+    - target: {fileID: 229629071377111793, guid: 283459b1af34ffd4bbc505f767f106ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 229629071377111793, guid: 283459b1af34ffd4bbc505f767f106ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 230010852290874826, guid: 283459b1af34ffd4bbc505f767f106ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

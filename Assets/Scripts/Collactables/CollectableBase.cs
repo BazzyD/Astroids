@@ -8,6 +8,7 @@ public class CollectableBase : MonoBehaviour, ICollectable,IPoolable
     [SerializeField] private GameObject glow;
     [SerializeField] private GameObject visuals;
     [SerializeField] private string poolTag;
+    [SerializeField] private AudioClip collectSound;
     [Header("Glow Expansion")]
     [SerializeField] private float expandSpeed = 100f;
     [SerializeField] private float maxRadius = 20f;
@@ -77,7 +78,8 @@ public class CollectableBase : MonoBehaviour, ICollectable,IPoolable
     {
         StopAllCoroutines();
         glow.SetActive(true);
-        col.enabled = false; 
+        col.enabled = false;
+        AudioManager.Instance.PlaySFX(collectSound); 
     
         // 2. Start the expansion animation
         StartCoroutine(GlowExpansionRoutine());

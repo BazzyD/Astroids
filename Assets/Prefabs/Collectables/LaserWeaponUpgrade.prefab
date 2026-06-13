@@ -232,6 +232,7 @@ MonoBehaviour:
   glow: {fileID: 6499884283952530536}
   visuals: {fileID: 1753169687213295180}
   poolTag: LaserWeaponUpgrade
+  collectSound: {fileID: 8300000, guid: 4e1ff8faed12a475eba9be0e46072269, type: 3}
   expandSpeed: 50
   maxRadius: 10
   disaperDuration: 15

@@ -50,6 +50,7 @@ MonoBehaviour:
   glow: {fileID: 8200692001261143400}
   visuals: {fileID: 8434349054658481243}
   poolTag: ProjectileWeaponUpgrade
+  collectSound: {fileID: 8300000, guid: 4e1ff8faed12a475eba9be0e46072269, type: 3}
   expandSpeed: 50
   maxRadius: 10
   disaperDuration: 15

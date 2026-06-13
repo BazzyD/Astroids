@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(BaseMovment))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -13,6 +14,10 @@ public class Astroid : MonoBehaviour, IPoolable
     private bool isDespawning = false;
     private int maxSpawnedAstroids = 5;
     private int minSpawnedAstroids = 2;
+
+    [SerializeField] private AudioClip astroidGettingHitSound;
+    [SerializeField] private AudioClip astroidHitShipSound;
+    [SerializeField] private List<AudioClip> astroidDeathSound;
     
 
     [Header("Astroid Stats")]
@@ -47,9 +52,8 @@ public class Astroid : MonoBehaviour, IPoolable
     {
         isDespawning = false;
         spriteRenderer.enabled=true;
-        if(PressureManager.Instance != null){
-            PressureManager.Instance.AddPressure(astroidLevel);
-        }
+        PressureManager.Instance?.AddPressure(astroidLevel);
+        
 
         health.Heal(health.MaxHealth);
         health.SetInvincible();
@@ -62,18 +66,22 @@ public class Astroid : MonoBehaviour, IPoolable
     }
     public void OnDespawn()
     {
-        if(PressureManager.Instance != null)
-            PressureManager.Instance.RemovePressure(astroidLevel);
+        PressureManager.Instance?.RemovePressure(astroidLevel);
         _movment.StopEverything();
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float _)
     {
         if(isDespawning) return;
+        AudioManager.Instance.PlaySFX(astroidGettingHitSound);
     }
     private void Death()
     {
         isDespawning = true;
+
+        int soundIndex = Random.Range(0, astroidDeathSound.Count);
+        AudioManager.Instance.PlaySFX(astroidDeathSound[soundIndex]);
+
         spriteRenderer.enabled = false;
         OnAsteroidKilled?.Invoke(astroidLevel,transform.position);
         if(astroidLevel > 1) SpawnChildren();
@@ -90,8 +98,7 @@ public class Astroid : MonoBehaviour, IPoolable
         {
             float randomZ = Random.Range(0f, 360f);
             Quaternion randomRotation = Quaternion.Euler(0, 0, randomZ);
-            if(ObjectPool.Instance != null)
-                ObjectPool.Instance.Spawn($"Astroid_lvl{astroidLevel - 1}", transform.position, randomRotation);
+            ObjectPool.Instance?.Spawn($"Astroid_lvl{astroidLevel - 1}", transform.position, randomRotation);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -100,6 +107,7 @@ public class Astroid : MonoBehaviour, IPoolable
         
         if (collision.gameObject.TryGetComponent(out IDamageable player))
         {
+            AudioManager.Instance.PlaySFX(astroidHitShipSound);
             Death();
             player.TakeDamage(damageOnCollision);
         }
